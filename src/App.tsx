@@ -5,6 +5,7 @@ import { enableMetaPixel, trackMetaEvent } from './tracking';
 
 type View = 'intro' | 'quiz' | 'result' | 'offer';
 type Answer = string | null;
+type Theme = 'light' | 'dark';
 
 const questions = [
   {
@@ -30,6 +31,7 @@ const questions = [
 ];
 
 const consentKey = 'mandalas-calma-pixel-consent';
+const themeStorageKey = 'mandalas-calma-theme';
 
 type Consent = 'unknown' | 'accepted' | 'declined';
 
@@ -42,6 +44,16 @@ function getSavedConsent(): Consent {
   }
 }
 
+function getSavedTheme(): Theme {
+  try {
+    const saved = localStorage.getItem(themeStorageKey);
+    if (saved === 'light' || saved === 'dark') return saved;
+  } catch {
+    // A configuração inicial ainda pode ser lida da preferência do sistema.
+  }
+  return window.matchMedia?.('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+}
+
 function buildPreferenceMessage(answers: Answer[]): string {
   const likesCreativity = answers[0] === questions[0].options[0] || answers[2] === questions[2].options[2];
   const likesQuiet = answers[2] === questions[2].options[0] || answers[0] === questions[0].options[1];
@@ -52,23 +64,57 @@ function buildPreferenceMessage(answers: Answer[]): string {
   return 'Você demonstrou interesse em explorar atividades manuais e novos passatempos.';
 }
 
-function Header({ onRestart }: { onRestart?: () => void }) {
+function Header({ onRestart, theme, onToggleTheme }: {
+  onRestart?: () => void;
+  theme: Theme;
+  onToggleTheme: () => void;
+}) {
   return (
     <header className="site-header">
       <Brand />
-      {onRestart ? (
-        <div className="header-actions">
-          <nav className="header-nav" aria-label="Navegação principal">
-            <a href="#conteudo">O guia</a>
-            <a href="#beneficios">Benefícios</a>
-            <a href="#duvidas">Dúvidas</a>
-          </nav>
-          <button className="text-link" onClick={onRestart} type="button">Refazer quiz</button>
-        </div>
-      ) : (
-        <span className="header-note"><span className="header-note__dot" /> Um convite a criar no seu próprio ritmo</span>
-      )}
+      <div className="header-tools">
+        {onRestart ? (
+          <div className="header-actions">
+            <nav className="header-nav" aria-label="Navegação principal">
+              <a href="#conteudo">O guia</a>
+              <a href="#beneficios">Benefícios</a>
+              <a href="#duvidas">Dúvidas</a>
+            </nav>
+            <button className="text-link" onClick={onRestart} type="button">Refazer quiz</button>
+          </div>
+        ) : (
+          <span className="header-note"><span className="header-note__dot" /> Um convite a criar no seu próprio ritmo</span>
+        )}
+        <ThemeToggle theme={theme} onToggle={onToggleTheme} />
+      </div>
     </header>
+  );
+}
+
+function ThemeToggle({ theme, onToggle }: { theme: Theme; onToggle: () => void }) {
+  const targetTheme = theme === 'dark' ? 'claro' : 'escuro';
+
+  return (
+    <button
+      className="theme-toggle"
+      type="button"
+      onClick={onToggle}
+      aria-label={`Ativar modo ${targetTheme}`}
+      aria-pressed={theme === 'dark'}
+      title="Alternar entre tema claro e escuro"
+    >
+      {theme === 'light' ? (
+        <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M20.2 15.1A8.4 8.4 0 0 1 8.9 3.8a8.5 8.5 0 1 0 11.3 11.3Z" />
+        </svg>
+      ) : (
+        <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round">
+          <circle cx="12" cy="12" r="4" />
+          <path d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42" />
+        </svg>
+      )}
+      <span>Modo {targetTheme}</span>
+    </button>
   );
 }
 
@@ -114,6 +160,7 @@ function App() {
   const [transitioning, setTransitioning] = useState(false);
   const [checkoutNotice, setCheckoutNotice] = useState('');
   const [consent, setConsent] = useState<Consent>(getSavedConsent);
+  const [theme, setTheme] = useState<Theme>(getSavedTheme);
   const preferenceMessage = useMemo(() => buildPreferenceMessage(answers), [answers]);
 
   useEffect(() => {
@@ -130,6 +177,14 @@ function App() {
   }, [consent]);
 
   useEffect(() => {
+    try {
+      localStorage.setItem(themeStorageKey, theme);
+    } catch {
+      // A troca de tema continua funcionando mesmo sem armazenamento local.
+    }
+  }, [theme]);
+
+  useEffect(() => {
     if (view === 'offer' && consent === 'accepted') trackMetaEvent('ViewContent');
     if (view === 'result' && consent === 'accepted') trackMetaEvent('QuizComplete', true);
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -142,6 +197,10 @@ function App() {
     setAnswers(questions.map(() => null));
     setQuestionIndex(0);
     setView('quiz');
+  }
+
+  function toggleTheme() {
+    setTheme((current) => current === 'light' ? 'dark' : 'light');
   }
 
   function chooseAnswer(answer: string) {
@@ -193,15 +252,15 @@ function App() {
   }
 
   return (
-    <div className="app-shell">
+    <div className="app-shell" data-theme={theme}>
       {view === 'offer' ? (
         <>
-          <Header onRestart={startQuiz} />
+          <Header onRestart={startQuiz} theme={theme} onToggleTheme={toggleTheme} />
           <SalesPage onBuy={startCheckout} notice={checkoutNotice} />
         </>
       ) : (
         <>
-          <Header />
+          <Header theme={theme} onToggleTheme={toggleTheme} />
           <main className="quiz-shell">
             {view === 'intro' && <Intro onStart={startQuiz} />}
             {view === 'quiz' && (

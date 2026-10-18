@@ -336,3 +336,145 @@ h1, h2, h3, p { margin-top: 0; }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
 }
+
+
+/* Alternador de tema: controles compartilhados em todas as telas. */
+.header-tools { display: flex; align-items: center; gap: 18px; }
+.theme-toggle { min-height: 46px; padding: 0 14px; display: inline-flex; align-items: center; justify-content: center; gap: 9px; border: 1px solid #cbbfd2; border-radius: 999px; background: #fffdf9; color: #5d496e; font: 600 14px/1 var(--body); white-space: nowrap; cursor: pointer; transition: background .18s ease, border-color .18s ease, color .18s ease, transform .18s ease; }
+.theme-toggle svg { width: 19px; height: 19px; flex: 0 0 auto; }
+.theme-toggle:hover { background: #f3edf6; border-color: #9f8cad; }
+.theme-toggle:active { transform: translateY(1px); }
+
+@media (max-width: 920px) {
+  .header-nav { display: none; }
+}
+
+@media (max-width: 700px) {
+  .site-header, .sales-page .site-header { min-height: 0; padding-block: 12px 10px; flex-wrap: wrap; row-gap: 7px; }
+  .header-tools { width: 100%; justify-content: flex-end; gap: 0; }
+  .header-actions { gap: 0; }
+  .header-actions .text-link { display: none; }
+  .theme-toggle { min-height: 44px; padding-inline: 14px; font-size: 14px; }
+}
+
+/* Somente cores de interface mudam; ilustrações, fotos e mockups mantêm seus pixels e filtros originais. */
+.app-shell[data-theme="dark"] {
+  --theme-canvas: #19171c;
+  --theme-surface: #25212a;
+  --theme-surface-soft: #302a36;
+  --theme-text: #f5eff7;
+  --theme-copy: #ddd4e2;
+  --theme-muted: #beb4c3;
+  --theme-border: #514756;
+  --theme-accent: #d5bde3;
+  --theme-sage: #c4d1bd;
+  color-scheme: dark;
+  color: var(--theme-text);
+  background: var(--theme-canvas);
+}
+
+.app-shell[data-theme="dark"] .site-header { border-bottom-color: var(--theme-border); }
+.app-shell[data-theme="dark"] .brand { color: var(--theme-text); }
+.app-shell[data-theme="dark"] .brand__name i,
+.app-shell[data-theme="dark"] .brand__mark,
+.app-shell[data-theme="dark"] .eyebrow,
+.app-shell[data-theme="dark"] .signature,
+.app-shell[data-theme="dark"] .inside-points li span,
+.app-shell[data-theme="dark"] .offer-panel__ornament { color: var(--theme-accent); }
+.app-shell[data-theme="dark"] .brand__descriptor,
+.app-shell[data-theme="dark"] .header-note,
+.app-shell[data-theme="dark"] .header-nav a,
+.app-shell[data-theme="dark"] .header-note__dot { color: var(--theme-muted); }
+.app-shell[data-theme="dark"] .header-nav a:hover,
+.app-shell[data-theme="dark"] .text-link { color: var(--theme-accent); }
+.app-shell[data-theme="dark"] .theme-toggle { border-color: #8e7c9a; background: #302a36; color: #f0e5f5; }
+.app-shell[data-theme="dark"] .theme-toggle:hover { border-color: #d5bde3; background: #3a3241; }
+
+.app-shell[data-theme="dark"] .quiz-card { border-color: var(--theme-border); background: var(--theme-surface); box-shadow: 0 24px 70px rgba(0, 0, 0, .27); }
+.app-shell[data-theme="dark"] .intro-card h1,
+.app-shell[data-theme="dark"] .question-card h1,
+.app-shell[data-theme="dark"] .result-card h1,
+.app-shell[data-theme="dark"] .hero h1,
+.app-shell[data-theme="dark"] .routine-copy h2,
+.app-shell[data-theme="dark"] .section-heading h2,
+.app-shell[data-theme="dark"] .inside-copy h2,
+.app-shell[data-theme="dark"] .sample-copy h2,
+.app-shell[data-theme="dark"] .offer-panel h2,
+.app-shell[data-theme="dark"] .faq-title h2,
+.app-shell[data-theme="dark"] .benefit-card h3 { color: var(--theme-text); }
+.app-shell[data-theme="dark"] .hero h1 em { color: var(--theme-accent); }
+.app-shell[data-theme="dark"] .intro-lede,
+.app-shell[data-theme="dark"] .question-hint,
+.app-shell[data-theme="dark"] .result-copy,
+.app-shell[data-theme="dark"] .hero-lede,
+.app-shell[data-theme="dark"] .hero-details,
+.app-shell[data-theme="dark"] .microcopy,
+.app-shell[data-theme="dark"] .routine-copy p,
+.app-shell[data-theme="dark"] .section-heading > p,
+.app-shell[data-theme="dark"] .benefit-card p,
+.app-shell[data-theme="dark"] .inside-copy > p,
+.app-shell[data-theme="dark"] .inside-points li,
+.app-shell[data-theme="dark"] .levels-card__top,
+.app-shell[data-theme="dark"] .level-row__label,
+.app-shell[data-theme="dark"] .sample-copy > p,
+.app-shell[data-theme="dark"] .sample-disclaimer,
+.app-shell[data-theme="dark"] .sample-art figcaption,
+.app-shell[data-theme="dark"] .offer-panel__copy > p,
+.app-shell[data-theme="dark"] .faq-list details p,
+.app-shell[data-theme="dark"] .footer-inner p,
+.app-shell[data-theme="dark"] .footer-inner > span,
+.app-shell[data-theme="dark"] .consent-banner p,
+.app-shell[data-theme="dark"] .button-note,
+.app-shell[data-theme="dark"] .mockup-caption,
+.app-shell[data-theme="dark"] .quiz-privacy,
+.app-shell[data-theme="dark"] .back-button,
+.app-shell[data-theme="dark"] .question-foot,
+.app-shell[data-theme="dark"] .price__from,
+.app-shell[data-theme="dark"] .price__condition { color: var(--theme-copy); }
+.app-shell[data-theme="dark"] .price strong,
+.app-shell[data-theme="dark"] .question-count,
+.app-shell[data-theme="dark"] .levels-card > p,
+.app-shell[data-theme="dark"] .faq-list summary::after { color: var(--theme-accent); }
+.app-shell[data-theme="dark"] .button-note,
+.app-shell[data-theme="dark"] .price__from,
+.app-shell[data-theme="dark"] .price__condition,
+.app-shell[data-theme="dark"] .sample-disclaimer,
+.app-shell[data-theme="dark"] .footer-inner > span { color: var(--theme-muted); }
+.app-shell[data-theme="dark"] .question-card h1,
+.app-shell[data-theme="dark"] .result-card h1 { color: var(--theme-text); }
+.app-shell[data-theme="dark"] .progress-track { background: #443b4a; }
+.app-shell[data-theme="dark"] .answer-option { border-color: var(--theme-border); background: #302a35; color: var(--theme-text); }
+.app-shell[data-theme="dark"] .answer-option:hover,
+.app-shell[data-theme="dark"] .answer-option--selected { border-color: #b9a2c9; background: #3a3241; }
+.app-shell[data-theme="dark"] .answer-letter,
+.app-shell[data-theme="dark"] .result-rosette { background: #403748; color: var(--theme-accent); }
+.app-shell[data-theme="dark"] .answer-arrow { color: var(--theme-accent); }
+.app-shell[data-theme="dark"] .result-message { border-left-color: var(--theme-sage); background: #302a35; color: #eee5f0; }
+.app-shell[data-theme="dark"] .detail-check::after { border-color: var(--theme-sage); }
+
+.app-shell[data-theme="dark"] .sales-page { background: var(--theme-canvas); }
+.app-shell[data-theme="dark"] .trust-ribbon,
+.app-shell[data-theme="dark"] .benefits-section { background: #2c2632; color: var(--theme-copy); }
+.app-shell[data-theme="dark"] .benefit-list,
+.app-shell[data-theme="dark"] .benefit-card { border-color: #554a5e; }
+.app-shell[data-theme="dark"] .benefit-number { color: #c1b2ca; }
+.app-shell[data-theme="dark"] .routine-image-wrap::before { border-color: #897995; }
+.app-shell[data-theme="dark"] .image-caption { background: var(--theme-surface); color: var(--theme-copy); }
+.app-shell[data-theme="dark"] .image-flower { color: #c0accd; }
+.app-shell[data-theme="dark"] .levels-card { border-color: var(--theme-border); background: var(--theme-surface); box-shadow: 0 17px 40px rgba(0, 0, 0, .24); }
+.app-shell[data-theme="dark"] .levels-card__top,
+.app-shell[data-theme="dark"] .level-row { border-color: var(--theme-border); }
+.app-shell[data-theme="dark"] .level-stars { color: #dfc997; }
+.app-shell[data-theme="dark"] .level-stars span { color: #8b8092; }
+.app-shell[data-theme="dark"] .sample-section { background: #292522; }
+.app-shell[data-theme="dark"] .sample-art { background: #fffdf9; }
+.app-shell[data-theme="dark"] .offer-panel { background: #342c3b; }
+.app-shell[data-theme="dark"] .offer-panel::after { border-color: rgba(213, 189, 227, .24); }
+.app-shell[data-theme="dark"] .checkout-notice { border-left-color: #d5a98e; background: #392f2b; color: #f1dfd4; }
+.app-shell[data-theme="dark"] .faq-list,
+.app-shell[data-theme="dark"] .faq-list details { border-color: var(--theme-border); }
+.app-shell[data-theme="dark"] .faq-list summary { color: var(--theme-text); }
+.app-shell[data-theme="dark"] .site-footer { background: #292621; }
+.app-shell[data-theme="dark"] .consent-banner { border-color: #554a5e; background: var(--theme-surface); color: var(--theme-text); box-shadow: 0 14px 50px rgba(0, 0, 0, .45); }
+.app-shell[data-theme="dark"] .button--quiet { border-color: #9b89a6; color: #ede2f2; }
+.app-shell[data-theme="dark"] .button--quiet:hover { background: #3b3342; color: #fff; }

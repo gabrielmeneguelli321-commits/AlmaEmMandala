@@ -32,3 +32,8 @@
 - [x] Usar estética premium, acolhedora e elegante, inspirada em editoriais de bem-estar, livros de atividades para adultos e papelaria premium, sem aparência infantil, promocional enganosa ou template genérico.
 - [x] Usar a paleta creme #F7F2EA, roxo #78628C, lavanda #DCD2E8, verde-sálvia #A6B5A2 e grafite #36323A.
 - [x] Manter layout simples e mobile-first, legibilidade e contraste, fontes confortáveis, botões grandes, espaçamento generoso e navegação simples para público 50+.
+
+## Alternador de tema acessível — concluído
+- [x] Exibir um controle visível de tema em todas as telas e rotas do funil, alternando entre claro e escuro e mantendo a preferência entre visitas.
+- [x] Usar texto explícito e ícone, rótulo acessível, estado anunciado, foco de teclado e alvos de toque confortáveis; preservar contraste e legibilidade.
+- [x] Não modificar arquivos, cores, filtros, recortes nem aparência dos criativos existentes; aplicar o tema apenas ao fundo, superfícies, texto e controles do site.
