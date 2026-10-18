@@ -25,7 +25,8 @@
 
 ## Checkout e mensuração
 - [x] Criar parâmetros editáveis para preço promocional, preço anterior e validação explícita, URL HTTPS de checkout, cupom, parâmetro do cupom, confirmação de acesso após pagamento e Meta Pixel. Não inserir URL, gateway, código promocional, credenciais ou ID fictícios. Se a URL de checkout estiver vazia/inválida, os CTAs mostram um aviso claro em vez de simular uma compra.
-- [ ] Conectar o checkout real: aguarda URL HTTPS oficial e confirmação do provedor, preço final, eventual cupom e condição efetiva de entrega/acesso pelo responsável do produto.
+- [x] Configurar a URL HTTPS Cakto fornecida (`https://pay.cakto.com.br/3cvx2dz_1217210`); os botões de compra redirecionam ao checkout somente após clique.
+- [ ] Confirmar que o preço mostrado coincide com o checkout, se há cupom real e qual é a condição efetiva de entrega/acesso. Para notificações de compra, conectar eventos verificados do provedor e obter consentimento para divulgar nomes/valores.
 - [x] Preparar o Meta Pixel com ID configurável e eventos básicos; carregar somente após consentimento e quando houver ID válido. Não incluir identificador fictício.
 
 ## Identidade visual, responsividade e acessibilidade — concluído

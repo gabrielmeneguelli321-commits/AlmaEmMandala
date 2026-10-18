@@ -6,8 +6,8 @@ export const FUNNEL_CONFIG = {
   referencePriceVerified: false,
   /** Exiba a promessa de acesso após pagamento somente se a entrega estiver confirmada. */
   postPaymentAccessConfirmed: false,
-  /** URL completa do checkout externo; vazia enquanto não for fornecida. */
-  checkoutUrl: '',
+  /** URL HTTPS do checkout externo informada pelo responsável. */
+  checkoutUrl: 'https://pay.cakto.com.br/3cvx2dz_1217210',
   /** Cupom real, se existir. Não preencher com código fictício. */
   couponCode: '',
   /** Nome do parâmetro exigido pelo checkout configurado. */

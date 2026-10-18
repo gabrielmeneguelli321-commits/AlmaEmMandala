@@ -1,17 +1,19 @@
 # Configuração comercial antes da publicação
 
-A experiência de quiz e a página de oferta estão implementadas. O checkout ainda não está ligado porque não foram fornecidos URL, provedor ou cupom. Para ativar uma compra real, edite `src/config.ts`:
+A experiência de quiz e a página de oferta estão implementadas. Os botões de compra agora redirecionam, após clique, ao checkout Cakto fornecido pelo responsável do produto. O site não processa pagamento nem recebe confirmação de transação por esse link.
 
-- `promotionalPrice`: confirme o preço promocional final.
+Em `src/config.ts`, confirme antes da divulgação:
+
+- `promotionalPrice`: confirme o preço final mostrado no site com o valor do checkout.
 - `referencePrice`: altere somente se houver preço anterior real e comprovável.
-- `referencePriceVerified`: mantenha `false` até essa comprovação; nesse estado o site não mostra o preço anterior.
+- `referencePriceVerified`: mantenha `false` até essa comprovação; nesse estado o site não mostra o preço anterior e o CTA evita alegar desconto.
 - `postPaymentAccessConfirmed`: mantenha `false` até a entrega confirmar acesso após pagamento; só então a página inclui essa condição no microtexto.
-- `checkoutUrl`: informe o endereço HTTPS do checkout aprovado pelo responsável.
+- `checkoutUrl`: atualmente `https://pay.cakto.com.br/3cvx2dz_1217210`; atualize se o endereço oficial mudar. O código aceita apenas destinos HTTPS e redireciona quando o botão é acionado.
 - `couponCode`: informe apenas um cupom real, se aplicável.
 - `couponParameter`: ajuste para o nome exato do parâmetro que o checkout espera para o cupom (por padrão, `coupon`).
 - `metaPixelId`: informe um ID válido do Meta Pixel. O código aguarda consentimento para inicializar métricas; com o campo vazio, não carrega o Pixel.
 
-O preço de R$ 19,90 é o parâmetro inicial editável solicitado no briefing, não uma confirmação de preço final. O checkout em branco faz os botões exibirem um aviso claro em vez de simular uma compra. A entrega do PDF e o acesso após pagamento dependem da configuração real do checkout/provedor.
+O preço de R$ 19,90 é o parâmetro inicial editável solicitado no briefing, não uma confirmação de preço final. Confirme que o checkout Cakto aplica o mesmo preço antes da publicação. Como não há retorno de pagamento/webhook nem fonte verificada de leads nesta versão, o site não exibe notificações de compra ou de lead; conecte uma fonte real e obtenha consentimento para divulgar nomes ou valores antes de ativá-las. A entrega do PDF e o acesso após pagamento dependem da configuração real do checkout/provedor.
 
 ## Imagens e fidelidade ao PDF
 
