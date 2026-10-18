@@ -496,3 +496,7 @@ h1, h2, h3, p { margin-top: 0; }
   .mockup-scene--provided { min-height: 0; transform: none; margin-block: 0; }
   .offer-mockup-image { width: min(100%, 340px); max-height: none; }
 }
+
+
+/* Mantém a folha enviada na composição original, sem filtro ou corte. */
+.sample-art img.sample-art__provided-image { width: 100%; height: auto; max-height: none; object-fit: contain; mix-blend-mode: normal; }

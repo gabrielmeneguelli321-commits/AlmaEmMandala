@@ -49,3 +49,9 @@ O PNG enviado foi armazenado em `/manus-storage/pasted_file_8Ff8W4_image_c8fd4c7
 Evidência de conclusão: o Preview gerenciado mostra o criativo enviado no espaço do mockup em 1280×800 e após o microtexto de PDF na captura mobile completa.
 `ProductMockup` usa `OFFER_MOCKUP_IMAGE`; a imagem da abertura do quiz e os demais criativos permanecem em seus locais.
 O PNG enviado foi armazenado em `/manus-storage/pasted_file_wN8rV4_image_72bf08d1.png` sem alteração.
+
+## Prévia de exercício na landing page
+- [x] Remover o aviso “Ilustração representativa, criada para esta página. Não é uma página original do PDF.” e substituir somente a imagem logo abaixo pelo novo arquivo enviado; preservar os demais textos e criativos, ajustando a legenda para descrever a folha progressiva.
+Evidência de conclusão: capturas completas do Preview gerenciado em desktop e mobile mostram a folha enviada e confirmam que o aviso foi removido.
+A imagem usa `SAMPLE_WORKSHEET_IMAGE` sem filtro nem recorte; a legenda foi ajustada para descrever a folha progressiva.
+O PNG enviado foi armazenado em `/manus-storage/pasted_file_RXP8ql_image_f9e5499c.png` sem alteração.

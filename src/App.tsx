@@ -1,8 +1,8 @@
 import { useEffect, useMemo, useState } from 'react';
 import Brand, { BrandMark } from './components/Brand';
-import { createCheckoutUrl, formatPrice, FUNNEL_CONFIG, MANDALA_IMAGE, WOMAN_IMAGE } from './config';
+import { createCheckoutUrl, formatPrice, FUNNEL_CONFIG, WOMAN_IMAGE } from './config';
 import { enableMetaPixel, trackMetaEvent } from './tracking';
-import { OFFER_MOCKUP_IMAGE, QUIZ_INTRO_IMAGE } from './config';
+import { OFFER_MOCKUP_IMAGE, QUIZ_INTRO_IMAGE, SAMPLE_WORKSHEET_IMAGE } from './config';
 
 type View = 'intro' | 'quiz' | 'result' | 'offer';
 type Answer = string | null;
@@ -472,9 +472,8 @@ function SalesPage({ onBuy, notice }: { onBuy: () => void; notice: string }) {
             <span className="eyebrow"><span className="eyebrow-line" /> UM GOSTINHO DO QUE VEM AÍ</span>
             <h2>Formas que se encontram, pétala por pétala.</h2>
             <p>As mandalas convidam a observar a relação entre formas e padrões. Comece por um detalhe, acompanhe a construção e faça uma pausa sempre que quiser.</p>
-            <span className="sample-disclaimer">Ilustração representativa, criada para esta página. Não é uma página original do PDF.</span>
           </div>
-          <figure className="sample-art"><img src={MANDALA_IMAGE} alt="Ilustração representativa de uma mandala floral em linhas sobre papel claro" /><figcaption>Traços delicados · formas botânicas · espaço para criar</figcaption></figure>
+          <figure className="sample-art"><img className="sample-art__provided-image" src={SAMPLE_WORKSHEET_IMAGE} alt="Folha de exercício de mandalas com cinco níveis de dificuldade e desenhos progressivos para praticar." /><figcaption>Exercícios progressivos · Cinco níveis de dificuldade · Folha A4</figcaption></figure>
         </div>
       </section>
 

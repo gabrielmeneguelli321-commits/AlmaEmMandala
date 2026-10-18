@@ -20,6 +20,7 @@ export const WOMAN_IMAGE = '/manus-storage/async-images/IU5jCflaS9Bq1asKUpLfyG/i
 export const MANDALA_IMAGE = '/manus-storage/async-images/Yp3UmJ167v8JhVEMrcMHaB/image-2.webp';
 export const QUIZ_INTRO_IMAGE = '/manus-storage/pasted_file_8Ff8W4_image_c8fd4c71.png';
 export const OFFER_MOCKUP_IMAGE = '/manus-storage/pasted_file_wN8rV4_image_72bf08d1.png';
+export const SAMPLE_WORKSHEET_IMAGE = '/manus-storage/pasted_file_RXP8ql_image_f9e5499c.png';
 
 export function formatPrice(value: number): string {
   return new Intl.NumberFormat('pt-BR', {
