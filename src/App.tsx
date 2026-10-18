@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState } from 'react';
 import Brand, { BrandMark } from './components/Brand';
 import { createCheckoutUrl, formatPrice, FUNNEL_CONFIG, MANDALA_IMAGE, WOMAN_IMAGE } from './config';
 import { enableMetaPixel, trackMetaEvent } from './tracking';
-import { QUIZ_INTRO_IMAGE } from './config';
+import { OFFER_MOCKUP_IMAGE, QUIZ_INTRO_IMAGE } from './config';
 
 type View = 'intro' | 'quiz' | 'result' | 'offer';
 type Answer = string | null;
@@ -133,21 +133,9 @@ function Price({ large = false }: { large?: boolean }) {
 
 function ProductMockup() {
   return (
-    <div className="mockup-scene" aria-label="Representação ilustrativa do guia digital Mandalas da Calma">
-      <div className="mockup-glow" />
-      <div className="workbook-page workbook-page--back" aria-hidden="true">
-        <span className="page-lines page-lines--top" />
-        <img src={MANDALA_IMAGE} alt="" />
-        <span className="page-lines" />
-      </div>
-      <div className="workbook-cover">
-        <span className="cover-kicker">UM GUIA PARA CRIAR NO SEU RITMO</span>
-        <BrandMark className="cover-mark" />
-        <span className="cover-title">Mandalas<br /><i>da Calma</i></span>
-        <span className="cover-subtitle">GUIA DE DESENHO</span>
-        <div className="cover-art"><img src={MANDALA_IMAGE} alt="Ilustração floral de mandala em traço fino" /></div>
-        <span className="cover-bottom">50 EXERCÍCIOS • 5 NÍVEIS</span>
-      </div>
+    <div className="mockup-scene mockup-scene--provided">
+      <div className="mockup-glow" aria-hidden="true" />
+      <img className="offer-mockup-image" src={OFFER_MOCKUP_IMAGE} alt="Mockup ilustrativo do guia Mandalas da Calma, acompanhado de páginas com desenhos de mandalas e lápis coloridos." />
       <div className="mockup-caption"><span className="caption-dot" /> Material digital em PDF</div>
     </div>
   );

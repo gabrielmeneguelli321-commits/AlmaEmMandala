@@ -486,3 +486,13 @@ h1, h2, h3, p { margin-top: 0; }
 @media (max-width: 700px) {
   .intro-art__frame--photo { width: min(76vw, 246px); }
 }
+
+
+/* Mockup composto enviado pelo responsável para a hero da oferta. */
+.mockup-scene--provided { min-height: 0; flex-direction: column; gap: 8px; }
+.offer-mockup-image { display: block; position: relative; z-index: 1; width: min(100%, 520px); max-height: 520px; object-fit: contain; }
+.mockup-scene--provided .mockup-caption { position: relative; z-index: 1; bottom: auto; left: auto; transform: none; margin-top: 0; }
+@media (max-width: 700px) {
+  .mockup-scene--provided { min-height: 0; transform: none; margin-block: 0; }
+  .offer-mockup-image { width: min(100%, 340px); max-height: none; }
+}

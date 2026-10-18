@@ -43,6 +43,9 @@
 Evidência de conclusão: o Preview gerenciado mostra a imagem inteira em 1280×800 e 375×812, com o selo preservado.
 A abertura do quiz usa `QUIZ_INTRO_IMAGE`; as demais seções continuam usando seus ativos originais.
 O PNG enviado foi armazenado em `/manus-storage/pasted_file_8Ff8W4_image_c8fd4c71.png` sem alteração.
-Evidência de conclusão: o Preview gerenciado mostra a imagem inteira em 1280×800 e 375×812, com o selo preservado.
-A abertura do quiz usa `QUIZ_INTRO_IMAGE`; as demais seções continuam usando seus ativos originais.
-O PNG enviado foi armazenado em `/manus-storage/pasted_file_8Ff8W4_image_c8fd4c71.png` sem alteração.
+
+## Mockup da página de oferta
+- [x] Na seção hero da oferta, substituir o mockup de capa e páginas pelo arquivo enviado, mantendo o texto “Material digital em PDF • Pronto para imprimir”, os CTAs e os demais criativos do site inalterados.
+Evidência de conclusão: o Preview gerenciado mostra o criativo enviado no espaço do mockup em 1280×800 e após o microtexto de PDF na captura mobile completa.
+`ProductMockup` usa `OFFER_MOCKUP_IMAGE`; a imagem da abertura do quiz e os demais criativos permanecem em seus locais.
+O PNG enviado foi armazenado em `/manus-storage/pasted_file_wN8rV4_image_72bf08d1.png` sem alteração.
