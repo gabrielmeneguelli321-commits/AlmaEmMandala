@@ -63,3 +63,11 @@ O PNG enviado foi armazenado em `/manus-storage/pasted_file_RXP8ql_image_f9e5499
 
 ## Identidade da marca do site
 - [x] Usar “Alma em Mandala” como marca do site no wordmark, metadados e títulos das rotas; manter “Mandalas da Calma” somente como nome do guia/produto e nas artes fornecidas.
+
+## Portabilidade para GitHub e Vercel
+- [x] Criar `vercel.json` na raiz com rewrite de SPA para que `/` e `/oferta` sirvam o `index.html` também em acesso direto/atualização, preservando arquivos estáticos.
+- [x] Colocar em `public/images` todos os ativos usados pelo site — incluindo o logotipo, a imagem lifestyle, as três imagens fornecidas — e substituir cada referência `/manus-storage/...` por um caminho local versionável `/images/...` sem modificar os arquivos originais.
+- [x] Confirmar que o build de produção inclui todos os ativos em `dist/images`, que não restam caminhos `/manus-storage/` no frontend, e que o manifesto de rotas continua declarando `/` e `/oferta`.
+Evidência: `pnpm run typecheck` e `pnpm run build` concluíram sem erro; `vercel.json` foi validado como JSON com rewrite `/(.*)` → `/index.html`.
+`dist/images` contém os cinco ativos usados pelo site, e os hashes dos três PNGs em `dist` correspondem aos originais fornecidos.
+No Preview local, `/`, `/oferta`, os quatro caminhos de imagem e `/manus-routes.json` retornaram HTTP 200; não restam referências `/manus-storage/` em `src`.
