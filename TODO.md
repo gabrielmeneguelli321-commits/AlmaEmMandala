@@ -10,7 +10,7 @@
 - [x] Ao concluir, apresentar a tela com revelação suave, título “Seu momento de calma está esperando por você!” e subtítulo “Você concluiu o quiz e desbloqueou uma condição especial para começar a desenhar suas próprias mandalas.”
 - [x] Personalizar a mensagem final como descoberta de preferências, usando mensagens compatíveis com as respostas. Não afirmar que o quiz detectou estado emocional, diagnóstico ou capacidade mental.
 - [x] Aplicar a mesma condição comercial a todas as pessoas, independentemente das respostas. O parâmetro promocional inicial editável é R$ 19,90. Exibir “De R$ 47,00” somente quando `referencePriceVerified` for verdadeiro; por padrão, mostrar apenas o preço promocional. Não usar contadores falsos, falsa escassez ou prazo não comprovado.
-- [x] O CTA “QUERO APROVEITAR MEU DESCONTO” direciona à página `/oferta`, preservando a condição promocional. Se um cupom real for configurado, transmiti-lo no parâmetro editável exigido pelo checkout.
+- [x] O CTA direciona à página `/oferta`, preservando a condição promocional. Mostrar “QUERO APROVEITAR MEU DESCONTO” somente quando `referencePriceVerified` for verdadeiro; caso contrário, mostrar “QUERO APROVEITAR MINHA OFERTA”. Se um cupom real for configurado, transmiti-lo no parâmetro editável exigido pelo checkout.
 
 ## Landing page — conteúdo e benefícios implementados
 - [x] Apresentar claramente “Mandalas da Calma — Guia de Desenho”, um livro digital PDF com 50 exercícios em cinco dificuldades identificadas por estrelas, modelos visuais, sequências de construção e espaços para reproduzir desenhos. Explicar que a pessoa pode escolher qualquer exercício, sem ordem, e não precisa ter experiência artística.
@@ -55,3 +55,10 @@ O PNG enviado foi armazenado em `/manus-storage/pasted_file_wN8rV4_image_72bf08d
 Evidência de conclusão: capturas completas do Preview gerenciado em desktop e mobile mostram a folha enviada e confirmam que o aviso foi removido.
 A imagem usa `SAMPLE_WORKSHEET_IMAGE` sem filtro nem recorte; a legenda foi ajustada para descrever a folha progressiva.
 O PNG enviado foi armazenado em `/manus-storage/pasted_file_RXP8ql_image_f9e5499c.png` sem alteração.
+
+## Aviso de conclusão e evidências sociais
+- [x] Depois que o participante atual responder à quinta pergunta, exibir um aviso acessível com “Quiz concluído” e “Você concluiu o quiz. A oferta atual de [preço configurado] está liberada.” O valor deve vir de `FUNNEL_CONFIG.promotionalPrice`; não inventar nomes de terceiros, compras, leads ou desconto de referência.
+- [ ] Manter popups de compra/lead com nomes ou valores desativados até haver eventos reais verificados pelo checkout/formulário e consentimento específico para exibir esses dados; não simular vendas nem captação de leads.
+Evidência: o aviso só é renderizado no resultado após a quinta resposta e usa `formatPrice(FUNNEL_CONFIG.promotionalPrice)`, sem dados de terceiros.
+`referencePriceVerified` controla o CTA: “QUERO APROVEITAR MEU DESCONTO” só com preço anterior validado; caso contrário, “QUERO APROVEITAR MINHA OFERTA”.
+O feed de compras/leads segue desativado: não há transações verificadas nem integração de checkout/formulário nesta versão.

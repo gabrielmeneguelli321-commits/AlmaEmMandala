@@ -350,6 +350,8 @@ function Quiz({ index, answers, transitioning, onChoose, onBack }: QuizProps) {
 }
 
 function Result({ message, onContinue }: { message: string; onContinue: () => void }) {
+  const [showCompletionNotice, setShowCompletionNotice] = useState(true);
+
   return (
     <section className="quiz-card result-card" aria-labelledby="result-title">
       <div className="result-rosette"><BrandMark /></div>
@@ -357,9 +359,21 @@ function Result({ message, onContinue }: { message: string; onContinue: () => vo
       <h1 id="result-title">Seu momento de calma está esperando por você!</h1>
       <p className="result-message">{message}</p>
       <p className="result-copy">Você concluiu o quiz e desbloqueou uma condição especial para começar a desenhar suas próprias mandalas.</p>
+      {showCompletionNotice && (
+        <aside className="quiz-completion-notice" role="status" aria-live="polite" aria-atomic="true">
+          <span className="quiz-completion-notice__mark" aria-hidden="true">✓</span>
+          <div>
+            <strong>Quiz concluído</strong>
+            <p>Você concluiu o quiz. A oferta atual de {formatPrice(FUNNEL_CONFIG.promotionalPrice)} está liberada.</p>
+          </div>
+          <button className="quiz-completion-notice__close" type="button" onClick={() => setShowCompletionNotice(false)} aria-label="Fechar aviso de conclusão">
+            <span aria-hidden="true">×</span>
+          </button>
+        </aside>
+      )}
       <div className="result-offer"><Price large /></div>
       <button className="button button--primary button--wide" onClick={onContinue} type="button">
-        QUERO APROVEITAR MEU DESCONTO <span aria-hidden="true">→</span>
+        {FUNNEL_CONFIG.referencePriceVerified ? 'QUERO APROVEITAR MEU DESCONTO' : 'QUERO APROVEITAR MINHA OFERTA'} <span aria-hidden="true">→</span>
       </button>
       <p className="button-note">A condição é a mesma para todas as pessoas elegíveis.</p>
     </section>
