@@ -71,3 +71,7 @@ O PNG enviado foi armazenado em `/manus-storage/pasted_file_RXP8ql_image_f9e5499
 Evidência: `pnpm run typecheck` e `pnpm run build` concluíram sem erro; `vercel.json` foi validado como JSON com rewrite `/(.*)` → `/index.html`.
 `dist/images` contém os cinco ativos usados pelo site, e os hashes dos três PNGs em `dist` correspondem aos originais fornecidos.
 No Preview local, `/`, `/oferta`, os quatro caminhos de imagem e `/manus-routes.json` retornaram HTTP 200; não restam referências `/manus-storage/` em `src`.
+
+## Ajuste visual da abertura do quiz — concluído
+- [x] Remover o brilho ✳ e a forma decorativa `intro-art__halo` da ilustração inicial; manter a foto enviada, o selo “um momento no seu ritmo” e o restante do quiz inalterados.
+- Evidência: após recarregar `/`, o Preview mostra a foto e o selo sem o brilho ou halo; o código e o CSS não têm mais referências a essas duas decorações.

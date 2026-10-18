@@ -295,10 +295,8 @@ function Intro({ onStart }: { onStart: () => void }) {
         <p className="button-note">Leva apenas alguns instantes · Sem cadastro</p>
       </div>
       <div className="intro-art" aria-hidden="true">
-        <div className="intro-art__halo" />
         <div className="intro-art__frame intro-art__frame--photo"><img src={QUIZ_INTRO_IMAGE} alt="" /></div>
         <span className="intro-art__note">um momento<br />no seu ritmo</span>
-        <span className="intro-art__spark">✳</span>
       </div>
     </section>
   );
