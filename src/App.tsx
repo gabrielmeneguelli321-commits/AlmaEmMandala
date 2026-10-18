@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from 'react';
 import Brand, { BrandMark } from './components/Brand';
 import { createCheckoutUrl, formatPrice, FUNNEL_CONFIG, MANDALA_IMAGE, WOMAN_IMAGE } from './config';
 import { enableMetaPixel, trackMetaEvent } from './tracking';
+import { QUIZ_INTRO_IMAGE } from './config';
 
 type View = 'intro' | 'quiz' | 'result' | 'offer';
 type Answer = string | null;
@@ -307,7 +308,7 @@ function Intro({ onStart }: { onStart: () => void }) {
       </div>
       <div className="intro-art" aria-hidden="true">
         <div className="intro-art__halo" />
-        <div className="intro-art__frame"><img src={MANDALA_IMAGE} alt="" /></div>
+        <div className="intro-art__frame intro-art__frame--photo"><img src={QUIZ_INTRO_IMAGE} alt="" /></div>
         <span className="intro-art__note">um momento<br />no seu ritmo</span>
         <span className="intro-art__spark">✳</span>
       </div>

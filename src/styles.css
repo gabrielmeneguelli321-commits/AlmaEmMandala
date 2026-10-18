@@ -478,3 +478,11 @@ h1, h2, h3, p { margin-top: 0; }
 .app-shell[data-theme="dark"] .consent-banner { border-color: #554a5e; background: var(--theme-surface); color: var(--theme-text); box-shadow: 0 14px 50px rgba(0, 0, 0, .45); }
 .app-shell[data-theme="dark"] .button--quiet { border-color: #9b89a6; color: #ede2f2; }
 .app-shell[data-theme="dark"] .button--quiet:hover { background: #3b3342; color: #fff; }
+
+
+/* O criativo fornecido para a abertura do quiz é quadrado: mostrar a cena inteira em vez de recortá-la em círculo. */
+.intro-art__frame--photo { width: min(100%, 246px); padding: 0; border-radius: 13px; background: transparent; box-shadow: 0 14px 45px rgba(75, 61, 78, .13); transform: rotate(-2deg); }
+.intro-art__frame--photo img { width: 100%; height: 100%; object-fit: cover; border-radius: 13px; mix-blend-mode: normal; }
+@media (max-width: 700px) {
+  .intro-art__frame--photo { width: min(76vw, 246px); }
+}

@@ -37,3 +37,12 @@
 - [x] Exibir um controle visível de tema em todas as telas e rotas do funil, alternando entre claro e escuro e mantendo a preferência entre visitas.
 - [x] Usar texto explícito e ícone, rótulo acessível, estado anunciado, foco de teclado e alvos de toque confortáveis; preservar contraste e legibilidade.
 - [x] Não modificar arquivos, cores, filtros, recortes nem aparência dos criativos existentes; aplicar o tema apenas ao fundo, superfícies, texto e controles do site.
+
+## Imagem da abertura do quiz
+- [x] Usar a imagem enviada pelo responsável no criativo da tela inicial do quiz, ao lado do selo “Um momento no seu ritmo”; manter exatamente esse texto e preservar os demais criativos/ocorrências da mandala no resto do site.
+Evidência de conclusão: o Preview gerenciado mostra a imagem inteira em 1280×800 e 375×812, com o selo preservado.
+A abertura do quiz usa `QUIZ_INTRO_IMAGE`; as demais seções continuam usando seus ativos originais.
+O PNG enviado foi armazenado em `/manus-storage/pasted_file_8Ff8W4_image_c8fd4c71.png` sem alteração.
+Evidência de conclusão: o Preview gerenciado mostra a imagem inteira em 1280×800 e 375×812, com o selo preservado.
+A abertura do quiz usa `QUIZ_INTRO_IMAGE`; as demais seções continuam usando seus ativos originais.
+O PNG enviado foi armazenado em `/manus-storage/pasted_file_8Ff8W4_image_c8fd4c71.png` sem alteração.
