@@ -373,9 +373,9 @@ function SalesPage({ onBuy, notice }: { onBuy: () => void; notice: string }) {
         <div className="hero-copy">
           <span className="eyebrow"><span className="eyebrow-line" /> UM GUIA PARA CRIAR COM CALMA</span>
           <h1>Descubra o prazer de desenhar lindas mandalas, <em>mesmo que você nunca tenha desenhado antes.</em></h1>
-          <p className="hero-lede">Um passatempo criativo, com 50 exercícios guiados para você acompanhar, desenhar e aproveitar momentos de tranquilidade no seu próprio ritmo.</p>
+          <p className="hero-lede">Um passatempo criativo, com mais de 500 exercícios guiados para você acompanhar, desenhar e aproveitar momentos de tranquilidade no seu próprio ritmo.</p>
           <div className="hero-details">
-            <span><i className="detail-check" /> 50 exercícios guiados</span>
+            <span><i className="detail-check" /> +500 exercícios guiados</span>
             <span><i className="detail-check" /> 5 níveis de dificuldade</span>
             <span><i className="detail-check" /> Para imprimir em casa</span>
           </div>
@@ -445,7 +445,7 @@ function SalesPage({ onBuy, notice }: { onBuy: () => void; notice: string }) {
       <section className="inside-section section-wrap" id="conteudo">
         <div className="inside-copy">
           <span className="eyebrow"><span className="eyebrow-line" /> O QUE VEM NO GUIA</span>
-          <h2>Cinquenta exercícios. Cinco níveis. Um começo possível para cada pessoa.</h2>
+          <h2>Mais de 500 exercícios. Cinco níveis. Um começo possível para cada pessoa.</h2>
           <p>O guia reúne desenhos com sequências de construção e espaços para você reproduzir cada mandala. Escolha o exercício que chamou sua atenção: não é preciso seguir uma ordem.</p>
           <ul className="inside-points">
             <li><span>01</span> Modelos visuais e passos guiados</li>

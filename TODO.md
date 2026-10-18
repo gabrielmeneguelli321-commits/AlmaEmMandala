@@ -1,4 +1,4 @@
-# TODO — Mandalas da Calma
+# TODO — Alma em Mandala
 
 ## Quiz de descoberta — concluído
 - [x] O quiz começa numa tela de abertura com o título “Descubra um passatempo encantador para os seus momentos de tranquilidade”, o subtítulo “Responda 5 perguntas rápidas e conheça uma forma simples de aproveitar seu tempo com criatividade. Ao final, desbloqueie uma oferta especial.” e o botão “QUERO COMEÇAR”.
@@ -13,8 +13,8 @@
 - [x] O CTA direciona à página `/oferta`, preservando a condição promocional. Mostrar “QUERO APROVEITAR MEU DESCONTO” somente quando `referencePriceVerified` for verdadeiro; caso contrário, mostrar “QUERO APROVEITAR MINHA OFERTA”. Se um cupom real for configurado, transmiti-lo no parâmetro editável exigido pelo checkout.
 
 ## Landing page — conteúdo e benefícios implementados
-- [x] Apresentar claramente “Mandalas da Calma — Guia de Desenho”, um livro digital PDF com 50 exercícios em cinco dificuldades identificadas por estrelas, modelos visuais, sequências de construção e espaços para reproduzir desenhos. Explicar que a pessoa pode escolher qualquer exercício, sem ordem, e não precisa ter experiência artística.
-- [x] Hero com headline “Descubra o prazer de desenhar lindas mandalas, mesmo que você nunca tenha desenhado antes.” e subheadline “Um passatempo criativo, com 50 exercícios guiados para você acompanhar, desenhar e aproveitar momentos de tranquilidade no seu próprio ritmo.”
+- [x] Apresentar claramente “Mandalas da Calma — Guia de Desenho”, um livro digital PDF com mais de 500 exercícios em cinco dificuldades identificadas por estrelas, modelos visuais, sequências de construção e espaços para reproduzir desenhos. Explicar que a pessoa pode escolher qualquer exercício, sem ordem, e não precisa ter experiência artística.
+- [x] Hero com headline “Descubra o prazer de desenhar lindas mandalas, mesmo que você nunca tenha desenhado antes.” e subheadline “Um passatempo criativo, com mais de 500 exercícios guiados para você acompanhar, desenhar e aproveitar momentos de tranquilidade no seu próprio ritmo.”
 - [x] Incluir mockup profissional do livro, identificação de produto digital, preço promocional configurável e CTA “QUERO COMEÇAR A DESENHAR”. A arte que aparece no mockup é identificada como ilustrativa.
 - [ ] Substituir a arte representativa por imagens reais/autorizadas das páginas do PDF: o PDF e as páginas originais não foram fornecidos no anexo, então este requisito permanece pendente até o responsável disponibilizar os arquivos.
 - [ ] Exibir o microtexto completo “Material digital em PDF • Pronto para imprimir • Acesso após a confirmação do pagamento.” somente após o responsável confirmar a condição real de acesso/entrega. Atualmente o site mostra apenas “Material digital em PDF • Pronto para imprimir”; `postPaymentAccessConfirmed` permanece `false`.
@@ -60,3 +60,6 @@ O PNG enviado foi armazenado em `/manus-storage/pasted_file_RXP8ql_image_f9e5499
 ## Popups e prova social — decisão do responsável
 - [x] Manter o site sem popups de conclusão do quiz, compras ou leads, conforme escolha explícita “5. Manter sem popups”.
 - [x] Não criar nem exibir notificações simuladas de pessoas, vendas, nomes, cidades, valores ou datas como evidência.
+
+## Identidade da marca do site
+- [x] Usar “Alma em Mandala” como marca do site no wordmark, metadados e títulos das rotas; manter “Mandalas da Calma” somente como nome do guia/produto e nas artes fornecidas.

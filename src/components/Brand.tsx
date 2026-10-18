@@ -24,10 +24,10 @@ export function BrandMark({ className = '' }: { className?: string }) {
 
 export default function Brand({ compact = false }: BrandProps) {
   return (
-    <a className={`brand ${compact ? 'brand--compact' : ''}`} href="/" aria-label="Mandalas da Calma — início">
+    <a className={`brand ${compact ? 'brand--compact' : ''}`} href="/" aria-label="Alma em Mandala — início">
       <BrandMark className="brand__mark" />
       <span className="brand__words">
-        <span className="brand__name">Mandalas <i>da Calma</i></span>
+        <span className="brand__name">Alma <i>em Mandala</i></span>
         {!compact && <span className="brand__descriptor">GUIA DE DESENHO</span>}
       </span>
     </a>
