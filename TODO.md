@@ -57,9 +57,6 @@ Evidência de conclusão: capturas completas do Preview gerenciado em desktop e 
 A imagem usa `SAMPLE_WORKSHEET_IMAGE` sem filtro nem recorte; a legenda foi ajustada para descrever a folha progressiva.
 O PNG enviado foi armazenado em `/manus-storage/pasted_file_RXP8ql_image_f9e5499c.png` sem alteração.
 
-## Aviso de conclusão e evidências sociais
-- [x] Depois que o participante atual responder à quinta pergunta, exibir um aviso acessível com “Quiz concluído” e “Você concluiu o quiz. A oferta atual de [preço configurado] está liberada.” O valor deve vir de `FUNNEL_CONFIG.promotionalPrice`; não inventar nomes de terceiros, compras, leads ou desconto de referência.
-- [ ] Manter popups de compra/lead com nomes ou valores desativados até haver eventos reais verificados pelo checkout/formulário e consentimento específico para exibir esses dados; não simular vendas nem captação de leads.
-Evidência: o aviso só é renderizado no resultado após a quinta resposta e usa `formatPrice(FUNNEL_CONFIG.promotionalPrice)`, sem dados de terceiros.
-`referencePriceVerified` controla o CTA: “QUERO APROVEITAR MEU DESCONTO” só com preço anterior validado; caso contrário, “QUERO APROVEITAR MINHA OFERTA”.
-O feed de compras/leads segue desativado: não há transações verificadas nem integração de checkout/formulário nesta versão.
+## Popups e prova social — decisão do responsável
+- [x] Manter o site sem popups de conclusão do quiz, compras ou leads, conforme escolha explícita “5. Manter sem popups”.
+- [x] Não criar nem exibir notificações simuladas de pessoas, vendas, nomes, cidades, valores ou datas como evidência.
