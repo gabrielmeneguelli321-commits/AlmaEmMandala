@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from 'react';
+import { Analytics } from '@vercel/analytics/react';
 import Brand, { BrandMark } from './components/Brand';
 import { createCheckoutUrl, formatPrice, FUNNEL_CONFIG, WOMAN_IMAGE } from './config';
 import { enableMetaPixel, trackMetaEvent } from './tracking';
@@ -242,6 +243,7 @@ function App() {
 
   return (
     <div className="app-shell" data-theme={theme}>
+      <Analytics />
       {view === 'offer' ? (
         <>
           <Header onRestart={startQuiz} theme={theme} onToggleTheme={toggleTheme} />
