@@ -13,7 +13,7 @@ export const FUNNEL_CONFIG = {
   /** Nome do parâmetro exigido pelo checkout configurado. */
   couponParameter: 'coupon',
   /** Pixel só é carregado depois do consentimento quando um ID válido é configurado. */
-  metaPixelId: '2209297763326066',
+  metaPixelId: '1451027436925150',
 } as const;
 
 export const WOMAN_IMAGE = '/images/woman-drawing.webp';
