@@ -10,7 +10,7 @@ Em `src/config.ts`, confirme:
 - `referencePrice`: altere somente se houver preço anterior real e comprovável.
 - `referencePriceVerified`: mantenha `false` até essa comprovação; nesse estado o site não mostra o preço anterior e o CTA evita alegar desconto.
 - `postPaymentAccessConfirmed`: mantenha `false` até a entrega confirmar acesso após pagamento; só então a página inclui essa condição no microtexto.
-- `checkoutUrl`: atualmente `https://pay.cakto.com.br/3cvx2dz_1217210`; atualize se o endereço oficial mudar. O código aceita apenas destinos HTTPS e redireciona quando o botão é acionado.
+- `checkoutUrl`: atualmente `https://pay.cakto.com.br/gwf9s6z_1218085`, confirmado pelo responsável; atualize se o endereço oficial mudar. O código aceita apenas destinos HTTPS e redireciona quando o botão é acionado.
 - `couponCode`: informe apenas um cupom real, se aplicável.
 - `couponParameter`: ajuste para o nome exato do parâmetro que o checkout espera para o cupom (por padrão, `coupon`).
 - `metaPixelId`: informe um ID válido do Meta Pixel. O código aguarda consentimento para inicializar métricas; com o campo vazio, não carrega o Pixel.

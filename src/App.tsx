@@ -245,7 +245,11 @@ function App() {
       {view === 'offer' ? (
         <>
           <Header onRestart={startQuiz} theme={theme} onToggleTheme={toggleTheme} />
-          <SalesPage onBuy={startCheckout} notice={checkoutNotice} />
+          <SalesPage
+            onBuy={startCheckout}
+            notice={checkoutNotice}
+            consentPending={consent === 'unknown' && Boolean(FUNNEL_CONFIG.metaPixelId.trim())}
+          />
         </>
       ) : (
         <>
@@ -364,7 +368,33 @@ function Result({ message, onContinue }: { message: string; onContinue: () => vo
   );
 }
 
-function SalesPage({ onBuy, notice }: { onBuy: () => void; notice: string }) {
+function SalesPage({ onBuy, notice, consentPending }: { onBuy: () => void; notice: string; consentPending: boolean }) {
+  const [showStickyCta, setShowStickyCta] = useState(false);
+
+  useEffect(() => {
+    function updateStickyCta() {
+      const heroCta = document.getElementById('hero-buy-cta');
+      const offerCta = document.getElementById('offer-buy-cta');
+
+      if (!heroCta || !offerCta || window.innerWidth > 700 || consentPending) {
+        setShowStickyCta(false);
+        return;
+      }
+
+      const heroHasPassed = heroCta.getBoundingClientRect().bottom < 0;
+      const offerIsStillBelow = offerCta.getBoundingClientRect().top > window.innerHeight;
+      setShowStickyCta(heroHasPassed && offerIsStillBelow);
+    }
+
+    updateStickyCta();
+    window.addEventListener('scroll', updateStickyCta, { passive: true });
+    window.addEventListener('resize', updateStickyCta);
+    return () => {
+      window.removeEventListener('scroll', updateStickyCta);
+      window.removeEventListener('resize', updateStickyCta);
+    };
+  }, [consentPending]);
+
   return (
     <main className="sales-page">
       <section className="hero section-wrap" id="inicio">
@@ -379,7 +409,7 @@ function SalesPage({ onBuy, notice }: { onBuy: () => void; notice: string }) {
           </div>
           <div className="hero-purchase">
             <Price />
-            <button className="button button--primary" onClick={onBuy} type="button">QUERO COMEÇAR A DESENHAR <span aria-hidden="true">→</span></button>
+            <button id="hero-buy-cta" className="button button--primary" onClick={onBuy} type="button">QUERO COMEÇAR A DESENHAR <span aria-hidden="true">→</span></button>
           </div>
           <p className="microcopy">Material digital em PDF • Pronto para imprimir{FUNNEL_CONFIG.postPaymentAccessConfirmed && ' • Acesso após a confirmação do pagamento.'}</p>
         </div>
@@ -484,7 +514,7 @@ function SalesPage({ onBuy, notice }: { onBuy: () => void; notice: string }) {
         </div>
         <div className="offer-panel__action">
           <Price large />
-          <button className="button button--primary button--wide" onClick={onBuy} type="button">QUERO COMEÇAR A DESENHAR <span aria-hidden="true">→</span></button>
+          <button id="offer-buy-cta" className="button button--primary button--wide" onClick={onBuy} type="button">QUERO COMEÇAR A DESENHAR <span aria-hidden="true">→</span></button>
         </div>
       </section>
       {notice && <p className="checkout-notice section-wrap" id="checkout-notice" role="alert">{notice}</p>}
@@ -506,6 +536,17 @@ function SalesPage({ onBuy, notice }: { onBuy: () => void; notice: string }) {
           <span>Atividade de lazer. Não é tratamento médico.</span>
         </div>
       </footer>
+      {showStickyCta && (
+        <aside className="mobile-sticky-cta" aria-label="Atalho para comprar o guia">
+          <div className="mobile-sticky-cta__price">
+            <span>GUIA DIGITAL</span>
+            <strong>{formatPrice(FUNNEL_CONFIG.promotionalPrice)}</strong>
+          </div>
+          <button className="button button--primary" onClick={onBuy} type="button">
+            QUERO O GUIA <span aria-hidden="true">→</span>
+          </button>
+        </aside>
+      )}
     </main>
   );
 }
