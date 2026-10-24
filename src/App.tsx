@@ -3,8 +3,9 @@ import Brand, { BrandMark } from './components/Brand';
 import { createCheckoutUrl, formatPrice, FUNNEL_CONFIG, WOMAN_IMAGE } from './config';
 import { enableMetaPixel, trackMetaEvent } from './tracking';
 import { OFFER_MOCKUP_IMAGE, QUIZ_INTRO_IMAGE, SAMPLE_WORKSHEET_IMAGE } from './config';
+import SalesPageB from './components/SalesPageB';
 
-type View = 'intro' | 'quiz' | 'result' | 'offer';
+type View = 'intro' | 'quiz' | 'result' | 'offer' | 'offer-b';
 type Answer = string | null;
 type Theme = 'light' | 'dark';
 
@@ -143,7 +144,7 @@ function ProductMockup() {
 
 function App() {
   const initialPath = window.location.pathname;
-  const [view, setView] = useState<View>(initialPath === '/oferta' ? 'offer' : 'intro');
+  const [view, setView] = useState<View>(initialPath === '/oferta' ? 'offer' : initialPath === '/oferta-b' ? 'offer-b' : 'intro');
   const [questionIndex, setQuestionIndex] = useState(0);
   const [answers, setAnswers] = useState<Answer[]>(() => questions.map(() => null));
   const [transitioning, setTransitioning] = useState(false);
@@ -154,7 +155,8 @@ function App() {
 
   useEffect(() => {
     const handlePopState = () => {
-      setView(window.location.pathname === '/oferta' ? 'offer' : 'intro');
+      const path = window.location.pathname;
+      setView(path === '/oferta' ? 'offer' : path === '/oferta-b' ? 'offer-b' : 'intro');
       setCheckoutNotice('');
     };
     window.addEventListener('popstate', handlePopState);
@@ -174,13 +176,19 @@ function App() {
   }, [theme]);
 
   useEffect(() => {
-    if (view === 'offer' && consent === 'accepted') trackMetaEvent('ViewContent');
+    if ((view === 'offer' || view === 'offer-b') && consent === 'accepted') trackMetaEvent('ViewContent');
     if (view === 'result' && consent === 'accepted') trackMetaEvent('QuizComplete', true);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, [view, consent]);
 
+  useEffect(() => {
+    document.title = view === 'offer-b'
+      ? 'Mandalas da Calma — O que vem no guia | Alma em Mandala'
+      : 'Alma em Mandala — Mandalas da Calma';
+  }, [view]);
+
   function startQuiz() {
-    if (window.location.pathname === '/oferta') {
+    if (window.location.pathname === '/oferta' || window.location.pathname === '/oferta-b') {
       window.history.pushState({ page: 'quiz' }, '', '/');
     }
     setAnswers(questions.map(() => null));
@@ -251,6 +259,14 @@ function App() {
             consentPending={consent === 'unknown' && Boolean(FUNNEL_CONFIG.metaPixelId.trim())}
           />
         </>
+      ) : view === 'offer-b' ? (
+        <SalesPageB
+          onBuy={startCheckout}
+          notice={checkoutNotice}
+          theme={theme}
+          onToggleTheme={toggleTheme}
+          consentPending={consent === 'unknown' && Boolean(FUNNEL_CONFIG.metaPixelId.trim())}
+        />
       ) : (
         <>
           <Header theme={theme} onToggleTheme={toggleTheme} />

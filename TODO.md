@@ -75,3 +75,13 @@ No Preview local, `/`, `/oferta`, os quatro caminhos de imagem e `/manus-routes.
 ## Ajuste visual da abertura do quiz — concluído
 - [x] Remover o brilho ✳ e a forma decorativa `intro-art__halo` da ilustração inicial; manter a foto enviada, o selo “um momento no seu ritmo” e o restante do quiz inalterados.
 - Evidência: após recarregar `/`, o Preview mostra a foto e o selo sem o brilho ou halo; o código e o CSS não têm mais referências a essas duas decorações.
+
+
+## Variação B da página de vendas — em andamento
+- [ ] Criar a rota independente `/oferta-b` para comparar com `/oferta`, sem substituir ou alterar a versão A; manter A e B acessíveis por URLs distintas, sem dividir aleatoriamente o tráfego.
+- [ ] Aplicar à versão B uma identidade vibrante inspirada na referência enviada — marfim, magenta-framboesa, dourado, tipografia serifada e composição editorial — preservando a marca “Alma em Mandala” e o nome “Mandalas da Calma”, sem copiar a marca, os textos, as imagens, os bônus ou as alegações da referência.
+- [ ] Mostrar claramente o que está confirmado no produto: guia digital em PDF; mais de 500 exercícios guiados; cinco níveis de dificuldade identificados por estrelas; modelos visuais e sequências de construção; espaços para reproduzir os desenhos; material pronto para imprimir em casa.
+- [ ] Reutilizar o mockup atual com identificação de ilustrativo e a folha de exercício de amostra já fornecida; não criar bônus, formatos, quantidade de arquivos, prazo ou canal de entrega não confirmados.
+- [ ] Preservar na B o preço promocional configurado e o checkout Cakto confirmado `https://pay.cakto.com.br/gwf9s6z_1218085`; carregar métricas somente mediante consentimento e manter o CTA móvel sem cobrir o aviso de consentimento.
+- [ ] Manter identidade acessível em celular e desktop, alternador de tema, navegação por teclado e o manifesto `public/manus-routes.json` sincronizado com as rotas disponíveis.
+- [ ] Validar tipos, build, manifesto e acesso direto às duas rotas; publicar somente se a versão B estiver íntegra e a A permanecer inalterada.
