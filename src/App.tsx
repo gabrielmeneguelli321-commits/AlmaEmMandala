@@ -7,28 +7,54 @@ import SalesPageB from './components/SalesPageB';
 
 type View = 'intro' | 'quiz' | 'result' | 'offer' | 'offer-b';
 type Answer = string | null;
+type Profile = 'pause' | 'guided' | 'creative' | 'practical';
 type Theme = 'light' | 'dark';
 
-const questions = [
+const questions: { title: string; options: { id: string; label: string; profile: Profile }[] }[] = [
   {
-    title: 'Como você gosta de aproveitar seus momentos livres?',
-    options: ['Fazendo atividades criativas.', 'Relaxando em casa.', 'Aprendendo algo diferente.', 'Procurando novos passatempos.'],
+    title: 'O que você sente que mais faz falta nos seus momentos livres?',
+    options: [
+      { id: 'private-time', label: 'Ter um momento só meu, sem pressa.', profile: 'pause' },
+      { id: 'creative-routine', label: 'Fazer algo criativo que me tire do automático.', profile: 'creative' },
+      { id: 'screen-break', label: 'Passar um tempo longe das telas.', profile: 'pause' },
+      { id: 'new-hobby', label: 'Experimentar um passatempo novo sem complicação.', profile: 'practical' },
+    ],
   },
   {
-    title: 'Você já experimentou desenhar ou colorir mandalas?',
-    options: ['Nunca, mas tenho curiosidade.', 'Já colori algumas.', 'Já tentei desenhar.', 'Gosto bastante desse tipo de atividade.'],
+    title: 'Quando pensa em desenhar, o que mais costuma fazer você adiar?',
+    options: [
+      { id: 'no-skill', label: 'A dúvida se tenho habilidade para desenhar.', profile: 'guided' },
+      { id: 'no-start', label: 'Não saber por onde começar.', profile: 'guided' },
+      { id: 'no-ideas', label: 'Ficar sem ideias do que criar.', profile: 'creative' },
+      { id: 'busy-routine', label: 'A rotina já está cheia.', profile: 'practical' },
+    ],
   },
   {
-    title: 'O que mais chama sua atenção em um passatempo?',
-    options: ['Poder fazer sem pressa.', 'Criar algo bonito com as mãos.', 'Exercitar minha criatividade.', 'Ter um momento longe do celular.'],
+    title: 'Ao terminar algo feito por você, o que mais faria esse momento valer a pena?',
+    options: [
+      { id: 'make-something', label: 'Ver uma ideia ganhar forma com minhas próprias mãos.', profile: 'creative' },
+      { id: 'clear-steps', label: 'Acompanhar cada etapa sem ter que adivinhar o próximo passo.', profile: 'guided' },
+      { id: 'quiet-moment', label: 'Ter feito uma pausa com calma, sem pressa.', profile: 'pause' },
+      { id: 'try-again', label: 'Ficar com vontade de experimentar outro desenho.', profile: 'creative' },
+    ],
   },
   {
-    title: 'Quanto tempo você gostaria de dedicar a uma atividade tranquila?',
-    options: ['De 5 a 10 minutos.', 'De 10 a 20 minutos.', 'De 20 a 30 minutos.', 'O tempo que eu quiser.'],
+    title: 'O que deixaria o primeiro passo mais fácil para você?',
+    options: [
+      { id: 'visual-model', label: 'Um modelo visual para acompanhar.', profile: 'guided' },
+      { id: 'start-simple', label: 'Começar pelo básico e avançar aos poucos.', profile: 'guided' },
+      { id: 'choose-drawing', label: 'Liberdade para escolher o desenho.', profile: 'creative' },
+      { id: 'no-perfection', label: 'Poder praticar sem buscar perfeição.', profile: 'pause' },
+    ],
   },
   {
-    title: 'Qual tipo de desenho você acha mais bonito?',
-    options: ['Flores e pétalas.', 'Formas geométricas.', 'Desenhos simples e delicados.', 'Mandalas com muitos detalhes.'],
+    title: 'O que faria você olhar para um guia e pensar: “posso começar por aqui”?',
+    options: [
+      { id: 'guided-exercises', label: 'Passos guiados para saber por onde seguir.', profile: 'guided' },
+      { id: 'five-levels', label: 'Cinco níveis para escolher um ponto de partida.', profile: 'practical' },
+      { id: 'many-exercises', label: 'Mais de 500 exercícios para encontrar um que me interesse.', profile: 'creative' },
+      { id: 'print-at-home', label: 'Um material que posso imprimir e usar em casa.', profile: 'practical' },
+    ],
   },
 ];
 
@@ -57,13 +83,23 @@ function getSavedTheme(): Theme {
 }
 
 function buildPreferenceMessage(answers: Answer[]): string {
-  const likesCreativity = answers[0] === questions[0].options[0] || answers[2] === questions[2].options[2];
-  const likesQuiet = answers[2] === questions[2].options[0] || answers[0] === questions[0].options[1];
-  const likesDelicate = answers[4] === questions[4].options[2] || answers[4] === questions[4].options[0];
+  const scores: Record<Profile, number> = { pause: 0, guided: 0, creative: 0, practical: 0 };
+  answers.forEach((answer, index) => {
+    if (!answer) return;
+    const selectedOption = questions[index]?.options.find((option) => option.id === answer);
+    if (selectedOption) scores[selectedOption.profile] += 1;
+  });
 
-  if (likesCreativity && likesQuiet) return 'Você parece gostar de atividades criativas e momentos de tranquilidade.';
-  if (likesDelicate) return 'Seu estilo combina com desenhos delicados que podem ser feitos no seu ritmo.';
-  return 'Você demonstrou interesse em explorar atividades manuais e novos passatempos.';
+  const profile = (Object.keys(scores) as Profile[]).reduce((top, candidate) => (
+    scores[candidate] > scores[top] ? candidate : top
+  ), 'pause');
+  const messages: Record<Profile, string> = {
+    pause: 'Você parece valorizar um momento criativo que seja seu, sem pressa e sem cobrança.',
+    guided: 'Um começo guiado, com referências visuais e passos claros, parece combinar com o que você busca.',
+    creative: 'A possibilidade de experimentar ideias e ver um desenho ganhar forma parece combinar com sua curiosidade.',
+    practical: 'Praticidade parece importante para você: escolher um exercício e criar em casa, no seu ritmo.',
+  };
+  return messages[profile];
 }
 
 function Header({ onRestart, theme, onToggleTheme }: {
@@ -307,12 +343,12 @@ function Intro({ onStart }: { onStart: () => void }) {
     <section className="quiz-card intro-card" aria-labelledby="intro-title">
       <div className="intro-copy">
         <span className="eyebrow"><span className="eyebrow-line" /> UM CONVITE PARA VOCÊ</span>
-        <h1 id="intro-title">Descubra um passatempo encantador para os seus momentos de tranquilidade</h1>
-        <p className="intro-lede">Responda 5 perguntas rápidas e conheça uma forma simples de aproveitar seu tempo com criatividade. Ao final, desbloqueie uma oferta especial.</p>
+        <h1 id="intro-title">O que faria um passatempo criativo caber melhor na sua rotina?</h1>
+        <p className="intro-lede">Responda 5 perguntas sobre o que você procura, o que costuma fazer você adiar e como prefere começar. No final, veja se o guia Mandalas da Calma combina com o seu jeito.</p>
         <button className="button button--primary button--wide" onClick={onStart} type="button">
-          QUERO COMEÇAR <span aria-hidden="true">→</span>
+          QUERO DESCOBRIR MEU JEITO <span aria-hidden="true">→</span>
         </button>
-        <p className="button-note">Leva apenas alguns instantes · Sem cadastro</p>
+        <p className="button-note">5 perguntas rápidas · Sem cadastro</p>
       </div>
       <div className="intro-art" aria-hidden="true">
         <div className="intro-art__frame intro-art__frame--photo"><img src={QUIZ_INTRO_IMAGE} alt="" /></div>
@@ -350,14 +386,14 @@ function Quiz({ index, answers, transitioning, onChoose, onBack }: QuizProps) {
       <div className="answer-list">
         {question.options.map((option, optionIndex) => (
           <button
-            className={`answer-option ${answers[index] === option ? 'answer-option--selected' : ''}`}
-            key={option}
-            onClick={() => onChoose(option)}
+            className={`answer-option ${answers[index] === option.id ? 'answer-option--selected' : ''}`}
+            key={option.id}
+            onClick={() => onChoose(option.id)}
             type="button"
             disabled={transitioning}
           >
             <span className="answer-letter">{String.fromCharCode(65 + optionIndex)}</span>
-            <span>{option}</span>
+            <span>{option.label}</span>
             <span className="answer-arrow" aria-hidden="true">→</span>
           </button>
         ))}
