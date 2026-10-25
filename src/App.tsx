@@ -11,24 +11,24 @@ type Theme = 'light' | 'dark';
 
 const questions = [
   {
-    title: 'Como você gosta de aproveitar seus momentos livres?',
-    options: ['Fazendo atividades criativas.', 'Relaxando em casa.', 'Aprendendo algo diferente.', 'Procurando novos passatempos.'],
+    title: 'O que você gostaria de encontrar em um momento só seu?',
+    options: ['Uma pausa tranquila no meu dia.', 'Uma atividade criativa para fazer com as mãos.', 'A chance de aprender algo novo sem pressa.', 'Um tempo longe das telas.'],
   },
   {
-    title: 'Você já experimentou desenhar ou colorir mandalas?',
-    options: ['Nunca, mas tenho curiosidade.', 'Já colori algumas.', 'Já tentei desenhar.', 'Gosto bastante desse tipo de atividade.'],
+    title: 'O que mais pode deixar você em dúvida na hora de começar a desenhar?',
+    options: ['Não saber por onde começar.', 'Pensar que preciso ter experiência.', 'Sentir falta de um passo a passo.', 'Ainda não saber de que estilo gosto.'],
   },
   {
-    title: 'O que mais chama sua atenção em um passatempo?',
-    options: ['Poder fazer sem pressa.', 'Criar algo bonito com as mãos.', 'Exercitar minha criatividade.', 'Ter um momento longe do celular.'],
+    title: 'Que tipo de apoio ajudaria você a dar o primeiro traço?',
+    options: ['Modelos visuais para acompanhar.', 'Sequências que mostrem como construir o desenho.', 'Exercícios com diferentes níveis de dificuldade.', 'Liberdade para escolher por onde começar.'],
   },
   {
-    title: 'Quanto tempo você gostaria de dedicar a uma atividade tranquila?',
-    options: ['De 5 a 10 minutos.', 'De 10 a 20 minutos.', 'De 20 a 30 minutos.', 'O tempo que eu quiser.'],
+    title: 'Qual ritmo combina melhor com a sua rotina?',
+    options: ['Fazer quando surgir um tempinho.', 'Reservar um intervalo em alguns dias.', 'Desenhar sem pressa quando puder.', 'Decidir a cada ocasião.'],
   },
   {
-    title: 'Qual tipo de desenho você acha mais bonito?',
-    options: ['Flores e pétalas.', 'Formas geométricas.', 'Desenhos simples e delicados.', 'Mandalas com muitos detalhes.'],
+    title: 'O que você gostaria de levar desse momento?',
+    options: ['A satisfação de criar algo com as próprias mãos.', 'Ter acompanhado um desenho do começo ao fim.', 'Ter experimentado formas e padrões.', 'Ficar com vontade de continuar em outra ocasião.'],
   },
 ];
 
@@ -57,13 +57,34 @@ function getSavedTheme(): Theme {
 }
 
 function buildPreferenceMessage(answers: Answer[]): string {
-  const likesCreativity = answers[0] === questions[0].options[0] || answers[2] === questions[2].options[2];
-  const likesQuiet = answers[2] === questions[2].options[0] || answers[0] === questions[0].options[1];
-  const likesDelicate = answers[4] === questions[4].options[2] || answers[4] === questions[4].options[0];
+  const indexes = answers.map((answer, index) => Math.max(0, questions[index].options.indexOf(answer ?? '')));
+  const goals = ['uma pausa tranquila no seu dia', 'uma atividade criativa para fazer com as mãos', 'a chance de aprender algo novo sem pressa', 'um tempo longe das telas'];
+  const firstSteps = ['ter um ponto de partida claro', 'começar sem precisar ter experiência', 'contar com orientação durante o desenho', 'experimentar estilos diferentes para descobrir do que gosta'];
+  const supports = ['modelos visuais para acompanhar os desenhos', 'sequências de construção para seguir etapa a etapa', 'cinco níveis de dificuldade para explorar', 'mais de 500 exercícios em cinco níveis'];
+  const rhythms = ['fazer quando surgir um tempinho', 'reservar um intervalo em alguns dias', 'desenhar sem pressa quando puder', 'decidir a cada ocasião'];
+  const outcomes = ['a satisfação de criar algo com as próprias mãos', 'a sensação de ter acompanhado um desenho do começo ao fim', 'a oportunidade de experimentar formas e padrões', 'a vontade de continuar em outra ocasião'];
+  const goal = goals[indexes[0]];
+  const firstStep = firstSteps[indexes[1]];
+  const support = supports[indexes[2]];
+  const rhythm = rhythms[indexes[3]];
+  const outcome = outcomes[indexes[4]];
 
-  if (likesCreativity && likesQuiet) return 'Você parece gostar de atividades criativas e momentos de tranquilidade.';
-  if (likesDelicate) return 'Seu estilo combina com desenhos delicados que podem ser feitos no seu ritmo.';
-  return 'Você demonstrou interesse em explorar atividades manuais e novos passatempos.';
+  return `Você busca ${goal} e gostaria de ${firstStep}. O guia pode combinar com essa busca ao oferecer ${support}. Como você prefere ${rhythm}, pode escolher um exercício e seguir no seu ritmo. E espera levar desse momento ${outcome}.`;
+}
+
+function buildOfferMatch(answers: Answer[]): string | null {
+  if (answers.some((answer) => !answer)) return null;
+
+  const goalIndex = Math.max(0, questions[0].options.indexOf(answers[0] ?? ''));
+  const firstStepIndex = Math.max(0, questions[1].options.indexOf(answers[1] ?? ''));
+  const supportIndex = Math.max(0, questions[2].options.indexOf(answers[2] ?? ''));
+  const rhythmIndex = Math.max(0, questions[3].options.indexOf(answers[3] ?? ''));
+  const goals = ['uma pausa tranquila no seu dia', 'uma atividade criativa para fazer com as mãos', 'a chance de aprender algo novo sem pressa', 'um tempo longe das telas'];
+  const firstSteps = ['ter um ponto de partida claro', 'começar sem precisar ter experiência', 'contar com orientação durante o desenho', 'experimentar estilos diferentes para descobrir do que gosta'];
+  const supports = ['modelos visuais para acompanhar os desenhos', 'sequências de construção para seguir etapa a etapa', 'cinco níveis de dificuldade para explorar', 'mais de 500 exercícios em cinco níveis'];
+  const rhythms = ['fazer quando surgir um tempinho', 'reservar um intervalo em alguns dias', 'desenhar sem pressa quando puder', 'decidir a cada ocasião'];
+
+  return `Você busca ${goals[goalIndex]} e quer ${firstSteps[firstStepIndex]}. O guia oferece ${supports[supportIndex]}; você pode ${rhythms[rhythmIndex]} e escolher por onde começar.`;
 }
 
 function Header({ onRestart, theme, onToggleTheme }: {
@@ -152,6 +173,7 @@ function App() {
   const [consent, setConsent] = useState<Consent>(getSavedConsent);
   const [theme, setTheme] = useState<Theme>(getSavedTheme);
   const preferenceMessage = useMemo(() => buildPreferenceMessage(answers), [answers]);
+  const offerMatchMessage = useMemo(() => buildOfferMatch(answers), [answers]);
 
   useEffect(() => {
     const handlePopState = () => {
@@ -256,7 +278,7 @@ function App() {
           <SalesPage
             onBuy={startCheckout}
             notice={checkoutNotice}
-            consentPending={consent === 'unknown' && Boolean(FUNNEL_CONFIG.metaPixelId.trim())}
+            matchMessage={offerMatchMessage}
           />
         </>
       ) : view === 'offer-b' ? (
@@ -270,7 +292,7 @@ function App() {
       ) : (
         <>
           <Header theme={theme} onToggleTheme={toggleTheme} />
-          <main className="quiz-shell">
+          <main className={`quiz-shell ${view === 'intro' ? 'quiz-shell--intro' : ''}`}>
             {view === 'intro' && <Intro onStart={startQuiz} />}
             {view === 'quiz' && (
               <Quiz
@@ -287,7 +309,7 @@ function App() {
         </>
       )}
       {FUNNEL_CONFIG.metaPixelId.trim() && consent === 'unknown' && (
-        <aside className="consent-banner" aria-label="Preferências de privacidade">
+        <aside className={`consent-banner ${view !== 'offer-b' ? 'consent-banner--inline' : ''}`} aria-label="Preferências de privacidade">
           <div>
             <strong>Você escolhe como medir esta experiência.</strong>
             <p>Com sua autorização, usamos o Meta Pixel para entender visitas e ações no site. As respostas do quiz não são enviadas pelo formulário.</p>
@@ -304,19 +326,19 @@ function App() {
 
 function Intro({ onStart }: { onStart: () => void }) {
   return (
-    <section className="quiz-card intro-card" aria-labelledby="intro-title">
+    <section className="quiz-card intro-card intro-card--product" aria-labelledby="intro-title">
       <div className="intro-copy">
         <span className="eyebrow"><span className="eyebrow-line" /> UM CONVITE PARA VOCÊ</span>
-        <h1 id="intro-title">Descubra um passatempo encantador para os seus momentos de tranquilidade</h1>
-        <p className="intro-lede">Responda 5 perguntas rápidas e conheça uma forma simples de aproveitar seu tempo com criatividade. Ao final, desbloqueie uma oferta especial.</p>
+        <h1 id="intro-title">Encontre um momento criativo só seu</h1>
+        <figure className="intro-product-mockup">
+          <img src={QUIZ_INTRO_IMAGE} alt="Arte do Super Pack Alma em Mandala, mostrando a capa de 550 páginas e páginas internas com exercícios de mandalas." />
+          <figcaption>Material digital em PDF</figcaption>
+        </figure>
+        <p className="intro-lede">Responda a 5 perguntas sobre o que você busca. Ao final, veja como o guia de mandalas pode combinar com seu momento.</p>
         <button className="button button--primary button--wide" onClick={onStart} type="button">
           QUERO COMEÇAR <span aria-hidden="true">→</span>
         </button>
         <p className="button-note">Leva apenas alguns instantes · Sem cadastro</p>
-      </div>
-      <div className="intro-art" aria-hidden="true">
-        <div className="intro-art__frame intro-art__frame--photo"><img src={QUIZ_INTRO_IMAGE} alt="" /></div>
-        <span className="intro-art__note">um momento<br />no seu ritmo</span>
       </div>
     </section>
   );
@@ -372,19 +394,19 @@ function Result({ message, onContinue }: { message: string; onContinue: () => vo
     <section className="quiz-card result-card" aria-labelledby="result-title">
       <div className="result-rosette"><BrandMark /></div>
       <span className="eyebrow"><span className="eyebrow-line" /> SEU JEITO DE CRIAR</span>
-      <h1 id="result-title">Seu momento de calma está esperando por você!</h1>
+      <h1 id="result-title">Um começo criativo, do seu jeito</h1>
       <p className="result-message">{message}</p>
-      <p className="result-copy">Você concluiu o quiz e desbloqueou uma condição especial para começar a desenhar suas próprias mandalas.</p>
+      <p className="result-copy">Agora, veja os recursos do guia que podem ajudar você a começar do jeito que prefere.</p>
       <div className="result-offer"><Price large /></div>
       <button className="button button--primary button--wide" onClick={onContinue} type="button">
-        {FUNNEL_CONFIG.referencePriceVerified ? 'QUERO APROVEITAR MEU DESCONTO' : 'QUERO APROVEITAR MINHA OFERTA'} <span aria-hidden="true">→</span>
+        VER SE O GUIA COMBINA COMIGO <span aria-hidden="true">→</span>
       </button>
       <p className="button-note">A condição é a mesma para todas as pessoas elegíveis.</p>
     </section>
   );
 }
 
-function SalesPage({ onBuy, notice, consentPending }: { onBuy: () => void; notice: string; consentPending: boolean }) {
+function SalesPage({ onBuy, notice, matchMessage }: { onBuy: () => void; notice: string; matchMessage: string | null }) {
   const [showStickyCta, setShowStickyCta] = useState(false);
 
   useEffect(() => {
@@ -392,7 +414,7 @@ function SalesPage({ onBuy, notice, consentPending }: { onBuy: () => void; notic
       const heroCta = document.getElementById('hero-buy-cta');
       const offerCta = document.getElementById('offer-buy-cta');
 
-      if (!heroCta || !offerCta || window.innerWidth > 700 || consentPending) {
+      if (!heroCta || !offerCta || window.innerWidth > 700) {
         setShowStickyCta(false);
         return;
       }
@@ -409,7 +431,7 @@ function SalesPage({ onBuy, notice, consentPending }: { onBuy: () => void; notic
       window.removeEventListener('scroll', updateStickyCta);
       window.removeEventListener('resize', updateStickyCta);
     };
-  }, [consentPending]);
+  }, []);
 
   return (
     <main className="sales-page">
@@ -428,6 +450,12 @@ function SalesPage({ onBuy, notice, consentPending }: { onBuy: () => void; notic
             <button id="hero-buy-cta" className="button button--primary" onClick={onBuy} type="button">QUERO COMEÇAR A DESENHAR <span aria-hidden="true">→</span></button>
           </div>
           <p className="microcopy">Material digital em PDF • Pronto para imprimir{FUNNEL_CONFIG.postPaymentAccessConfirmed && ' • Acesso após a confirmação do pagamento.'}</p>
+          {matchMessage && (
+            <aside className="quiz-match" aria-label="Sugestão baseada nas suas respostas">
+              <span className="quiz-match__label">UM CAMINHO ALINHADO AO QUE VOCÊ BUSCA</span>
+              <p>{matchMessage}</p>
+            </aside>
+          )}
         </div>
         <div className="hero-visual"><ProductMockup /></div>
       </section>
