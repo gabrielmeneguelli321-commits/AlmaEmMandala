@@ -24,6 +24,23 @@
 - [x] Substituir somente a imagem atual entre o título e o subtítulo do quiz pelo arquivo enviado `AlmaemMandala_550páginas.png`, mantendo a proporção e a transparência do criativo; preservar a imagem independente e os demais conteúdos da Oferta 1.
 - Evidência: `pnpm run typecheck`, `pnpm run build` e `git diff --check` passaram; o hash do PNG no build corresponde ao arquivo fornecido.
 
+## Resultado do quiz em mobile — concluída
+- [x] Na tela de resultado em celulares, aproximar o botão que leva à Oferta 1 do conteúdo acima, manter um alvo de toque confortável e ajustar a composição para que todo o cartão de resultado, inclusive o botão e seu texto auxiliar, fique visível sem rolagem em `320×568`, `360×640` e `375×812`; preservar o layout desktop, o conteúdo da oferta e a navegação existentes.
+- Evidência: o cartão completo coube nos três viewports, com CTA de 54 px de altura; typecheck, build e `git diff --check` passaram.
+
+## Centralização das perguntas no mobile — concluída
+- [x] Centralizar o título e o texto de apoio da etapa de perguntas em celulares, mantendo as opções legíveis e fáceis de selecionar, sem alterar o conteúdo ou a navegação do quiz.
+- Evidência: título e apoio foram verificados centralizados em `320×568`; a etiqueta da pergunta ficou centralizada com diferença de 0 px em relação ao cartão.
+
+## Cabeçalho no mobile — concluída
+- [x] Manter o botão de modo claro/escuro ao lado da logo, na mesma linha superior em telas de celular, sem quebrar para uma segunda linha e preservando uma área de toque confortável.
+- Evidência: logo e alternador permaneceram na mesma linha em `320×568`; o alternador manteve altura mínima de 44 px.
+
+## Amostras da página do guia no resultado — concluída
+- [x] Abaixo do aviso “A condição é a mesma para todas as pessoas elegíveis.” na tela de resultado, mostrar três cópias idênticas da imagem enviada da página 2, uma ao lado da outra; reutilizar o arquivo original, sem gerar, redesenhar, recortar, esticar ou deformar os traços, mantendo a proporção.
+- [x] Manter as três amostras em uma única faixa responsiva e conservar o cartão de resultado, o CTA e o texto auxiliar visíveis no mobile em `320×568`, `360×640` e `375×812`.
+- Evidência: o PNG do site tem o mesmo SHA-256 do upload; a faixa foi conferida nos três viewports e `pnpm run typecheck`, `pnpm run build` e `git diff --check` passaram.
+
 ## Resultado e oferta — versão anterior concluída (histórico)
 - [x] Ao concluir, apresentar a tela com revelação suave, título “Seu momento de calma está esperando por você!” e subtítulo “Você concluiu o quiz e desbloqueou uma condição especial para começar a desenhar suas próprias mandalas.”
 - [x] Personalizar a mensagem final como descoberta de preferências, usando mensagens compatíveis com as respostas. Não afirmar que o quiz detectou estado emocional, diagnóstico ou capacidade mental.
