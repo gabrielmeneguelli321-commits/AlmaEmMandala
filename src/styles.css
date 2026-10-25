@@ -255,7 +255,7 @@ h1, h2, h3, p { margin-top: 0; }
   .header-actions { gap: 0; }
   .text-link { font-size: 13px; }
   .quiz-shell { min-height: calc(100dvh - 132px); padding: 20px 16px 28px; align-items: start; }
-  .quiz-shell--intro { align-items: center; padding-top: 14px; padding-bottom: 26px; }
+  .quiz-shell--intro { align-items: center; padding-top: 8px; padding-bottom: 38px; }
   .quiz-card { border-radius: 8px; }
   .intro-card { min-height: 0; padding: 26px 24px 23px; grid-template-columns: 1fr; gap: 0; }
   .intro-card h1, .question-card h1, .result-card h1 { font-size: clamp(32px, 9vw, 39px); }
