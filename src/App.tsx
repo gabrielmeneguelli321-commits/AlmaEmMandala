@@ -72,6 +72,17 @@ function buildPreferenceMessage(answers: Answer[]): string {
   return `Você busca ${goal} e gostaria de ${firstStep}. O guia pode combinar com essa busca ao oferecer ${support}. Como você prefere ${rhythm}, pode escolher um exercício e seguir no seu ritmo. E espera levar desse momento ${outcome}.`;
 }
 
+function buildCompactPreferenceMessage(answers: Answer[]): string {
+  const indexes = answers.map((answer, index) => Math.max(0, questions[index].options.indexOf(answer ?? '')));
+  const goals = ['uma pausa tranquila', 'criar com as mãos', 'aprender algo novo', 'tempo longe das telas'];
+  const firstSteps = ['um ponto de partida claro', 'começar sem experiência', 'orientação ao desenhar', 'experimentar estilos'];
+  const supports = ['modelos visuais', 'passo a passo', 'cinco níveis', 'mais de 500 exercícios'];
+  const rhythms = ['quando tiver tempo', 'em alguns dias', 'sem pressa', 'quando quiser'];
+  const outcomes = ['uma criação feita por você', 'acompanhar um desenho até o fim', 'explorar formas e padrões', 'continuar em outra ocasião'];
+
+  return `Você busca ${goals[indexes[0]]}, quer ${firstSteps[indexes[1]]} e valoriza ${outcomes[indexes[4]]}. O guia traz ${supports[indexes[2]]} para você desenhar ${rhythms[indexes[3]]}.`;
+}
+
 function buildOfferMatch(answers: Answer[]): string | null {
   if (answers.some((answer) => !answer)) return null;
 
@@ -173,6 +184,7 @@ function App() {
   const [consent, setConsent] = useState<Consent>(getSavedConsent);
   const [theme, setTheme] = useState<Theme>(getSavedTheme);
   const preferenceMessage = useMemo(() => buildPreferenceMessage(answers), [answers]);
+  const compactPreferenceMessage = useMemo(() => buildCompactPreferenceMessage(answers), [answers]);
   const offerMatchMessage = useMemo(() => buildOfferMatch(answers), [answers]);
 
   useEffect(() => {
@@ -292,7 +304,7 @@ function App() {
       ) : (
         <>
           <Header theme={theme} onToggleTheme={toggleTheme} />
-          <main className={`quiz-shell ${view === 'intro' ? 'quiz-shell--intro' : ''}`}>
+          <main className={`quiz-shell ${view === 'intro' ? 'quiz-shell--intro' : ''} ${view === 'result' ? 'quiz-shell--result' : ''}`}>
             {view === 'intro' && <Intro onStart={startQuiz} />}
             {view === 'quiz' && (
               <Quiz
@@ -303,7 +315,7 @@ function App() {
                 onBack={goBackQuestion}
               />
             )}
-            {view === 'result' && <Result message={preferenceMessage} onContinue={goToOffer} />}
+            {view === 'result' && <Result message={preferenceMessage} mobileMessage={compactPreferenceMessage} onContinue={goToOffer} />}
           </main>
           <p className="quiz-privacy">Suas respostas são usadas apenas para esta experiência e não pedimos dados pessoais.</p>
         </>
@@ -389,13 +401,14 @@ function Quiz({ index, answers, transitioning, onChoose, onBack }: QuizProps) {
   );
 }
 
-function Result({ message, onContinue }: { message: string; onContinue: () => void }) {
+function Result({ message, mobileMessage, onContinue }: { message: string; mobileMessage: string; onContinue: () => void }) {
   return (
     <section className="quiz-card result-card" aria-labelledby="result-title">
       <div className="result-rosette"><BrandMark /></div>
       <span className="eyebrow"><span className="eyebrow-line" /> SEU JEITO DE CRIAR</span>
       <h1 id="result-title">Um começo criativo, do seu jeito</h1>
-      <p className="result-message">{message}</p>
+      <p className="result-message result-message--full">{message}</p>
+      <p className="result-message result-message--compact">{mobileMessage}</p>
       <p className="result-copy">Agora, veja os recursos do guia que podem ajudar você a começar do jeito que prefere.</p>
       <div className="result-offer"><Price large /></div>
       <button className="button button--primary button--wide" onClick={onContinue} type="button">

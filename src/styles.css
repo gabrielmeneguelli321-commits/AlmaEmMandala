@@ -98,6 +98,7 @@ h1, h2, h3, p { margin-top: 0; }
 .result-rosette svg { width: 41px; height: 41px; }
 .result-card h1 { max-width: 540px; margin: 14px auto 15px; font-size: clamp(34px, 4vw, 44px); }
 .result-message { width: fit-content; max-width: 500px; margin: 0 auto 17px; padding: 12px 18px; border-left: 2px solid var(--sage); background: #faf8f4; color: #62596a; font: italic 18px/1.5 var(--display); }
+.result-message--compact { display: none; }
 .result-copy { max-width: 490px; margin: 0 auto 18px; color: #6c6670; font-size: 16px; line-height: 1.7; }
 .result-offer { margin: 0 auto 20px; }
 .price { display: flex; flex-direction: column; align-items: flex-start; gap: 0; }
@@ -256,6 +257,7 @@ h1, h2, h3, p { margin-top: 0; }
   .text-link { font-size: 13px; }
   .quiz-shell { min-height: calc(100dvh - 132px); padding: 20px 16px 28px; align-items: start; }
   .quiz-shell--intro { align-items: center; padding-top: 8px; padding-bottom: 38px; }
+  .quiz-shell--result { min-height: 0; padding: 6px 10px 10px; }
   .quiz-card { border-radius: 8px; }
   .intro-card { min-height: 0; padding: 26px 24px 23px; grid-template-columns: 1fr; gap: 0; }
   .intro-card h1, .question-card h1, .result-card h1 { font-size: clamp(32px, 9vw, 39px); }
@@ -273,11 +275,19 @@ h1, h2, h3, p { margin-top: 0; }
   .answer-option { min-height: 60px; padding-right: 13px; grid-template-columns: 34px 1fr 16px; gap: 11px; font-size: 16px; line-height: 1.4; }
   .answer-letter { width: 32px; height: 32px; }
   .question-foot { margin-top: 17px; }
-  .result-card { padding: 35px 25px 31px; }
-  .result-rosette { width: 60px; height: 60px; margin-bottom: 18px; }
-  .result-message { font-size: 17px; }
-  .result-copy { font-size: 15px; }
-  .result-card .button { width: 100%; min-height: 60px; font-size: 11px; }
+  .result-card { padding: 12px 14px 14px; }
+  .result-rosette { width: 42px; height: 42px; margin-bottom: 6px; }
+  .result-rosette svg { width: 26px; height: 26px; }
+  .result-card h1 { margin: 5px auto 6px; font-size: clamp(25px, 7.2vw, 30px); line-height: 1.05; }
+  .result-message { width: 100%; max-width: none; margin: 0 auto 7px; padding: 7px 9px; font-size: clamp(13px, 3.7vw, 14px); line-height: 1.25; }
+  .result-message--full { display: none; }
+  .result-message--compact { display: block; }
+  .result-copy { margin-bottom: 6px; font-size: 13px; line-height: 1.35; }
+  .result-offer { margin-bottom: 8px; }
+  .result-card .price--large strong { font-size: 27px; }
+  .result-card .price__condition { margin-top: 2px; font-size: 10px; }
+  .result-card .button { width: 100%; min-height: 54px; padding-inline: 12px; gap: 8px; font-size: 12px; }
+  .result-card .button-note { margin-top: 4px; font-size: 10px; line-height: 1.25; }
   .quiz-privacy { font-size: 12px; line-height: 1.5; margin-bottom: 16px; }
   .section-wrap { width: min(100% - 38px, 1240px); }
   .hero { min-height: auto; padding-block: 51px 39px; grid-template-columns: 1fr; gap: 7px; }
@@ -355,11 +365,19 @@ h1, h2, h3, p { margin-top: 0; }
 }
 
 @media (max-width: 700px) {
-  .site-header, .sales-page .site-header { min-height: 0; padding-block: 12px 10px; flex-wrap: wrap; row-gap: 7px; }
-  .header-tools { width: 100%; justify-content: flex-end; gap: 0; }
+  .site-header, .sales-page .site-header { width: min(100% - 24px, 1240px); min-height: 56px; padding-block: 7px; flex-wrap: nowrap; gap: 6px; }
+  .site-header .brand { gap: 7px; }
+  .site-header .brand__mark { width: 28px; height: 28px; }
+  .site-header .brand__name { font-size: 16px; }
+  .site-header .brand__descriptor { font-size: 7px; letter-spacing: 1.2px; }
+  .header-tools { width: auto; flex: 0 0 auto; justify-content: flex-end; gap: 0; }
   .header-actions { gap: 0; }
   .header-actions .text-link { display: none; }
-  .theme-toggle { min-height: 44px; padding-inline: 14px; font-size: 14px; }
+  .theme-toggle { min-height: 44px; padding-inline: 9px; gap: 6px; font-size: 12px; }
+  .theme-toggle svg { width: 16px; height: 16px; }
+  .question-eyebrow { display: flex; width: fit-content; justify-content: center; margin: 0 auto 5px; }
+  .question-card h1 { text-align: center; margin-inline: auto; }
+  .question-hint { text-align: center; }
 }
 
 /* Somente cores de interface mudam; ilustrações, fotos e mockups mantêm seus pixels e filtros originais. */
