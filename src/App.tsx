@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState } from 'react';
 import Brand, { BrandMark } from './components/Brand';
 import { createCheckoutUrl, formatPrice, FUNNEL_CONFIG, WOMAN_IMAGE } from './config';
 import { enableMetaPixel, trackMetaEvent } from './tracking';
-import { OFFER_MOCKUP_IMAGE, SAMPLE_WORKSHEET_IMAGE } from './config';
+import { OFFER_MOCKUP_IMAGE, QUIZ_INTRO_IMAGE, SAMPLE_WORKSHEET_IMAGE } from './config';
 import SalesPageB from './components/SalesPageB';
 
 type View = 'intro' | 'quiz' | 'result' | 'offer' | 'offer-b';
@@ -331,7 +331,7 @@ function Intro({ onStart }: { onStart: () => void }) {
         <span className="eyebrow"><span className="eyebrow-line" /> UM CONVITE PARA VOCÊ</span>
         <h1 id="intro-title">Encontre um momento criativo só seu</h1>
         <figure className="intro-product-mockup">
-          <img src={OFFER_MOCKUP_IMAGE} alt="Mockup do guia Mandalas da Calma, mostrando a capa e páginas internas com exercícios de mandalas." />
+          <img src={QUIZ_INTRO_IMAGE} alt="Arte do Super Pack Alma em Mandala, mostrando a capa de 550 páginas e páginas internas com exercícios de mandalas." />
           <figcaption>Material digital em PDF</figcaption>
         </figure>
         <p className="intro-lede">Responda a 5 perguntas sobre o que você busca. Ao final, veja como o guia de mandalas pode combinar com seu momento.</p>

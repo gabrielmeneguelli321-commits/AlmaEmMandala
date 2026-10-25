@@ -17,7 +17,7 @@ export const FUNNEL_CONFIG = {
 } as const;
 
 export const WOMAN_IMAGE = '/images/woman-drawing.webp';
-export const QUIZ_INTRO_IMAGE = '/images/quiz-intro.png';
+export const QUIZ_INTRO_IMAGE = '/images/alma-em-mandala-550-paginas.png';
 export const OFFER_MOCKUP_IMAGE = '/images/offer-mockup.png';
 export const SAMPLE_WORKSHEET_IMAGE = '/images/sample-worksheet.png';
 

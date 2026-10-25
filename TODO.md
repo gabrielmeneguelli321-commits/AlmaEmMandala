@@ -20,6 +20,10 @@
 - [x] Manter o CTA visível no primeiro viewport do celular, sem exigir rolagem ou aceite de métricas; manter a escolha de consentimento disponível e só carregar métricas após consentimento.
 - [x] Evidência: abertura revisada em `320×568`, `360×640`, `375×812` e `1280×800`; typecheck, build e `git diff --check` sem erros.
 
+## Nova imagem enviada para a abertura do quiz — concluída
+- [x] Substituir somente a imagem atual entre o título e o subtítulo do quiz pelo arquivo enviado `AlmaemMandala_550páginas.png`, mantendo a proporção e a transparência do criativo; preservar a imagem independente e os demais conteúdos da Oferta 1.
+- Evidência: `pnpm run typecheck`, `pnpm run build` e `git diff --check` passaram; o hash do PNG no build corresponde ao arquivo fornecido.
+
 ## Resultado e oferta — versão anterior concluída (histórico)
 - [x] Ao concluir, apresentar a tela com revelação suave, título “Seu momento de calma está esperando por você!” e subtítulo “Você concluiu o quiz e desbloqueou uma condição especial para começar a desenhar suas próprias mandalas.”
 - [x] Personalizar a mensagem final como descoberta de preferências, usando mensagens compatíveis com as respostas. Não afirmar que o quiz detectou estado emocional, diagnóstico ou capacidade mental.
