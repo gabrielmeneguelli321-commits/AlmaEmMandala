@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState } from 'react';
 import Brand, { BrandMark } from './components/Brand';
 import { createCheckoutUrl, formatPrice, FUNNEL_CONFIG, WOMAN_IMAGE } from './config';
 import { enableMetaPixel, trackMetaEvent } from './tracking';
-import { OFFER_MOCKUP_IMAGE, QUIZ_INTRO_IMAGE, RESULT_SAMPLE_IMAGE, SAMPLE_WORKSHEET_IMAGE } from './config';
+import { OFFER_MOCKUP_IMAGE, QUIZ_INTRO_IMAGE, QUIZ_VSL_POSTER, QUIZ_VSL_VIDEO, RESULT_SAMPLE_IMAGE, SAMPLE_WORKSHEET_IMAGE } from './config';
 import SalesPageB from './components/SalesPageB';
 
 type View = 'intro' | 'quiz' | 'result' | 'offer' | 'offer-b';
@@ -337,6 +337,8 @@ function App() {
 }
 
 function Intro({ onStart }: { onStart: () => void }) {
+  const [isMuted, setIsMuted] = useState(true);
+
   return (
     <section className="quiz-card intro-card intro-card--product" aria-labelledby="intro-title">
       <div className="intro-copy">
@@ -351,6 +353,40 @@ function Intro({ onStart }: { onStart: () => void }) {
           QUERO COMEÇAR <span aria-hidden="true">→</span>
         </button>
         <p className="button-note">Leva apenas alguns instantes · Sem cadastro</p>
+        <div className="intro-video">
+          <video
+            className="intro-video__media"
+            autoPlay
+            muted={isMuted}
+            playsInline
+            controls={false}
+            preload="metadata"
+            poster={QUIZ_VSL_POSTER}
+            aria-label="Demonstração de desenho de mandala, com narração em português."
+          >
+            <source src={QUIZ_VSL_VIDEO} type="video/mp4" />
+          </video>
+          <button
+            className="intro-video__mute"
+            type="button"
+            aria-label={isMuted ? 'Ativar som do vídeo' : 'Silenciar vídeo'}
+            aria-pressed={!isMuted}
+            onClick={() => setIsMuted((muted) => !muted)}
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M3 9v6h4l5 4V5L7 9H3z" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinejoin="round" />
+              {isMuted ? (
+                <path d="m16 9 5 6m0-6-5 6" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+              ) : (
+                <>
+                  <path d="M16 9a5 5 0 0 1 0 6" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+                  <path d="M19 5a10 10 0 0 1 0 14" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+                </>
+              )}
+            </svg>
+            <span>{isMuted ? 'Ativar som' : 'Silenciar'}</span>
+          </button>
+        </div>
       </div>
     </section>
   );

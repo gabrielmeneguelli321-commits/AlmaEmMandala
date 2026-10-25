@@ -24,6 +24,15 @@
 - [x] Substituir somente a imagem atual entre o título e o subtítulo do quiz pelo arquivo enviado `AlmaemMandala_550páginas.png`, mantendo a proporção e a transparência do criativo; preservar a imagem independente e os demais conteúdos da Oferta 1.
 - Evidência: `pnpm run typecheck`, `pnpm run build` e `git diff --check` passaram; o hash do PNG no build corresponde ao arquivo fornecido.
 
+## VSL 16:9 na abertura do quiz — concluída
+- [x] Recortar o vídeo autorizado entre `00:00` e `00:27` para um quadro horizontal `16:9`, sem tags ou marcas visíveis; manter o áudio original e aceitar o corte das partes de cima e de baixo. O arquivo de origem tem `576×1024`; a exportação widescreen não pode recuperar detalhes ausentes na origem.
+- [x] Inserir o vídeo imediatamente abaixo de “Leva apenas alguns instantes · Sem cadastro” na abertura do quiz (`/`), em player responsivo e inline no celular.
+- [x] Iniciar automaticamente e sem som; oferecer somente o controle de ativar/silenciar áudio, sem os controles nativos de play, pausa, progresso ou tela cheia.
+- [x] Usar a paleta da marca nos botões do player e do aviso de métricas, com contraste e foco visível.
+- [x] Manter o vídeo disponível independentemente da escolha de métricas e deixar “Aceitar” e “Recusar” igualmente acessíveis; o consentimento não é condição para assistir.
+- [x] Preservar a visibilidade e a acionabilidade do botão “QUERO COMEÇAR” em mobile; revisar o player em `320×568`, `360×640` e `375×812`.
+- Evidência: MP4 H.264/AAC `1280×720`, 30 fps, 27 s; quadros revisados sem marca visível; testes confirmaram autoplay mudo, toggle, ausência de controles nativos, vídeo disponível após recusar métricas e CTA sem overflow horizontal nos três viewports. `pnpm run typecheck`, `pnpm run build` e `git diff --check` passaram.
+
 ## Resultado do quiz em mobile — concluída
 - [x] Na tela de resultado em celulares, aproximar o botão que leva à Oferta 1 do conteúdo acima, manter um alvo de toque confortável e ajustar a composição para que todo o cartão de resultado, inclusive o botão e seu texto auxiliar, fique visível sem rolagem em `320×568`, `360×640` e `375×812`; preservar o layout desktop, o conteúdo da oferta e a navegação existentes.
 - Evidência: o cartão completo coube nos três viewports, com CTA de 54 px de altura; typecheck, build e `git diff --check` passaram.
