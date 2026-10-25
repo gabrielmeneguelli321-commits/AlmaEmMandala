@@ -1,12 +1,20 @@
 # TODO — Alma em Mandala
 
-## Quiz de descoberta — concluído
+## Quiz de descoberta — versão anterior concluída (histórico)
 - [x] O quiz começa numa tela de abertura com o título “Descubra um passatempo encantador para os seus momentos de tranquilidade”, o subtítulo “Responda 5 perguntas rápidas e conheça uma forma simples de aproveitar seu tempo com criatividade. Ao final, desbloqueie uma oferta especial.” e o botão “QUERO COMEÇAR”.
 - [x] O quiz contém cinco perguntas, uma por tela, com uma barra de progresso discreta, indicação “Pergunta X de 5”, transição suave após seleção e botões grandes e fáceis de tocar; funciona no celular sem exigir ampliação.
 - [x] Pergunta 1: “Como você gosta de aproveitar seus momentos livres?” Opções: “Fazendo atividades criativas.”, “Relaxando em casa.”, “Aprendendo algo diferente.”, “Procurando novos passatempos.” Pergunta 2: “Você já experimentou desenhar ou colorir mandalas?” Opções: “Nunca, mas tenho curiosidade.”, “Já colori algumas.”, “Já tentei desenhar.”, “Gosto bastante desse tipo de atividade.” Pergunta 3: “O que mais chama sua atenção em um passatempo?” Opções: “Poder fazer sem pressa.”, “Criar algo bonito com as mãos.”, “Exercitar minha criatividade.”, “Ter um momento longe do celular.” Pergunta 4: “Quanto tempo você gostaria de dedicar a uma atividade tranquila?” Opções: “De 5 a 10 minutos.”, “De 10 a 20 minutos.”, “De 20 a 30 minutos.”, “O tempo que eu quiser.” Pergunta 5: “Qual tipo de desenho você acha mais bonito?” Opções: “Flores e pétalas.”, “Formas geométricas.”, “Desenhos simples e delicados.”, “Mandalas com muitos detalhes.”
 - [x] Não solicitar nome, e-mail, telefone ou qualquer dado pessoal para avançar. Armazenar respostas apenas temporariamente em memória para personalizar a conclusão; não atribuir pontuações de saúde, memória ou capacidade cognitiva.
 
-## Resultado e oferta — concluído
+## Refinamento do quiz e conexão com a Oferta 1 — concluído
+- [x] Na tela de entrada do quiz (`/`), centralizar melhor o conteúdo verticalmente e garantir que o botão principal permaneça visível e acionável enquanto o aviso de métricas estiver aberto; a mensagem de consentimento continua disponível e as métricas continuam dependendo de consentimento.
+- [x] Reformular as cinco perguntas, uma por tela, para descobrir o que a pessoa busca, o que a deixa em dúvida ao começar, que tipo de orientação prefere, qual ritmo combina com sua rotina e o que gostaria de levar da atividade. Manter respostas sem coleta de dados pessoais e sem inferências de saúde ou capacidade cognitiva.
+- [x] Personalizar o resultado com base nas respostas e explicar de modo prudente como recursos confirmados do guia podem corresponder ao que a pessoa busca; respostas permanecem somente em memória.
+- [x] Ao navegar do quiz para a Oferta 1 (`/oferta`), exibir uma ponte curta baseada nas respostas e nos recursos reais do guia; ao acessar `/oferta` diretamente, manter a página genérica.
+- [x] Não alterar o preço promocional, o checkout Cakto, os criativos existentes, a Oferta 2 (`/oferta-b`) nem as demais seções fora do necessário para evitar sobreposição do banner.
+- [x] Validar o fluxo completo em desktop/mobile; `pnpm run typecheck`, `pnpm run build`, `git diff --check` e acesso direto a `/`, `/oferta` e `/oferta-b` concluídos sem erro.
+
+## Resultado e oferta — versão anterior concluída (histórico)
 - [x] Ao concluir, apresentar a tela com revelação suave, título “Seu momento de calma está esperando por você!” e subtítulo “Você concluiu o quiz e desbloqueou uma condição especial para começar a desenhar suas próprias mandalas.”
 - [x] Personalizar a mensagem final como descoberta de preferências, usando mensagens compatíveis com as respostas. Não afirmar que o quiz detectou estado emocional, diagnóstico ou capacidade mental.
 - [x] Aplicar a mesma condição comercial a todas as pessoas, independentemente das respostas. O parâmetro promocional inicial editável é R$ 19,90. Exibir “De R$ 47,00” somente quando `referencePriceVerified` for verdadeiro; por padrão, mostrar apenas o preço promocional. Não usar contadores falsos, falsa escassez ou prazo não comprovado.
