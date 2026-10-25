@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState } from 'react';
 import Brand, { BrandMark } from './components/Brand';
 import { createCheckoutUrl, formatPrice, FUNNEL_CONFIG, WOMAN_IMAGE } from './config';
 import { enableMetaPixel, trackMetaEvent } from './tracking';
-import { OFFER_MOCKUP_IMAGE, QUIZ_INTRO_IMAGE, SAMPLE_WORKSHEET_IMAGE } from './config';
+import { OFFER_MOCKUP_IMAGE, SAMPLE_WORKSHEET_IMAGE } from './config';
 import SalesPageB from './components/SalesPageB';
 
 type View = 'intro' | 'quiz' | 'result' | 'offer' | 'offer-b';
@@ -326,19 +326,19 @@ function App() {
 
 function Intro({ onStart }: { onStart: () => void }) {
   return (
-    <section className="quiz-card intro-card" aria-labelledby="intro-title">
+    <section className="quiz-card intro-card intro-card--product" aria-labelledby="intro-title">
       <div className="intro-copy">
         <span className="eyebrow"><span className="eyebrow-line" /> UM CONVITE PARA VOCÊ</span>
         <h1 id="intro-title">Encontre um momento criativo só seu</h1>
-        <p className="intro-lede">Responda a 5 perguntas sobre o que você busca e o que facilitaria começar. Ao final, veja como o guia de mandalas pode combinar com seu momento.</p>
+        <figure className="intro-product-mockup">
+          <img src={OFFER_MOCKUP_IMAGE} alt="Mockup do guia Mandalas da Calma, mostrando a capa e páginas internas com exercícios de mandalas." />
+          <figcaption>Material digital em PDF</figcaption>
+        </figure>
+        <p className="intro-lede">Responda a 5 perguntas sobre o que você busca. Ao final, veja como o guia de mandalas pode combinar com seu momento.</p>
         <button className="button button--primary button--wide" onClick={onStart} type="button">
           QUERO COMEÇAR <span aria-hidden="true">→</span>
         </button>
         <p className="button-note">Leva apenas alguns instantes · Sem cadastro</p>
-      </div>
-      <div className="intro-art" aria-hidden="true">
-        <div className="intro-art__frame intro-art__frame--photo"><img src={QUIZ_INTRO_IMAGE} alt="" /></div>
-        <span className="intro-art__note">um momento<br />no seu ritmo</span>
       </div>
     </section>
   );

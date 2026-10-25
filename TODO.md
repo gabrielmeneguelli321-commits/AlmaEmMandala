@@ -14,6 +14,12 @@
 - [x] Não alterar o preço promocional, o checkout Cakto, os criativos existentes, a Oferta 2 (`/oferta-b`) nem as demais seções fora do necessário para evitar sobreposição do banner.
 - [x] Validar o fluxo completo em desktop/mobile; `pnpm run typecheck`, `pnpm run build`, `git diff --check` e acesso direto a `/`, `/oferta` e `/oferta-b` concluídos sem erro.
 
+## Nova composição mobile da abertura do quiz — concluída
+- [x] Na tela mobile de entrada do quiz (`/`), centralizar o título e ordenar a composição como título, mockup da capa e páginas do entregável, subtítulo e botão principal do quiz.
+- [x] Reutilizar sem alterações a imagem existente do mockup do guia, que mostra capa e páginas internas; a imagem deve explicar visualmente o que acompanha o produto digital.
+- [x] Manter o CTA visível no primeiro viewport do celular, sem exigir rolagem ou aceite de métricas; manter a escolha de consentimento disponível e só carregar métricas após consentimento.
+- [x] Evidência: abertura revisada em `320×568`, `360×640`, `375×812` e `1280×800`; typecheck, build e `git diff --check` sem erros.
+
 ## Resultado e oferta — versão anterior concluída (histórico)
 - [x] Ao concluir, apresentar a tela com revelação suave, título “Seu momento de calma está esperando por você!” e subtítulo “Você concluiu o quiz e desbloqueou uma condição especial para começar a desenhar suas próprias mandalas.”
 - [x] Personalizar a mensagem final como descoberta de preferências, usando mensagens compatíveis com as respostas. Não afirmar que o quiz detectou estado emocional, diagnóstico ou capacidade mental.
@@ -47,10 +53,10 @@
 - [x] Usar texto explícito e ícone, rótulo acessível, estado anunciado, foco de teclado e alvos de toque confortáveis; preservar contraste e legibilidade.
 - [x] Não modificar arquivos, cores, filtros, recortes nem aparência dos criativos existentes; aplicar o tema apenas ao fundo, superfícies, texto e controles do site.
 
-## Imagem da abertura do quiz
+## Imagem original da abertura do quiz — histórico
 - [x] Usar a imagem enviada pelo responsável no criativo da tela inicial do quiz, ao lado do selo “Um momento no seu ritmo”; manter exatamente esse texto e preservar os demais criativos/ocorrências da mandala no resto do site.
 Evidência de conclusão: o Preview gerenciado mostra a imagem inteira em 1280×800 e 375×812, com o selo preservado.
-A abertura do quiz usa `QUIZ_INTRO_IMAGE`; as demais seções continuam usando seus ativos originais.
+A versão anterior da abertura usava `QUIZ_INTRO_IMAGE`; a atual mostra o mockup existente `OFFER_MOCKUP_IMAGE`, sem alterar o arquivo da arte ou os demais ativos.
 O PNG enviado foi armazenado em `/manus-storage/pasted_file_8Ff8W4_image_c8fd4c71.png` sem alteração.
 
 ## Mockup da página de oferta
