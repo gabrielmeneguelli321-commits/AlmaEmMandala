@@ -109,6 +109,8 @@ h1, h2, h3, p { margin-top: 0; }
 .price--large strong { font-size: 38px; }
 .result-card .price__condition { margin-top: 4px; }
 .result-card .button { position: relative; z-index: 1; }
+.result-samples { position: relative; z-index: 1; display: flex; justify-content: center; align-items: center; gap: 12px; margin: 12px auto 0; }
+.result-samples img { display: block; width: auto; height: 160px; max-width: calc((100% - 24px) / 3); object-fit: contain; border: 1px solid rgba(111, 95, 115, .18); border-radius: 2px; box-shadow: 0 4px 12px rgba(37, 30, 40, .12); }
 @keyframes reveal { from { transform: scale(.72) rotate(-17deg); opacity: .15; } to { transform: scale(1) rotate(0); opacity: 1; } }
 
 .section-wrap { width: min(100% - 64px, 1240px); margin-inline: auto; }
@@ -275,19 +277,21 @@ h1, h2, h3, p { margin-top: 0; }
   .answer-option { min-height: 60px; padding-right: 13px; grid-template-columns: 34px 1fr 16px; gap: 11px; font-size: 16px; line-height: 1.4; }
   .answer-letter { width: 32px; height: 32px; }
   .question-foot { margin-top: 17px; }
-  .result-card { padding: 12px 14px 14px; }
-  .result-rosette { width: 42px; height: 42px; margin-bottom: 6px; }
-  .result-rosette svg { width: 26px; height: 26px; }
-  .result-card h1 { margin: 5px auto 6px; font-size: clamp(25px, 7.2vw, 30px); line-height: 1.05; }
-  .result-message { width: 100%; max-width: none; margin: 0 auto 7px; padding: 7px 9px; font-size: clamp(13px, 3.7vw, 14px); line-height: 1.25; }
+  .result-card { padding: 8px 12px 10px; }
+  .result-rosette { width: 28px; height: 28px; margin-bottom: 4px; }
+  .result-rosette svg { width: 18px; height: 18px; }
+  .result-card h1 { margin: 3px auto 4px; font-size: clamp(25px, 7.2vw, 30px); line-height: 1.05; }
+  .result-message { width: 100%; max-width: none; margin: 0 auto 5px; padding: 6px 8px; font-size: clamp(13px, 3.7vw, 14px); line-height: 1.2; }
   .result-message--full { display: none; }
   .result-message--compact { display: block; }
-  .result-copy { margin-bottom: 6px; font-size: 13px; line-height: 1.35; }
-  .result-offer { margin-bottom: 8px; }
+  .result-copy { margin-bottom: 4px; font-size: 13px; line-height: 1.35; }
+  .result-offer { margin-bottom: 5px; }
   .result-card .price--large strong { font-size: 27px; }
   .result-card .price__condition { margin-top: 2px; font-size: 10px; }
   .result-card .button { width: 100%; min-height: 54px; padding-inline: 12px; gap: 8px; font-size: 12px; }
-  .result-card .button-note { margin-top: 4px; font-size: 10px; line-height: 1.25; }
+  .result-card .button-note { margin-top: 3px; font-size: 10px; line-height: 1.25; }
+  .result-samples { gap: 8px; margin-top: 6px; }
+  .result-samples img { height: 90px; max-width: calc((100% - 16px) / 3); }
   .quiz-privacy { font-size: 12px; line-height: 1.5; margin-bottom: 16px; }
   .section-wrap { width: min(100% - 38px, 1240px); }
   .hero { min-height: auto; padding-block: 51px 39px; grid-template-columns: 1fr; gap: 7px; }

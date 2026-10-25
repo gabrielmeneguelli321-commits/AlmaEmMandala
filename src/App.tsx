@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState } from 'react';
 import Brand, { BrandMark } from './components/Brand';
 import { createCheckoutUrl, formatPrice, FUNNEL_CONFIG, WOMAN_IMAGE } from './config';
 import { enableMetaPixel, trackMetaEvent } from './tracking';
-import { OFFER_MOCKUP_IMAGE, QUIZ_INTRO_IMAGE, SAMPLE_WORKSHEET_IMAGE } from './config';
+import { OFFER_MOCKUP_IMAGE, QUIZ_INTRO_IMAGE, RESULT_SAMPLE_IMAGE, SAMPLE_WORKSHEET_IMAGE } from './config';
 import SalesPageB from './components/SalesPageB';
 
 type View = 'intro' | 'quiz' | 'result' | 'offer' | 'offer-b';
@@ -415,6 +415,9 @@ function Result({ message, mobileMessage, onContinue }: { message: string; mobil
         VER SE O GUIA COMBINA COMIGO <span aria-hidden="true">→</span>
       </button>
       <p className="button-note">A condição é a mesma para todas as pessoas elegíveis.</p>
+      <div className="result-samples" role="group" aria-label="Três cópias iguais da amostra da página 2 do guia Alma em Mandala">
+        {Array.from({ length: 3 }, (_, copy) => <img key={copy} src={RESULT_SAMPLE_IMAGE} alt="" />)}
+      </div>
     </section>
   );
 }

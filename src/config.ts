@@ -20,6 +20,7 @@ export const WOMAN_IMAGE = '/images/woman-drawing.webp';
 export const QUIZ_INTRO_IMAGE = '/images/alma-em-mandala-550-paginas.png';
 export const OFFER_MOCKUP_IMAGE = '/images/offer-mockup.png';
 export const SAMPLE_WORKSHEET_IMAGE = '/images/sample-worksheet.png';
+export const RESULT_SAMPLE_IMAGE = '/images/mandala-page-2-sample.png';
 
 export function formatPrice(value: number): string {
   return new Intl.NumberFormat('pt-BR', {
