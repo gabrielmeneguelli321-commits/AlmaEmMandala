@@ -168,8 +168,7 @@ function ProductMockup() {
   return (
     <div className="mockup-scene mockup-scene--provided">
       <div className="mockup-glow" aria-hidden="true" />
-      <img className="offer-mockup-image" src={OFFER_MOCKUP_IMAGE} alt="Mockup ilustrativo do guia Mandalas da Calma, acompanhado de páginas com desenhos de mandalas e lápis coloridos." />
-      <div className="mockup-caption"><span className="caption-dot" /> Material digital em PDF</div>
+      <img className="offer-mockup-image" src={OFFER_MOCKUP_IMAGE} alt="Imagem do guia Alma em Mandala com o título ‘Observe, trace e crie no seu ritmo’ e amostras de folhas para traçar mandalas." />
     </div>
   );
 }

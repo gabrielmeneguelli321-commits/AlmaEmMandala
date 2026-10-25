@@ -18,7 +18,7 @@ export const FUNNEL_CONFIG = {
 
 export const WOMAN_IMAGE = '/images/woman-drawing.webp';
 export const QUIZ_INTRO_IMAGE = '/images/alma-em-mandala-550-paginas.png';
-export const OFFER_MOCKUP_IMAGE = '/images/offer-mockup.png';
+export const OFFER_MOCKUP_IMAGE = '/images/observe-e-trace-amostra.png';
 export const SAMPLE_WORKSHEET_IMAGE = '/images/sample-worksheet.png';
 export const RESULT_SAMPLE_IMAGE = '/images/mandala-page-2-sample.png';
 export const QUIZ_VSL_VIDEO = '/videos/alma-mandala-vsl-16x9.mp4';
