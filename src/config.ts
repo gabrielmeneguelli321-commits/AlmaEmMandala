@@ -4,8 +4,8 @@ export const FUNNEL_CONFIG = {
   /** O preço anterior só aparece se referencePriceVerified for true. */
   referencePrice: 47,
   referencePriceVerified: false,
-  /** Exiba a promessa de acesso após pagamento somente se a entrega estiver confirmada. */
-  postPaymentAccessConfirmed: false,
+  /** O responsável confirmou acesso liberado por e-mail após a confirmação do pagamento. */
+  postPaymentAccessConfirmed: true,
   /** URL HTTPS do checkout externo informada pelo responsável. */
   checkoutUrl: 'https://pay.cakto.com.br/gwf9s6z_1218085',
   /** Cupom real, se existir. Não preencher com código fictício. */

@@ -500,7 +500,7 @@ function SalesPage({ onBuy, notice, matchMessage }: { onBuy: () => void; notice:
             <Price />
             <button id="hero-buy-cta" className="button button--primary" onClick={onBuy} type="button">QUERO COMEÇAR A DESENHAR <span aria-hidden="true">→</span></button>
           </div>
-          <p className="microcopy">Material digital em PDF • Pronto para imprimir{FUNNEL_CONFIG.postPaymentAccessConfirmed && ' • Acesso após a confirmação do pagamento.'}</p>
+          <p className="microcopy">Material digital em PDF • Pronto para imprimir{FUNNEL_CONFIG.postPaymentAccessConfirmed && ' • Acesso liberado e enviado por e-mail após a confirmação do pagamento.'}</p>
           {matchMessage && (
             <aside className="quiz-match" aria-label="Sugestão baseada nas suas respostas">
               <span className="quiz-match__label">UM CAMINHO ALINHADO AO QUE VOCÊ BUSCA</span>

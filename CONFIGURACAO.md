@@ -9,13 +9,13 @@ Em `src/config.ts`, confirme:
 - `promotionalPrice`: confirme o preço final mostrado no site com o valor do checkout.
 - `referencePrice`: altere somente se houver preço anterior real e comprovável.
 - `referencePriceVerified`: mantenha `false` até essa comprovação; nesse estado o site não mostra o preço anterior e o CTA evita alegar desconto.
-- `postPaymentAccessConfirmed`: mantenha `false` até a entrega confirmar acesso após pagamento; só então a página inclui essa condição no microtexto.
+- `postPaymentAccessConfirmed`: está `true`, conforme confirmação do responsável de que o acesso é liberado e enviado por e-mail após a confirmação do pagamento.
 - `checkoutUrl`: atualmente `https://pay.cakto.com.br/gwf9s6z_1218085`, confirmado pelo responsável; atualize se o endereço oficial mudar. O código aceita apenas destinos HTTPS e redireciona quando o botão é acionado.
 - `couponCode`: informe apenas um cupom real, se aplicável.
 - `couponParameter`: ajuste para o nome exato do parâmetro que o checkout espera para o cupom (por padrão, `coupon`).
 - `metaPixelId`: informe um ID válido do Meta Pixel. O código aguarda consentimento para inicializar métricas; com o campo vazio, não carrega o Pixel.
 
-O preço de R$ 19,90 é o parâmetro inicial editável solicitado no briefing, não uma confirmação de preço final. Confirme que o checkout Cakto aplica o mesmo preço antes da publicação. A entrega do PDF e o acesso após pagamento dependem da configuração real do checkout/provedor.
+O preço promocional configurado no site (R$ 19,90) coincide com o total exibido no checkout Cakto consultado: R$ 18,91 pelo produto + R$ 0,99 de taxa de serviço = R$ 19,90. Reconfirme antes de novas campanhas caso o checkout seja alterado. O responsável confirmou que o acesso ao PDF é liberado e enviado por e-mail após a confirmação do pagamento. O preço anterior de R$ 47,00 segue oculto até haver comprovação.
 
 ## Imagens versionadas
 
