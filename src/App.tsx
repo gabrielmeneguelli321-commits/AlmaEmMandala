@@ -37,11 +37,16 @@ const themeStorageKey = 'mandalas-calma-theme';
 
 type Consent = 'unknown' | 'accepted' | 'declined';
 
-const transparentPrompts = [
+const introPrompts = [
   'Que tal começar o quiz e descobrir se o guia combina com você?',
   'Uma pausa criativa pode começar com um único traço.',
+  'Responda às perguntas no seu ritmo, sem cadastro.',
+];
+
+const salesPrompts = [
   'Explore os exercícios e encontre um ritmo que seja seu.',
-  'Você pode conhecer o guia sem cadastro e sem compromisso.',
+  'Conheça o guia e veja como começar a desenhar mandalas.',
+  'Mais de 500 exercícios guiados para você explorar no seu ritmo.',
 ];
 
 function getSavedConsent(): Consent {
@@ -186,10 +191,14 @@ function ProductMockup() {
   );
 }
 
-function TransparentPrompt() {
+function TransparentPrompt({ context }: { context: 'intro' | 'sales' | null }) {
   const [message, setMessage] = useState<string | null>(null);
 
   useEffect(() => {
+    setMessage(null);
+    if (!context) return undefined;
+
+    const prompts = context === 'intro' ? introPrompts : salesPrompts;
     let promptIndex = 0;
     let showTimer: number | undefined;
     let hideTimer: number | undefined;
@@ -197,7 +206,7 @@ function TransparentPrompt() {
 
     const scheduleNext = (delay: number) => {
       nextTimer = window.setTimeout(() => {
-        setMessage(transparentPrompts[promptIndex % transparentPrompts.length]);
+        setMessage(prompts[promptIndex % prompts.length]);
         promptIndex += 1;
         hideTimer = window.setTimeout(() => {
           setMessage(null);
@@ -207,7 +216,7 @@ function TransparentPrompt() {
     };
 
     showTimer = window.setTimeout(() => {
-      setMessage(transparentPrompts[0]);
+      setMessage(prompts[0]);
       promptIndex = 1;
       hideTimer = window.setTimeout(() => {
         setMessage(null);
@@ -220,7 +229,7 @@ function TransparentPrompt() {
       if (hideTimer) window.clearTimeout(hideTimer);
       if (nextTimer) window.clearTimeout(nextTimer);
     };
-  }, []);
+  }, [context]);
 
   if (!message) return null;
 
@@ -390,7 +399,7 @@ function App() {
           </div>
         </aside>
       )}
-      <TransparentPrompt />
+      <TransparentPrompt context={view === 'intro' ? 'intro' : view === 'offer' || view === 'offer-b' ? 'sales' : null} />
     </div>
   );
 }
