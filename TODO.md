@@ -8,7 +8,8 @@
 
 ## Refinamento do quiz e conexão com a Oferta 1 — concluído
 - [x] Na tela de entrada do quiz (`/`), centralizar melhor o conteúdo verticalmente e garantir que o botão principal permaneça visível e acionável enquanto o aviso de métricas estiver aberto; a mensagem de consentimento continua disponível e as métricas continuam dependendo de consentimento.
-- [x] Reformular as cinco perguntas, uma por tela, para descobrir o que a pessoa busca, o que a deixa em dúvida ao começar, que tipo de orientação prefere, qual ritmo combina com sua rotina e o que gostaria de levar da atividade. Manter respostas sem coleta de dados pessoais e sem inferências de saúde ou capacidade cognitiva.
+- [x] Reformular as cinco perguntas, uma por tela, para descobrir o que a pessoa busca, o que a deixa em dúvida ao começar, que tipo de orientação prefere, qual ritmo combina com sua rotina e o que despertaria sua vontade de desenhar uma mandala. Manter respostas sem coleta de dados pessoais e sem inferências de saúde ou capacidade cognitiva.
+- [x] Na etapa 5, perguntar “O que faria você querer desenhar sua primeira mandala?”; oferecer “A satisfação de criar algo com as próprias mãos.”, “Acompanhar um desenho do começo ao fim.”, “Experimentar formas e padrões.” e “Imaginar a mandala que eu gostaria de criar.”; alinhar o resultado personalizado à alternativa escolhida sem prometer resultados.
 - [x] Personalizar o resultado com base nas respostas e explicar de modo prudente como recursos confirmados do guia podem corresponder ao que a pessoa busca; respostas permanecem somente em memória.
 - [x] Ao navegar do quiz para a Oferta 1 (`/oferta`), exibir uma ponte curta baseada nas respostas e nos recursos reais do guia; ao acessar `/oferta` diretamente, manter a página genérica.
 - [x] Não alterar o preço promocional, o checkout Cakto, os criativos existentes, a Oferta 2 (`/oferta-b`) nem as demais seções fora do necessário para evitar sobreposição do banner.
@@ -33,6 +34,13 @@
 - [x] Preservar a visibilidade e a acionabilidade do botão “QUERO COMEÇAR” em mobile; revisar o player em `320×568`, `360×640` e `375×812`.
 - Evidência: MP4 H.264/AAC `1280×720`, 30 fps, 27 s; quadros revisados sem marca visível; testes confirmaram autoplay mudo, toggle, ausência de controles nativos, vídeo disponível após recusar métricas e CTA sem overflow horizontal nos três viewports. `pnpm run typecheck`, `pnpm run build` e `git diff --check` passaram.
 
+## Novo VSL vertical recortado para widescreen — concluído
+- [x] Usar o VSL vertical completo já presente no projeto como origem, preservar esse original e criar uma versão horizontal `16:9` sem faixas, preenchendo o quadro com um recorte central da ação de desenhar.
+- [x] Exportar em `1280×720`, manter os `53,6 s` do vídeo e preservar o áudio original; usar a nova versão e seu pôster no player da abertura do quiz.
+- [x] Remover o fundo desfocado usado para preencher as laterais; manter o player responsivo em `16:9`, autoplay sempre sem som, sem botões sobrepostos e sem controles nativos.
+- [x] Na abertura, posicionar o VSL logo abaixo do título, no antigo lugar da imagem do produto; posicionar a imagem do produto no antigo lugar do VSL, abaixo do aviso do CTA, mantendo “Material digital em PDF” junto à imagem.
+- Evidência: MP4 H.264/AAC `1280×720`, 30 fps, `53,63 s`; quadros conferidos em vários pontos do vídeo; ordem visual conferida no preview; `pnpm run typecheck`, `pnpm run build` e `git diff --check` concluídos.
+
 ## Resultado do quiz em mobile — concluída
 - [x] Na tela de resultado em celulares, aproximar o botão que leva à Oferta 1 do conteúdo acima, manter um alvo de toque confortável e ajustar a composição para que todo o cartão de resultado, inclusive o botão e seu texto auxiliar, fique visível sem rolagem em `320×568`, `360×640` e `375×812`; preservar o layout desktop, o conteúdo da oferta e a navegação existentes.
 - Evidência: o cartão completo coube nos três viewports, com CTA de 54 px de altura; typecheck, build e `git diff --check` passaram.
@@ -45,7 +53,7 @@
 - [x] Manter o botão de modo claro/escuro ao lado da logo, na mesma linha superior em telas de celular, sem quebrar para uma segunda linha e preservando uma área de toque confortável.
 - Evidência: logo e alternador permaneceram na mesma linha em `320×568`; o alternador manteve altura mínima de 44 px.
 
-## Amostras da página do guia no resultado — concluída
+## Amostras da página do guia no resultado — versão anterior (histórico)
 - [x] Abaixo do aviso “A condição é a mesma para todas as pessoas elegíveis.” na tela de resultado, mostrar três cópias idênticas da imagem enviada da página 2, uma ao lado da outra; reutilizar o arquivo original, sem gerar, redesenhar, recortar, esticar ou deformar os traços, mantendo a proporção.
 - [x] Manter as três amostras em uma única faixa responsiva e conservar o cartão de resultado, o CTA e o texto auxiliar visíveis no mobile em `320×568`, `360×640` e `375×812`.
 - Evidência: o PNG do site tem o mesmo SHA-256 do upload; a faixa foi conferida nos três viewports e `pnpm run typecheck`, `pnpm run build` e `git diff --check` passaram.
@@ -55,6 +63,28 @@
 - [x] Personalizar a mensagem final como descoberta de preferências, usando mensagens compatíveis com as respostas. Não afirmar que o quiz detectou estado emocional, diagnóstico ou capacidade mental.
 - [x] Aplicar a mesma condição comercial a todas as pessoas, independentemente das respostas. O parâmetro promocional inicial editável é R$ 19,90. Exibir “De R$ 47,00” somente quando `referencePriceVerified` for verdadeiro; por padrão, mostrar apenas o preço promocional. Não usar contadores falsos, falsa escassez ou prazo não comprovado.
 - [x] O CTA direciona à página `/oferta`, preservando a condição promocional. Mostrar “QUERO APROVEITAR MEU DESCONTO” somente quando `referencePriceVerified` for verdadeiro; caso contrário, mostrar “QUERO APROVEITAR MINHA OFERTA”. Se um cupom real for configurado, transmiti-lo no parâmetro editável exigido pelo checkout.
+
+## Preço de referência na conclusão do quiz — atualizado
+- [x] Na tela final do quiz, mostrar o preço anterior informado de `R$ 59,90` riscado acima do preço promocional `R$ 19,90`, com “De” e “por” para indicar a comparação; manter essa referência somente nessa tela e preservar as demais áreas de preço.
+- [x] Exibir o preço anterior apenas com a configuração de referência validada ativa; conservar a leitura acessível do valor anterior e do valor promocional.
+
+## Ajustes finais de UX do quiz — concluídos
+- [x] Na seleção de respostas, mostrar o realce apenas na opção clicada durante a transição; não deixar o hover realçar a resposta sob o cursor nem manter a seleção visual na próxima pergunta ou ao voltar. Preservar as respostas em memória para personalização.
+- [x] Na conclusão, remover as três imagens de amostra e aumentar moderadamente os tamanhos de `R$ 59,90` riscado e `R$ 19,90`, mantendo o cartão sem poluição visual.
+- [x] Garantir o autoplay do VSL na abertura, sem som e inline, em repetição contínua enquanto a abertura estiver visível; carregar mídia com prioridade de reprodução e tentar iniciar quando estiver pronta.
+- Evidência: no preview, cada opção teve realce apenas durante a transição e nenhuma na etapa seguinte; o resultado exibiu `R$ 59,90` e `R$ 19,90` sem imagens de amostra; o vídeo reproduziu com `autoplay`, `loop` e `muted` ativos. Typecheck, build e `git diff --check` passaram.
+
+## Imagem de destaque na conclusão do quiz — concluída
+- [x] Na tela pós-quiz, exibir a imagem `KitdeMandalasdaCalmaemDestaque.png` enviada pelo responsável logo abaixo do título “Um começo criativo, do seu jeito”; manter a proporção original, sem recortar, distorcer ou editar a arte, e limitar sua largura para caber em desktop e celular.
+- Evidência: a cópia no site mantém o mesmo SHA-256 do arquivo enviado; no preview a imagem carregou logo abaixo do título com dimensões proporcionais (`1754×897` de origem, `560×286` renderizadas). Typecheck, build e `git diff --check` passaram.
+
+## Alinhamento da página de oferta pós-quiz — concluído
+- [x] Ao clicar em “VER SE O GUIA COMBINA COMIGO”, no PC deixar cada informação da página `/oferta` uma abaixo da outra e centralizada. Especificamente, imediatamente abaixo do parágrafo “Um passatempo criativo, com mais de 500 exercícios guiados para você acompanhar, desenhar e aproveitar momentos de tranquilidade no seu próprio ritmo.”, empilhar as informações seguintes sem colunas lado a lado e centralizar também os blocos de largura limitada de benefícios e compra em janelas de PC reduzidas/zoom. Manter o hero em coluna central com o mockup logo abaixo do título, preservar textos e imagens e não alterar o layout mobile já aprovado.
+- Evidência: em PC, o centro do texto, da área de benefícios e do bloco de preço/CTA coincide (`x≈633px` em viewport 1280px); preço acima do botão. O fluxo vertical aplica-se a partir de `min-width: 701px`, preservando o CSS mobile. Typecheck, build e `git diff --check` passaram.
+
+## Favicon de mandala — concluído
+- [x] Usar uma mandala como favicon do site, mantendo o símbolo coerente com a identidade visual atual.
+- Evidência: o HTML referencia `/favicon.svg`, servido com HTTP 200 e tipo `image/svg+xml`; typecheck, build e `git diff --check` passaram.
 
 ## Landing page — conteúdo e benefícios implementados
 - [x] Apresentar claramente “Mandalas da Calma — Guia de Desenho”, um livro digital PDF com mais de 500 exercícios em cinco dificuldades identificadas por estrelas, modelos visuais, sequências de construção e espaços para reproduzir desenhos. Explicar que a pessoa pode escolher qualquer exercício, sem ordem, e não precisa ter experiência artística.

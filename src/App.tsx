@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState } from 'react';
 import Brand, { BrandMark } from './components/Brand';
 import { createCheckoutUrl, formatPrice, FUNNEL_CONFIG, WOMAN_IMAGE } from './config';
 import { enableMetaPixel, trackMetaEvent } from './tracking';
-import { OFFER_MOCKUP_IMAGE, QUIZ_INTRO_IMAGE, QUIZ_VSL_POSTER, QUIZ_VSL_VIDEO, RESULT_SAMPLE_IMAGE, SAMPLE_WORKSHEET_IMAGE } from './config';
+import { OFFER_MOCKUP_IMAGE, QUIZ_INTRO_IMAGE, QUIZ_RESULT_IMAGE, QUIZ_VSL_POSTER, QUIZ_VSL_VIDEO, SAMPLE_WORKSHEET_IMAGE } from './config';
 import SalesPageB from './components/SalesPageB';
 
 type View = 'intro' | 'quiz' | 'result' | 'offer' | 'offer-b';
@@ -27,8 +27,8 @@ const questions = [
     options: ['Fazer quando surgir um tempinho.', 'Reservar um intervalo em alguns dias.', 'Desenhar sem pressa quando puder.', 'Decidir a cada ocasião.'],
   },
   {
-    title: 'O que você gostaria de levar desse momento?',
-    options: ['A satisfação de criar algo com as próprias mãos.', 'Ter acompanhado um desenho do começo ao fim.', 'Ter experimentado formas e padrões.', 'Ficar com vontade de continuar em outra ocasião.'],
+    title: 'O que faria você querer desenhar sua primeira mandala?',
+    options: ['A satisfação de criar algo com as próprias mãos.', 'Acompanhar um desenho do começo ao fim.', 'Experimentar formas e padrões.', 'Imaginar a mandala que eu gostaria de criar.'],
   },
 ];
 
@@ -62,7 +62,7 @@ function buildPreferenceMessage(answers: Answer[]): string {
   const firstSteps = ['ter um ponto de partida claro', 'começar sem precisar ter experiência', 'contar com orientação durante o desenho', 'experimentar estilos diferentes para descobrir do que gosta'];
   const supports = ['modelos visuais para acompanhar os desenhos', 'sequências de construção para seguir etapa a etapa', 'cinco níveis de dificuldade para explorar', 'mais de 500 exercícios em cinco níveis'];
   const rhythms = ['fazer quando surgir um tempinho', 'reservar um intervalo em alguns dias', 'desenhar sem pressa quando puder', 'decidir a cada ocasião'];
-  const outcomes = ['a satisfação de criar algo com as próprias mãos', 'a sensação de ter acompanhado um desenho do começo ao fim', 'a oportunidade de experimentar formas e padrões', 'a vontade de continuar em outra ocasião'];
+  const outcomes = ['a satisfação de criar algo com as próprias mãos', 'a experiência de acompanhar um desenho do começo ao fim', 'a oportunidade de experimentar formas e padrões', 'a inspiração para criar uma mandala do seu jeito'];
   const goal = goals[indexes[0]];
   const firstStep = firstSteps[indexes[1]];
   const support = supports[indexes[2]];
@@ -78,7 +78,7 @@ function buildCompactPreferenceMessage(answers: Answer[]): string {
   const firstSteps = ['um ponto de partida claro', 'começar sem experiência', 'orientação ao desenhar', 'experimentar estilos'];
   const supports = ['modelos visuais', 'passo a passo', 'cinco níveis', 'mais de 500 exercícios'];
   const rhythms = ['quando tiver tempo', 'em alguns dias', 'sem pressa', 'quando quiser'];
-  const outcomes = ['uma criação feita por você', 'acompanhar um desenho até o fim', 'explorar formas e padrões', 'continuar em outra ocasião'];
+  const outcomes = ['uma criação feita por você', 'acompanhar um desenho até o fim', 'explorar formas e padrões', 'imaginar uma mandala do seu jeito'];
 
   return `Você busca ${goals[indexes[0]]}, quer ${firstSteps[indexes[1]]} e valoriza ${outcomes[indexes[4]]}. O guia traz ${supports[indexes[2]]} para você desenhar ${rhythms[indexes[3]]}.`;
 }
@@ -152,10 +152,16 @@ function ThemeToggle({ theme, onToggle }: { theme: Theme; onToggle: () => void }
   );
 }
 
-function Price({ large = false }: { large?: boolean }) {
+function Price({ large = false, showReferencePrice = false }: { large?: boolean; showReferencePrice?: boolean }) {
+  const hasReferencePrice = showReferencePrice && FUNNEL_CONFIG.referencePriceVerified;
+  const promotionalPrice = formatPrice(FUNNEL_CONFIG.promotionalPrice);
+  const priceLabel = hasReferencePrice
+    ? `De ${formatPrice(FUNNEL_CONFIG.referencePrice)} por ${promotionalPrice}`
+    : `Preço promocional ${promotionalPrice}`;
+
   return (
-    <div className={`price ${large ? 'price--large' : ''}`} aria-label={`Preço promocional ${formatPrice(FUNNEL_CONFIG.promotionalPrice)}`}>
-      {FUNNEL_CONFIG.referencePriceVerified && (
+    <div className={`price ${large ? 'price--large' : ''}`} aria-label={priceLabel}>
+      {hasReferencePrice && (
         <span className="price__from">De <s>{formatPrice(FUNNEL_CONFIG.referencePrice)}</s> por</span>
       )}
       <strong>{formatPrice(FUNNEL_CONFIG.promotionalPrice)}</strong>
@@ -320,7 +326,7 @@ function App() {
         </>
       )}
       {FUNNEL_CONFIG.metaPixelId.trim() && consent === 'unknown' && (
-        <aside className={`consent-banner ${view !== 'offer-b' ? 'consent-banner--inline' : ''}`} aria-label="Preferências de privacidade">
+        <aside className={`consent-banner ${view !== 'offer-b' ? 'consent-banner--inline' : ''} ${view === 'offer' ? 'consent-banner--centered' : ''}`} aria-label="Preferências de privacidade">
           <div>
             <strong>Você escolhe como medir esta experiência.</strong>
             <p>Com sua autorização, usamos o Meta Pixel para entender visitas e ações no site. As respostas do quiz não são enviadas pelo formulário.</p>
@@ -336,56 +342,39 @@ function App() {
 }
 
 function Intro({ onStart }: { onStart: () => void }) {
-  const [isMuted, setIsMuted] = useState(true);
-
   return (
     <section className="quiz-card intro-card intro-card--product" aria-labelledby="intro-title">
       <div className="intro-copy">
         <span className="eyebrow"><span className="eyebrow-line" /> UM CONVITE PARA VOCÊ</span>
         <h1 id="intro-title">Encontre um momento criativo só seu</h1>
-        <figure className="intro-product-mockup">
-          <img src={QUIZ_INTRO_IMAGE} alt="Arte do Super Pack Alma em Mandala, mostrando a capa de 550 páginas e páginas internas com exercícios de mandalas." />
-          <figcaption>Material digital em PDF</figcaption>
-        </figure>
-        <p className="intro-lede">Responda a 5 perguntas sobre o que você busca. Ao final, veja como o guia de mandalas pode combinar com seu momento.</p>
-        <button className="button button--primary button--wide" onClick={onStart} type="button">
-          QUERO COMEÇAR <span aria-hidden="true">→</span>
-        </button>
-        <p className="button-note">Leva apenas alguns instantes · Sem cadastro</p>
         <div className="intro-video">
           <video
             className="intro-video__media"
             autoPlay
-            muted={isMuted}
+            loop
+            muted
             playsInline
             controls={false}
-            preload="metadata"
+            preload="auto"
+            onCanPlay={(event) => {
+              const video = event.currentTarget;
+              if (video.paused) void video.play().catch(() => undefined);
+            }}
             poster={QUIZ_VSL_POSTER}
             aria-label="Demonstração de desenho de mandala, com narração em português."
           >
             <source src={QUIZ_VSL_VIDEO} type="video/mp4" />
           </video>
-          <button
-            className="intro-video__mute"
-            type="button"
-            aria-label={isMuted ? 'Ativar som do vídeo' : 'Silenciar vídeo'}
-            aria-pressed={!isMuted}
-            onClick={() => setIsMuted((muted) => !muted)}
-          >
-            <svg viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M3 9v6h4l5 4V5L7 9H3z" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinejoin="round" />
-              {isMuted ? (
-                <path d="m16 9 5 6m0-6-5 6" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
-              ) : (
-                <>
-                  <path d="M16 9a5 5 0 0 1 0 6" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
-                  <path d="M19 5a10 10 0 0 1 0 14" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
-                </>
-              )}
-            </svg>
-            <span>{isMuted ? 'Ativar som' : 'Silenciar'}</span>
-          </button>
         </div>
+        <p className="intro-lede">Responda a 5 perguntas sobre o que você busca. Ao final, veja como o guia de mandalas pode combinar com seu momento.</p>
+        <button className="button button--primary button--wide" onClick={onStart} type="button">
+          QUERO COMEÇAR <span aria-hidden="true">→</span>
+        </button>
+        <p className="button-note">Leva apenas alguns instantes · Sem cadastro</p>
+        <figure className="intro-product-mockup">
+          <img src={QUIZ_INTRO_IMAGE} alt="Arte do Super Pack Alma em Mandala, mostrando a capa de 550 páginas e páginas internas com exercícios de mandalas." />
+          <figcaption>Material digital em PDF</figcaption>
+        </figure>
       </div>
     </section>
   );
@@ -419,7 +408,7 @@ function Quiz({ index, answers, transitioning, onChoose, onBack }: QuizProps) {
       <div className="answer-list">
         {question.options.map((option, optionIndex) => (
           <button
-            className={`answer-option ${answers[index] === option ? 'answer-option--selected' : ''}`}
+            className={`answer-option ${transitioning && answers[index] === option ? 'answer-option--selected' : ''}`}
             key={option}
             onClick={() => onChoose(option)}
             type="button"
@@ -442,17 +431,15 @@ function Result({ message, mobileMessage, onContinue }: { message: string; mobil
       <div className="result-rosette"><BrandMark /></div>
       <span className="eyebrow"><span className="eyebrow-line" /> SEU JEITO DE CRIAR</span>
       <h1 id="result-title">Um começo criativo, do seu jeito</h1>
+      <img className="result-image" src={QUIZ_RESULT_IMAGE} alt="Kit Mandalas da Calma em destaque, com caderno espiral e páginas de exercícios de desenho." />
       <p className="result-message result-message--full">{message}</p>
       <p className="result-message result-message--compact">{mobileMessage}</p>
       <p className="result-copy">Agora, veja os recursos do guia que podem ajudar você a começar do jeito que prefere.</p>
-      <div className="result-offer"><Price large /></div>
+      <div className="result-offer"><Price large showReferencePrice /></div>
       <button className="button button--primary button--wide" onClick={onContinue} type="button">
         VER SE O GUIA COMBINA COMIGO <span aria-hidden="true">→</span>
       </button>
       <p className="button-note">A condição é a mesma para todas as pessoas elegíveis.</p>
-      <div className="result-samples" role="group" aria-label="Três cópias iguais da amostra da página 2 do guia Alma em Mandala">
-        {Array.from({ length: 3 }, (_, copy) => <img key={copy} src={RESULT_SAMPLE_IMAGE} alt="" />)}
-      </div>
     </section>
   );
 }
@@ -485,11 +472,12 @@ function SalesPage({ onBuy, notice, matchMessage }: { onBuy: () => void; notice:
   }, []);
 
   return (
-    <main className="sales-page">
+    <main className="sales-page sales-page--quiz-offer">
       <section className="hero section-wrap" id="inicio">
         <div className="hero-copy">
           <span className="eyebrow"><span className="eyebrow-line" /> UM GUIA PARA CRIAR COM CALMA</span>
           <h1>Descubra o prazer de desenhar lindas mandalas, <em>mesmo que você nunca tenha desenhado antes.</em></h1>
+          <div className="hero-visual"><ProductMockup /></div>
           <p className="hero-lede">Um passatempo criativo, com mais de 500 exercícios guiados para você acompanhar, desenhar e aproveitar momentos de tranquilidade no seu próprio ritmo.</p>
           <div className="hero-details">
             <span><i className="detail-check" /> +500 exercícios guiados</span>
@@ -508,7 +496,6 @@ function SalesPage({ onBuy, notice, matchMessage }: { onBuy: () => void; notice:
             </aside>
           )}
         </div>
-        <div className="hero-visual"><ProductMockup /></div>
       </section>
 
       <div className="trust-ribbon"><span>SEM EXPERIÊNCIA PRÉVIA</span><i /> <span>SEM PRESSA</span><i /> <span>NO SEU PRÓPRIO RITMO</span></div>

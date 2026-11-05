@@ -1,9 +1,9 @@
 export const FUNNEL_CONFIG = {
   /** Ajuste este valor quando o responsável confirmar o preço final. */
   promotionalPrice: 19.9,
-  /** O preço anterior só aparece se referencePriceVerified for true. */
-  referencePrice: 47,
-  referencePriceVerified: false,
+  /** Preço de referência informado pelo responsável e confirmado para exibição. */
+  referencePrice: 59.9,
+  referencePriceVerified: true,
   /** O responsável confirmou acesso liberado por e-mail após a confirmação do pagamento. */
   postPaymentAccessConfirmed: true,
   /** URL HTTPS do checkout externo informada pelo responsável. */
@@ -20,9 +20,9 @@ export const WOMAN_IMAGE = '/images/woman-drawing.webp';
 export const QUIZ_INTRO_IMAGE = '/images/alma-em-mandala-550-paginas.png';
 export const OFFER_MOCKUP_IMAGE = '/images/observe-e-trace-amostra.png';
 export const SAMPLE_WORKSHEET_IMAGE = '/images/sample-worksheet.png';
-export const RESULT_SAMPLE_IMAGE = '/images/mandala-page-2-sample.png';
-export const QUIZ_VSL_VIDEO = '/videos/alma-mandala-vsl-16x9.mp4';
-export const QUIZ_VSL_POSTER = '/videos/alma-mandala-vsl-16x9-poster.jpg';
+export const QUIZ_RESULT_IMAGE = '/images/kit-mandalas-da-calma-destaque.png';
+export const QUIZ_VSL_VIDEO = '/videos/alma-mandala-vsl-horizontal-16x9.mp4';
+export const QUIZ_VSL_POSTER = '/videos/alma-mandala-vsl-horizontal-16x9-poster.jpg';
 
 export function formatPrice(value: number): string {
   return new Intl.NumberFormat('pt-BR', {
