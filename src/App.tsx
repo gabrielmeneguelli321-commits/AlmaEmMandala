@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import Brand, { BrandMark } from './components/Brand';
 import { createCheckoutUrl, formatPrice, FUNNEL_CONFIG, WOMAN_IMAGE } from './config';
 import { enableMetaPixel, trackMetaEvent } from './tracking';
@@ -342,6 +342,32 @@ function App() {
 }
 
 function Intro({ onStart }: { onStart: () => void }) {
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    const startMuted = () => {
+      video.muted = true;
+      video.defaultMuted = true;
+      video.setAttribute('muted', '');
+      video.setAttribute('playsinline', '');
+      void video.play().catch(() => undefined);
+    };
+
+    startMuted();
+    video.addEventListener('loadedmetadata', startMuted);
+    video.addEventListener('loadeddata', startMuted);
+    video.addEventListener('canplay', startMuted);
+
+    return () => {
+      video.removeEventListener('loadedmetadata', startMuted);
+      video.removeEventListener('loadeddata', startMuted);
+      video.removeEventListener('canplay', startMuted);
+    };
+  }, []);
+
   return (
     <section className="quiz-card intro-card intro-card--product" aria-labelledby="intro-title">
       <div className="intro-copy">
@@ -349,6 +375,7 @@ function Intro({ onStart }: { onStart: () => void }) {
         <h1 id="intro-title">Encontre um momento criativo só seu</h1>
         <div className="intro-video">
           <video
+            ref={videoRef}
             className="intro-video__media"
             autoPlay
             loop
@@ -359,6 +386,7 @@ function Intro({ onStart }: { onStart: () => void }) {
             onClick={(event) => {
               const video = event.currentTarget;
               if (video.paused) {
+                video.muted = true;
                 void video.play().catch(() => undefined);
               } else {
                 video.pause();
