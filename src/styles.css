@@ -542,8 +542,9 @@ h1, h2, h3, p { margin-top: 0; }
 .intro-card--product .intro-lede { max-width: 480px; margin: 6px auto 14px; font-size: 16px; line-height: 1.5; text-align: center; }
 .intro-card--product .button { min-width: min(100%, 330px); }
 .intro-card--product .button-note { margin-top: 8px; }
-.intro-video { position: relative; width: min(100%, 300px); aspect-ratio: 9 / 16; margin: 10px auto 0; overflow: hidden; border-radius: 14px; background: #17131a; box-shadow: 0 12px 32px rgba(0, 0, 0, .12); }
-.intro-video__media { position: absolute; inset: 0; display: block; width: 100%; height: 100%; object-fit: contain; background: #17131a; }
+.intro-video { position: relative; width: 100%; aspect-ratio: 16 / 9; margin: 10px auto 0; overflow: hidden; border-radius: 14px; background: #17131a; box-shadow: 0 12px 32px rgba(0, 0, 0, .12); }
+.intro-video::before { content: ''; position: absolute; z-index: 0; inset: -16px; background: url('/videos/alma-mandala-vsl-9x16-poster.jpg') center / cover no-repeat; filter: blur(18px) brightness(.64); transform: scale(1.08); }
+.intro-video__media { position: absolute; z-index: 1; inset: 0; display: block; width: 100%; height: 100%; object-fit: contain; background: transparent; }
 .intro-video__mute { position: absolute; z-index: 1; right: 12px; bottom: 12px; display: inline-flex; min-height: 44px; align-items: center; justify-content: center; gap: 7px; padding: 0 12px; border: 1px solid rgba(255, 255, 255, .75); border-radius: 999px; background: var(--purple); color: #fff; font: inherit; font-size: 12px; font-weight: 700; line-height: 1; cursor: pointer; backdrop-filter: blur(6px); }
 .intro-video__mute:hover { background: var(--purple-deep); }
 .intro-video__mute svg { width: 18px; height: 18px; flex: none; }
