@@ -356,6 +356,14 @@ function Intro({ onStart }: { onStart: () => void }) {
             playsInline
             controls={false}
             preload="auto"
+            onClick={(event) => {
+              const video = event.currentTarget;
+              if (video.paused) {
+                void video.play().catch(() => undefined);
+              } else {
+                video.pause();
+              }
+            }}
             onCanPlay={(event) => {
               const video = event.currentTarget;
               if (video.paused) void video.play().catch(() => undefined);

@@ -617,7 +617,7 @@ h1, h2, h3, p { margin-top: 0; }
 .intro-card--product .button { min-width: min(100%, 330px); }
 .intro-card--product .button-note { margin-top: 8px; }
 .intro-video { position: relative; width: 100%; aspect-ratio: 16 / 9; margin: 10px auto 0; overflow: hidden; border-radius: 14px; background: #17131a; box-shadow: 0 12px 32px rgba(0, 0, 0, .12); }
-.intro-video__media { position: absolute; z-index: 1; inset: 0; display: block; width: 100%; height: 100%; object-fit: cover; background: #17131a; }
+.intro-video__media { position: absolute; z-index: 1; inset: 0; display: block; width: 100%; height: 100%; object-fit: cover; background: #17131a; cursor: pointer; }
 
 @media (max-width: 700px) {
   .quiz-shell--intro { align-items: start; padding-top: 8px; padding-bottom: 20px; }

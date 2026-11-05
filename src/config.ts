@@ -21,7 +21,7 @@ export const QUIZ_INTRO_IMAGE = '/images/alma-em-mandala-550-paginas.png';
 export const OFFER_MOCKUP_IMAGE = '/images/observe-e-trace-amostra.png';
 export const SAMPLE_WORKSHEET_IMAGE = '/images/sample-worksheet.png';
 export const QUIZ_RESULT_IMAGE = '/images/kit-mandalas-da-calma-destaque.png';
-export const QUIZ_VSL_VIDEO = '/videos/alma-mandala-vsl-horizontal-16x9.mp4';
+export const QUIZ_VSL_VIDEO = '/videos/alma-mandala-vsl-horizontal-16x9-optimized.mp4';
 export const QUIZ_VSL_POSTER = '/videos/alma-mandala-vsl-horizontal-16x9-poster.jpg';
 
 export function formatPrice(value: number): string {
