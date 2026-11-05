@@ -37,6 +37,13 @@ const themeStorageKey = 'mandalas-calma-theme';
 
 type Consent = 'unknown' | 'accepted' | 'declined';
 
+const transparentPrompts = [
+  'Que tal começar o quiz e descobrir se o guia combina com você?',
+  'Uma pausa criativa pode começar com um único traço.',
+  'Explore os exercícios e encontre um ritmo que seja seu.',
+  'Você pode conhecer o guia sem cadastro e sem compromisso.',
+];
+
 function getSavedConsent(): Consent {
   try {
     const saved = localStorage.getItem(consentKey);
@@ -176,6 +183,52 @@ function ProductMockup() {
       <div className="mockup-glow" aria-hidden="true" />
       <img className="offer-mockup-image" src={OFFER_MOCKUP_IMAGE} alt="Imagem do guia Alma em Mandala com o título ‘Observe, trace e crie no seu ritmo’ e amostras de folhas para traçar mandalas." />
     </div>
+  );
+}
+
+function TransparentPrompt() {
+  const [message, setMessage] = useState<string | null>(null);
+
+  useEffect(() => {
+    let promptIndex = 0;
+    let showTimer: number | undefined;
+    let hideTimer: number | undefined;
+    let nextTimer: number | undefined;
+
+    const scheduleNext = (delay: number) => {
+      nextTimer = window.setTimeout(() => {
+        setMessage(transparentPrompts[promptIndex % transparentPrompts.length]);
+        promptIndex += 1;
+        hideTimer = window.setTimeout(() => {
+          setMessage(null);
+          scheduleNext(14000 + Math.round(Math.random() * 10000));
+        }, 5600);
+      }, delay);
+    };
+
+    showTimer = window.setTimeout(() => {
+      setMessage(transparentPrompts[0]);
+      promptIndex = 1;
+      hideTimer = window.setTimeout(() => {
+        setMessage(null);
+        scheduleNext(14000 + Math.round(Math.random() * 10000));
+      }, 5600);
+    }, 8500);
+
+    return () => {
+      if (showTimer) window.clearTimeout(showTimer);
+      if (hideTimer) window.clearTimeout(hideTimer);
+      if (nextTimer) window.clearTimeout(nextTimer);
+    };
+  }, []);
+
+  if (!message) return null;
+
+  return (
+    <aside className="transparent-prompt" aria-live="polite" aria-label="Sugestão">
+      <span className="transparent-prompt__dot" aria-hidden="true" />
+      <p>{message}</p>
+    </aside>
   );
 }
 
@@ -337,6 +390,7 @@ function App() {
           </div>
         </aside>
       )}
+      <TransparentPrompt />
     </div>
   );
 }

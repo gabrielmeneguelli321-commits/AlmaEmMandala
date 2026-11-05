@@ -651,6 +651,36 @@ h1, h2, h3, p { margin-top: 0; }
 
 .app-shell[data-theme="dark"] .intro-product-mockup figcaption { color: var(--theme-muted); }
 
+.transparent-prompt {
+  position: fixed;
+  z-index: 12;
+  left: 22px;
+  bottom: 22px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: min(360px, calc(100vw - 44px));
+  padding: 13px 16px;
+  border: 1px solid rgba(120, 98, 140, .2);
+  border-radius: 10px;
+  background: rgba(255, 253, 249, .96);
+  box-shadow: 0 12px 30px rgba(55, 45, 53, .14);
+  color: var(--graphite);
+  animation: prompt-rise .45s ease both;
+  pointer-events: none;
+  backdrop-filter: blur(10px);
+}
+
+.transparent-prompt p { margin: 0; font-size: 13px; line-height: 1.4; }
+.transparent-prompt__dot { width: 8px; height: 8px; flex: 0 0 auto; border-radius: 50%; background: var(--sage); box-shadow: 0 0 0 4px rgba(166, 181, 162, .2); }
+@keyframes prompt-rise { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
+.app-shell[data-theme="dark"] .transparent-prompt { border-color: var(--theme-border); background: rgba(37, 33, 42, .96); color: var(--theme-text); }
+
+@media (max-width: 700px) {
+  .transparent-prompt { left: 14px; bottom: 84px; width: min(330px, calc(100vw - 28px)); padding: 11px 13px; }
+  .transparent-prompt p { font-size: 12px; }
+}
+
 .mobile-sticky-cta { display: none; }
 
 @media (max-width: 700px) {
