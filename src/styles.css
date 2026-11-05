@@ -655,7 +655,7 @@ h1, h2, h3, p { margin-top: 0; }
   position: fixed;
   z-index: 12;
   left: 22px;
-  bottom: 22px;
+  bottom: 118px;
   display: flex;
   align-items: center;
   gap: 10px;
@@ -677,7 +677,7 @@ h1, h2, h3, p { margin-top: 0; }
 .app-shell[data-theme="dark"] .transparent-prompt { border-color: var(--theme-border); background: rgba(37, 33, 42, .96); color: var(--theme-text); }
 
 @media (max-width: 700px) {
-  .transparent-prompt { left: 14px; bottom: 84px; width: min(330px, calc(100vw - 28px)); padding: 11px 13px; }
+  .transparent-prompt { left: 14px; bottom: 150px; width: min(330px, calc(100vw - 28px)); padding: 11px 13px; }
   .transparent-prompt p { font-size: 12px; }
 }
 
