@@ -26,17 +26,6 @@ export const QUIZ_RESULT_IMAGE = '/images/kit-mandalas-da-calma-destaque.png';
 export const QUIZ_VSL_VIDEO = '/videos/alma-mandala-vsl-horizontal-16x9-optimized.mp4';
 export const QUIZ_VSL_POSTER = '/videos/alma-mandala-vsl-horizontal-16x9-poster.jpg';
 
-export const BONUS_IMAGES = {
-  complexModels: '/images/bonuses/bonus-01-modelos-complexos.jpg',
-  practiceDrawings: '/images/bonuses/bonus-02-desenhos-pratica.jpg',
-  fruitsVegetables: '/images/bonuses/bonus-03-frutas-vegetais.jpg',
-  calmingMind: '/images/bonuses/bonus-04-acalmando-mente.jpg',
-  calendars: '/images/bonuses/bonus-05-calendarios-agendas.jpg',
-  posters: '/images/bonuses/bonus-06-posters-panfletos.jpg',
-  habitsDiary: '/images/bonuses/bonus-07-diario-habitos.jpg',
-  alphabet: '/images/bonuses/bonus-08-alfabeto.jpg',
-  playlist: '/images/bonuses/bonus-09-playlist.jpg',
-} as const;
 
 export function formatPrice(value: number): string {
   return new Intl.NumberFormat('pt-BR', {
