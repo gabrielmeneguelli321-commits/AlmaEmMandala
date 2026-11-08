@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import Brand from './Brand';
-import { FUNNEL_CONFIG, formatPrice, OFFER_MOCKUP_IMAGE, SAMPLE_WORKSHEET_IMAGE } from '../config';
+import { BONUS_IMAGES, FUNNEL_CONFIG, formatPrice, OFFER_MOCKUP_IMAGE, SAMPLE_WORKSHEET_IMAGE } from '../config';
 import './SalesPageB.css';
 
 type Theme = 'light' | 'dark';
@@ -34,6 +34,18 @@ const guideContents = [
     title: 'Espaço para reproduzir',
     description: 'As folhas reservam espaço para você experimentar cada mandala no seu ritmo.',
   },
+];
+
+const bonuses = [
+  { number: '01', title: 'Modelos complexos', description: '60 desenhos adicionais em folhas de prática de mandalas da calma.', image: BONUS_IMAGES.complexModels },
+  { number: '02', title: 'Desenhos completos para prática', description: 'Folhas de exercícios com desenhos em página inteira para imprimir e traçar.', image: BONUS_IMAGES.practiceDrawings },
+  { number: '03', title: 'Mandalas: frutas e vegetais', description: 'Livro de colorir com desenhos originais para uma pausa criativa.', image: BONUS_IMAGES.fruitsVegetables },
+  { number: '04', title: 'Diário “Acalmando a Mente”', description: 'Exercícios e reflexões diárias para acompanhar o seu momento.', image: BONUS_IMAGES.calmingMind },
+  { number: '05', title: 'Calendários e agendas 2026 e 2027', description: 'Materiais para organizar seus dias e manter a prática por perto.', image: BONUS_IMAGES.calendars },
+  { number: '06', title: '+40 pôsteres e panfletos', description: 'Novos designs para decorar seu espaço com mandalas.', image: BONUS_IMAGES.posters },
+  { number: '07', title: 'Diário de hábitos', description: 'Um material para estabelecer e acompanhar novos hábitos positivos.', image: BONUS_IMAGES.habitsDiary },
+  { number: '08', title: 'Livro de colorir de mandalas: alfabeto', description: 'Letras ilustradas para colorir e explorar de um jeito diferente.', image: BONUS_IMAGES.alphabet },
+  { number: '09', title: 'Playlist exclusiva de música relaxante', description: 'Um complemento para acompanhar seus momentos de arte e tranquilidade.', image: BONUS_IMAGES.playlist },
 ];
 
 const questions = [
@@ -83,9 +95,9 @@ function ThemeButton({ theme, onToggle }: { theme: Theme; onToggle: () => void }
 
 function PriceBlock({ compact = false }: { compact?: boolean }) {
   return (
-    <div className={`offer-b__price${compact ? ' offer-b__price--compact' : ''}`} aria-label={`Preço exibido ${formatPrice(FUNNEL_CONFIG.promotionalPrice)}`}>
+    <div className={`offer-b__price${compact ? ' offer-b__price--compact' : ''}`} aria-label={`Preço exibido ${formatPrice(FUNNEL_CONFIG.offerBPrice)}`}>
       <span>PREÇO ATUAL</span>
-      <strong>{formatPrice(FUNNEL_CONFIG.promotionalPrice)}</strong>
+      <strong>{formatPrice(FUNNEL_CONFIG.offerBPrice)}</strong>
     </div>
   );
 }
@@ -124,6 +136,7 @@ export default function SalesPageB({ onBuy, notice, theme, onToggleTheme, consen
           <Brand />
           <nav className="offer-b__nav" aria-label="Navegação da página de vendas">
             <a href="#conteudo-b">O que vem no guia</a>
+            <a href="#bonus-b">Bônus</a>
             <a href="#amostra-b">Ver uma amostra</a>
             <a href="#duvidas-b">Dúvidas</a>
           </nav>
@@ -196,6 +209,27 @@ export default function SalesPageB({ onBuy, notice, theme, onToggleTheme, consen
               ))}
               <p className="offer-b__contents-note">Material digital em PDF. Não inclui envio de produto físico.</p>
             </div>
+          </div>
+        </section>
+
+        <section className="offer-b__bonuses" id="bonus-b" aria-labelledby="bonuses-b-title">
+          <div className="offer-b__section-heading">
+            <span className="offer-b__eyebrow"><span aria-hidden="true">✳</span> E AINDA TEM MAIS</span>
+            <h2 id="bonuses-b-title">9 bônus para aumentar o seu momento criativo.</h2>
+            <p>Além do guia principal, você recebe materiais complementares para imprimir, praticar e aproveitar no seu ritmo.</p>
+          </div>
+          <div className="offer-b__bonus-grid">
+            {bonuses.map((bonus) => (
+              <article className="offer-b__bonus-card" key={bonus.number}>
+                <div className="offer-b__bonus-number">BÔNUS {bonus.number}</div>
+                <img src={bonus.image} alt={`Imagem ilustrativa do bônus ${bonus.number}: ${bonus.title}.`} loading="lazy" />
+                <div className="offer-b__bonus-copy">
+                  <h3>{bonus.title}</h3>
+                  <p>{bonus.description}</p>
+                  <strong>GRÁTIS NA OFERTA</strong>
+                </div>
+              </article>
+            ))}
           </div>
         </section>
 
