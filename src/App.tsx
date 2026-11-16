@@ -4,6 +4,7 @@ import { createCheckoutUrl, formatPrice, FUNNEL_CONFIG, WOMAN_IMAGE } from './co
 import { enableMetaPixel, trackMetaEvent } from './tracking';
 import { OFFER_MOCKUP_IMAGE, QUIZ_INTRO_IMAGE, QUIZ_RESULT_IMAGE, QUIZ_VSL_POSTER, QUIZ_VSL_VIDEO, SAMPLE_WORKSHEET_IMAGE } from './config';
 import SalesPageB from './components/SalesPageB';
+import PurchaseToast from './components/PurchaseToast';
 
 type View = 'intro' | 'quiz' | 'result' | 'offer' | 'offer-b';
 type Answer = string | null;
@@ -36,18 +37,6 @@ const consentKey = 'mandalas-calma-pixel-consent';
 const themeStorageKey = 'mandalas-calma-theme';
 
 type Consent = 'unknown' | 'accepted' | 'declined';
-
-const introPrompts = [
-  'Que tal começar o quiz e descobrir se o guia combina com você?',
-  'Uma pausa criativa pode começar com um único traço.',
-  'Responda às perguntas no seu ritmo, sem cadastro.',
-];
-
-const salesPrompts = [
-  'Explore os exercícios e encontre um ritmo que seja seu.',
-  'Conheça o guia e veja como começar a desenhar mandalas.',
-  'Mais de 500 exercícios guiados para você explorar no seu ritmo.',
-];
 
 function getSavedConsent(): Consent {
   try {
@@ -188,56 +177,6 @@ function ProductMockup() {
       <div className="mockup-glow" aria-hidden="true" />
       <img className="offer-mockup-image" src={OFFER_MOCKUP_IMAGE} alt="Imagem do guia Alma em Mandala com o título ‘Observe, trace e crie no seu ritmo’ e amostras de folhas para traçar mandalas." />
     </div>
-  );
-}
-
-function TransparentPrompt({ context }: { context: 'intro' | 'sales' | null }) {
-  const [message, setMessage] = useState<string | null>(null);
-
-  useEffect(() => {
-    setMessage(null);
-    if (!context) return undefined;
-
-    const prompts = context === 'intro' ? introPrompts : salesPrompts;
-    let promptIndex = 0;
-    let showTimer: number | undefined;
-    let hideTimer: number | undefined;
-    let nextTimer: number | undefined;
-
-    const scheduleNext = (delay: number) => {
-      nextTimer = window.setTimeout(() => {
-        setMessage(prompts[promptIndex % prompts.length]);
-        promptIndex += 1;
-        hideTimer = window.setTimeout(() => {
-          setMessage(null);
-          scheduleNext(14000 + Math.round(Math.random() * 10000));
-        }, 5600);
-      }, delay);
-    };
-
-    showTimer = window.setTimeout(() => {
-      setMessage(prompts[0]);
-      promptIndex = 1;
-      hideTimer = window.setTimeout(() => {
-        setMessage(null);
-        scheduleNext(14000 + Math.round(Math.random() * 10000));
-      }, 5600);
-    }, 8500);
-
-    return () => {
-      if (showTimer) window.clearTimeout(showTimer);
-      if (hideTimer) window.clearTimeout(hideTimer);
-      if (nextTimer) window.clearTimeout(nextTimer);
-    };
-  }, [context]);
-
-  if (!message) return null;
-
-  return (
-    <aside className="transparent-prompt" aria-live="polite" aria-label="Sugestão">
-      <span className="transparent-prompt__dot" aria-hidden="true" />
-      <p>{message}</p>
-    </aside>
   );
 }
 
@@ -399,7 +338,7 @@ function App() {
           </div>
         </aside>
       )}
-      <TransparentPrompt context={view === 'intro' ? 'intro' : view === 'offer' || view === 'offer-b' ? 'sales' : null} />
+      <PurchaseToast mode={view === 'intro' ? 'quiz' : 'purchase'} />
     </div>
   );
 }

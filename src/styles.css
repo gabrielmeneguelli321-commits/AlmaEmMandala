@@ -651,7 +651,7 @@ h1, h2, h3, p { margin-top: 0; }
 
 .app-shell[data-theme="dark"] .intro-product-mockup figcaption { color: var(--theme-muted); }
 
-.transparent-prompt {
+.purchase-toast {
   position: fixed;
   z-index: 12;
   left: 22px;
@@ -666,19 +666,24 @@ h1, h2, h3, p { margin-top: 0; }
   background: rgba(255, 253, 249, .96);
   box-shadow: 0 12px 30px rgba(55, 45, 53, .14);
   color: var(--graphite);
-  animation: prompt-rise .45s ease both;
   pointer-events: none;
   backdrop-filter: blur(10px);
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity .45s ease, transform .45s ease;
 }
 
-.transparent-prompt p { margin: 0; font-size: 13px; line-height: 1.4; }
-.transparent-prompt__dot { width: 8px; height: 8px; flex: 0 0 auto; border-radius: 50%; background: var(--sage); box-shadow: 0 0 0 4px rgba(166, 181, 162, .2); }
-@keyframes prompt-rise { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
-.app-shell[data-theme="dark"] .transparent-prompt { border-color: var(--theme-border); background: rgba(37, 33, 42, .96); color: var(--theme-text); }
+.purchase-toast--visible { opacity: 1; transform: translateY(0); }
+.purchase-toast__icon { width: 31px; height: 31px; flex: 0 0 auto; display: grid; place-items: center; border-radius: 50%; background: var(--sage); color: #fff; font-size: 17px; font-weight: 700; }
+.purchase-toast__copy { display: grid; gap: 3px; font-size: 12px; line-height: 1.35; }
+.purchase-toast__copy strong { font-weight: 700; }
+.purchase-toast__copy span { color: #77717a; }
+.app-shell[data-theme="dark"] .purchase-toast { border-color: var(--theme-border); background: rgba(37, 33, 42, .96); color: var(--theme-text); }
+.app-shell[data-theme="dark"] .purchase-toast__copy span { color: var(--theme-muted); }
 
 @media (max-width: 700px) {
-  .transparent-prompt { left: 14px; bottom: 150px; width: min(330px, calc(100vw - 28px)); padding: 11px 13px; }
-  .transparent-prompt p { font-size: 12px; }
+  .purchase-toast { left: 14px; bottom: 150px; width: min(330px, calc(100vw - 28px)); padding: 11px 13px; }
+  .purchase-toast__copy { font-size: 11px; }
 }
 
 .mobile-sticky-cta { display: none; }
