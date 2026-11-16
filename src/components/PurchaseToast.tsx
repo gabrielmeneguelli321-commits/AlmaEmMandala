@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { formatPrice, FUNNEL_CONFIG } from '../config';
 
 type Buyer = [name: string, city: string];
 
@@ -60,7 +61,7 @@ export default function PurchaseToast({ mode = 'purchase' }: PurchaseToastProps)
       <span className="purchase-toast__icon" aria-hidden="true">✓</span>
       <div className="purchase-toast__copy">
         <strong>{name} de {city}</strong>
-        <span>{mode === 'quiz' ? 'concluiu o quiz Alma em Mandala' : 'acabou de adquirir o guia Alma em Mandala'}</span>
+        <span>{mode === 'quiz' ? `concluiu o quiz e garantiu a promoção de ${formatPrice(FUNNEL_CONFIG.promotionalPrice)}` : 'acabou de adquirir o guia Alma em Mandala'}</span>
       </div>
     </aside>
   );
