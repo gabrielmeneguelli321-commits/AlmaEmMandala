@@ -175,7 +175,18 @@ function ProductMockup() {
   return (
     <div className="mockup-scene mockup-scene--provided">
       <div className="mockup-glow" aria-hidden="true" />
-      <img className="offer-mockup-image" src={OFFER_MOCKUP_IMAGE} alt="Imagem do guia Alma em Mandala com o título ‘Observe, trace e crie no seu ritmo’ e amostras de folhas para traçar mandalas." />
+      <img
+        className="offer-mockup-image"
+        src={OFFER_MOCKUP_IMAGE}
+        srcSet="/images/optimized/observe-e-trace-amostra-480.webp 480w, /images/optimized/observe-e-trace-amostra-960.webp 960w, /images/optimized/observe-e-trace-amostra-1440.webp 1440w"
+        sizes="(max-width: 700px) 90vw, 760px"
+        width={1440}
+        height={960}
+        alt="Imagem do guia Alma em Mandala com o título ‘Observe, trace e crie no seu ritmo’ e amostras de folhas para traçar mandalas."
+        loading="eager"
+        fetchPriority="high"
+        decoding="async"
+      />
     </div>
   );
 }
@@ -345,6 +356,17 @@ function App() {
 
 function Intro({ onStart }: { onStart: () => void }) {
   const videoRef = useRef<HTMLVideoElement>(null);
+  const [isMobileViewport, setIsMobileViewport] = useState(() =>
+    window.matchMedia('(max-width: 700px)').matches,
+  );
+
+  useEffect(() => {
+    const mobileQuery = window.matchMedia('(max-width: 700px)');
+    const syncViewport = () => setIsMobileViewport(mobileQuery.matches);
+    syncViewport();
+    mobileQuery.addEventListener('change', syncViewport);
+    return () => mobileQuery.removeEventListener('change', syncViewport);
+  }, []);
 
   useEffect(() => {
     const video = videoRef.current;
@@ -355,10 +377,11 @@ function Intro({ onStart }: { onStart: () => void }) {
       video.defaultMuted = true;
       video.setAttribute('muted', '');
       video.setAttribute('playsinline', '');
-      void video.play().catch(() => undefined);
+      if (!isMobileViewport) void video.play().catch(() => undefined);
     };
 
-    startMuted();
+    if (isMobileViewport) video.pause();
+    else startMuted();
     video.addEventListener('loadedmetadata', startMuted);
     video.addEventListener('loadeddata', startMuted);
     video.addEventListener('canplay', startMuted);
@@ -368,7 +391,7 @@ function Intro({ onStart }: { onStart: () => void }) {
       video.removeEventListener('loadeddata', startMuted);
       video.removeEventListener('canplay', startMuted);
     };
-  }, []);
+  }, [isMobileViewport]);
 
   return (
     <section className="quiz-card intro-card intro-card--product" aria-labelledby="intro-title">
@@ -379,13 +402,13 @@ function Intro({ onStart }: { onStart: () => void }) {
           <video
             ref={videoRef}
             className="intro-video__media"
-            autoPlay
+            autoPlay={!isMobileViewport}
             loop
             muted
             playsInline
-            controls={false}
-            preload="auto"
-            onClick={(event) => {
+            controls={isMobileViewport}
+            preload={isMobileViewport ? 'none' : 'auto'}
+            onClick={!isMobileViewport ? (event) => {
               const video = event.currentTarget;
               if (video.paused) {
                 video.muted = true;
@@ -393,10 +416,10 @@ function Intro({ onStart }: { onStart: () => void }) {
               } else {
                 video.pause();
               }
-            }}
+            } : undefined}
             onCanPlay={(event) => {
               const video = event.currentTarget;
-              if (video.paused) void video.play().catch(() => undefined);
+              if (!isMobileViewport && video.paused) void video.play().catch(() => undefined);
             }}
             poster={QUIZ_VSL_POSTER}
             aria-label="Demonstração de desenho de mandala, com narração em português."
@@ -410,7 +433,16 @@ function Intro({ onStart }: { onStart: () => void }) {
         </button>
         <p className="button-note">Leva apenas alguns instantes · Sem cadastro</p>
         <figure className="intro-product-mockup">
-          <img src={QUIZ_INTRO_IMAGE} alt="Arte do Super Pack Alma em Mandala, mostrando a capa de 550 páginas e páginas internas com exercícios de mandalas." />
+          <img
+            src={QUIZ_INTRO_IMAGE}
+            srcSet="/images/optimized/alma-em-mandala-550-paginas-480.webp 480w, /images/optimized/alma-em-mandala-550-paginas-960.webp 960w, /images/optimized/alma-em-mandala-550-paginas-1440.webp 1440w"
+            sizes="(max-width: 700px) 100vw, 500px"
+            width={1440}
+            height={720}
+            alt="Arte do Super Pack Alma em Mandala, mostrando a capa de 550 páginas e páginas internas com exercícios de mandalas."
+            loading="lazy"
+            decoding="async"
+          />
           <figcaption>Material digital em PDF</figcaption>
         </figure>
       </div>
@@ -469,7 +501,16 @@ function Result({ message, mobileMessage, onContinue }: { message: string; mobil
       <div className="result-rosette"><BrandMark /></div>
       <span className="eyebrow"><span className="eyebrow-line" /> SEU JEITO DE CRIAR</span>
       <h1 id="result-title">Um começo criativo, do seu jeito</h1>
-      <img className="result-image" src={QUIZ_RESULT_IMAGE} alt="Kit Mandalas da Calma em destaque, com caderno espiral e páginas de exercícios de desenho." />
+      <img
+        className="result-image"
+        src={QUIZ_RESULT_IMAGE}
+        srcSet="/images/optimized/kit-mandalas-da-calma-destaque-480.webp 480w, /images/optimized/kit-mandalas-da-calma-destaque-960.webp 960w, /images/optimized/kit-mandalas-da-calma-destaque-1440.webp 1440w"
+        sizes="(max-width: 700px) 95vw, 560px"
+        width={1440}
+        height={736}
+        alt="Kit Mandalas da Calma em destaque, com caderno espiral e páginas de exercícios de desenho."
+        decoding="async"
+      />
       <p className="result-message result-message--full">{message}</p>
       <p className="result-message result-message--compact">{mobileMessage}</p>
       <p className="result-copy">Agora, veja os recursos do guia que podem ajudar você a começar do jeito que prefere.</p>
@@ -540,7 +581,17 @@ function SalesPage({ onBuy, notice, matchMessage }: { onBuy: () => void; notice:
 
       <section className="routine-section section-wrap" id="sobre">
         <div className="routine-image-wrap">
-          <img className="routine-image" src={WOMAN_IMAGE} alt="Mulher madura desenhando uma mandala em uma mesa iluminada" />
+          <img
+            className="routine-image"
+            src={WOMAN_IMAGE}
+            srcSet="/images/optimized/woman-drawing-480.webp 480w, /images/optimized/woman-drawing-960.webp 960w"
+            sizes="(max-width: 700px) 90vw, 455px"
+            width={960}
+            height={1200}
+            alt="Mulher madura desenhando uma mandala em uma mesa iluminada"
+            loading="lazy"
+            decoding="async"
+          />
           <span className="image-caption">Um tempo só seu, em casa.</span>
           <span className="image-flower" aria-hidden="true">✳</span>
         </div>
@@ -621,7 +672,20 @@ function SalesPage({ onBuy, notice, matchMessage }: { onBuy: () => void; notice:
             <h2>Formas que se encontram, pétala por pétala.</h2>
             <p>As mandalas convidam a observar a relação entre formas e padrões. Comece por um detalhe, acompanhe a construção e faça uma pausa sempre que quiser.</p>
           </div>
-          <figure className="sample-art"><img className="sample-art__provided-image" src={SAMPLE_WORKSHEET_IMAGE} alt="Folha de exercício de mandalas com cinco níveis de dificuldade e desenhos progressivos para praticar." /><figcaption>Exercícios progressivos · Cinco níveis de dificuldade · Folha A4</figcaption></figure>
+          <figure className="sample-art">
+            <img
+              className="sample-art__provided-image"
+              src={SAMPLE_WORKSHEET_IMAGE}
+              srcSet="/images/optimized/sample-worksheet-480.webp 480w, /images/optimized/sample-worksheet-960.webp 960w, /images/optimized/sample-worksheet-1254.webp 1254w"
+              sizes="(max-width: 700px) 90vw, 740px"
+              width={1254}
+              height={1254}
+              alt="Folha de exercício de mandalas com cinco níveis de dificuldade e desenhos progressivos para praticar."
+              loading="lazy"
+              decoding="async"
+            />
+            <figcaption>Exercícios progressivos · Cinco níveis de dificuldade · Folha A4</figcaption>
+          </figure>
         </div>
       </section>
 

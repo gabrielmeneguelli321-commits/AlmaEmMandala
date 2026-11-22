@@ -16,13 +16,13 @@ export const FUNNEL_CONFIG = {
   metaPixelId: '1451027436925150',
 } as const;
 
-export const WOMAN_IMAGE = '/images/woman-drawing.webp';
-export const QUIZ_INTRO_IMAGE = '/images/alma-em-mandala-550-paginas.png';
-export const OFFER_MOCKUP_IMAGE = '/images/observe-e-trace-amostra.png';
-export const SAMPLE_WORKSHEET_IMAGE = '/images/sample-worksheet.png';
-export const QUIZ_RESULT_IMAGE = '/images/kit-mandalas-da-calma-destaque.png';
+export const WOMAN_IMAGE = '/images/optimized/woman-drawing-960.webp';
+export const QUIZ_INTRO_IMAGE = '/images/optimized/alma-em-mandala-550-paginas-960.webp';
+export const OFFER_MOCKUP_IMAGE = '/images/optimized/observe-e-trace-amostra-960.webp';
+export const SAMPLE_WORKSHEET_IMAGE = '/images/optimized/sample-worksheet-960.webp';
+export const QUIZ_RESULT_IMAGE = '/images/optimized/kit-mandalas-da-calma-destaque-960.webp';
 export const QUIZ_VSL_VIDEO = '/videos/alma-mandala-vsl-horizontal-16x9-optimized.mp4';
-export const QUIZ_VSL_POSTER = '/videos/alma-mandala-vsl-horizontal-16x9-poster.jpg';
+export const QUIZ_VSL_POSTER = '/images/optimized/alma-mandala-vsl-poster-1280.webp';
 
 export function formatPrice(value: number): string {
   return new Intl.NumberFormat('pt-BR', {

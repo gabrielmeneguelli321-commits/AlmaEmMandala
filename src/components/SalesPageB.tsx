@@ -141,7 +141,17 @@ export default function SalesPageB({ onBuy, notice, theme, onToggleTheme, consen
 
           <div className="offer-b__hero-art">
             <figure className="offer-b__mockup">
-              <img src={OFFER_MOCKUP_IMAGE} alt="Mockup ilustrativo da capa do guia Mandalas da Calma com exemplos de páginas e lápis coloridos." />
+              <img
+                src={OFFER_MOCKUP_IMAGE}
+                srcSet="/images/optimized/observe-e-trace-amostra-480.webp 480w, /images/optimized/observe-e-trace-amostra-960.webp 960w, /images/optimized/observe-e-trace-amostra-1440.webp 1440w"
+                sizes="(max-width: 700px) 88vw, 490px"
+                width={1440}
+                height={960}
+                alt="Mockup ilustrativo da capa do guia Mandalas da Calma com exemplos de páginas e lápis coloridos."
+                loading="eager"
+                fetchPriority="high"
+                decoding="async"
+              />
               <figcaption>Mockup ilustrativo do guia digital</figcaption>
             </figure>
             <div className="offer-b__hero-stamp" aria-label="Mais de 500 exercícios guiados em cinco níveis">
@@ -149,7 +159,16 @@ export default function SalesPageB({ onBuy, notice, theme, onToggleTheme, consen
               <span>exercícios<br />guiados</span>
             </div>
             <figure className="offer-b__hero-sample">
-              <img src={SAMPLE_WORKSHEET_IMAGE} alt="Amostra visual de uma folha progressiva de exercícios de mandalas, com desenhos em sequência e níveis de dificuldade." />
+              <img
+                src={SAMPLE_WORKSHEET_IMAGE}
+                srcSet="/images/optimized/sample-worksheet-480.webp 480w, /images/optimized/sample-worksheet-960.webp 960w, /images/optimized/sample-worksheet-1254.webp 1254w"
+                sizes="(max-width: 700px) 76vw, 315px"
+                width={1254}
+                height={1254}
+                alt="Amostra visual de uma folha progressiva de exercícios de mandalas, com desenhos em sequência e níveis de dificuldade."
+                loading="lazy"
+                decoding="async"
+              />
               <figcaption>Uma amostra da folha de prática</figcaption>
             </figure>
           </div>
@@ -212,7 +231,16 @@ export default function SalesPageB({ onBuy, notice, theme, onToggleTheme, consen
             <p className="offer-b__sample-disclaimer">A imagem é uma amostra visual do material, não o guia completo.</p>
           </div>
           <figure className="offer-b__sample-image">
-            <img src={SAMPLE_WORKSHEET_IMAGE} alt="Folha de amostra do guia Mandalas da Calma mostrando quatro sequências progressivas de desenhos em papel A4." />
+            <img
+              src={SAMPLE_WORKSHEET_IMAGE}
+              srcSet="/images/optimized/sample-worksheet-480.webp 480w, /images/optimized/sample-worksheet-960.webp 960w, /images/optimized/sample-worksheet-1254.webp 1254w"
+              sizes="(max-width: 700px) 90vw, 620px"
+              width={1254}
+              height={1254}
+              alt="Folha de amostra do guia Mandalas da Calma mostrando quatro sequências progressivas de desenhos em papel A4."
+              loading="lazy"
+              decoding="async"
+            />
             <figcaption>AMOSTRA DE FOLHA DE PRÁTICA · NÍVEL 0</figcaption>
           </figure>
         </section>
