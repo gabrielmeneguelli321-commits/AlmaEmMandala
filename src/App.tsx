@@ -630,7 +630,7 @@ function SalesPage({ onBuy, notice, matchMessage }: { onBuy: () => void; notice:
         height={451}
         alt="Mulher colorindo uma mandala; a arte traz a mensagem Alma em Mandala — mais cor, mais calma, mais você."
         caption="Um convite para colorir no seu próprio ritmo."
-        alignment="start"
+        alignment="center"
       />
 
       <section className="benefits-section" id="beneficios">
@@ -674,7 +674,7 @@ function SalesPage({ onBuy, notice, matchMessage }: { onBuy: () => void; notice:
         height={451}
         alt="Arte promocional com o título ‘Uma pausa que faz bem’ e ícones acompanhados de mensagens sobre estresse, mente, humor, sono, memória e coordenação."
         caption="Uma arte visual sobre pausas criativas."
-        alignment="end"
+        alignment="center"
       />
 
       <section className="inside-section section-wrap" id="conteudo">
@@ -738,7 +738,7 @@ function SalesPage({ onBuy, notice, matchMessage }: { onBuy: () => void; notice:
         height={395}
         alt="Mãos colorindo uma mandala; a arte explica que não é preciso saber desenhar para escolher cores e começar."
         caption="Cor, desenho e experimentação sem exigir experiência."
-        alignment="start"
+        alignment="center"
       />
 
       <section className="offer-panel section-wrap" id="oferta">
@@ -760,7 +760,7 @@ function SalesPage({ onBuy, notice, matchMessage }: { onBuy: () => void; notice:
         height={386}
         alt="Cinco exemplos de mandalas organizados do nível fácil ao desafiante."
         caption="Cinco níveis para escolher por onde começar."
-        alignment="end"
+        alignment="center"
       />
 
       <section className="faq-section section-wrap" id="duvidas">
