@@ -715,3 +715,28 @@ h1, h2, h3, p { margin-top: 0; }
 
 /* Mantém o aviso de métricas no fluxo da página para não encobrir CTAs do quiz ou da Oferta 1. */
 .consent-banner--inline { position: static; inset: auto; width: min(calc(100% - 36px), 950px); margin: 20px auto 22px; }
+
+.post-quiz-gallery { padding-block: 78px 88px; background: #f0e8df; }
+.post-quiz-gallery .section-heading { margin-bottom: 34px; }
+.post-quiz-gallery__track { list-style: none; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 22px; margin: 0; padding: 0; }
+.post-quiz-gallery__item { min-width: 0; padding: 11px; border: 1px solid rgba(105, 87, 113, .15); border-radius: 12px; background: var(--paper); box-shadow: 0 12px 30px rgba(58, 47, 52, .09); }
+.post-quiz-gallery__item figure { margin: 0; }
+.post-quiz-gallery__item img { display: block; width: 100%; height: auto; border-radius: 6px; }
+.post-quiz-gallery__item figcaption { padding: 12px 4px 2px; color: #665d69; font: italic 15px/1.4 var(--display); text-align: center; }
+.post-quiz-gallery__item:last-child:nth-child(3n + 2) { grid-column: 2; }
+.post-quiz-gallery__hint { display: none; }
+.app-shell[data-theme="dark"] .post-quiz-gallery { background: #292522; }
+.app-shell[data-theme="dark"] .post-quiz-gallery__item { border-color: var(--theme-border); background: var(--theme-surface); }
+.app-shell[data-theme="dark"] .post-quiz-gallery__item figcaption,
+.app-shell[data-theme="dark"] .post-quiz-gallery__hint { color: var(--theme-copy); }
+
+@media (max-width: 700px) {
+  .post-quiz-gallery { padding-block: 62px 70px; }
+  .post-quiz-gallery .section-heading { margin-bottom: 22px; text-align: left; }
+  .post-quiz-gallery__track { grid-auto-flow: column; grid-auto-columns: min(90%, 390px); grid-template-columns: none; gap: 14px; overflow-x: auto; overscroll-behavior-inline: contain; padding: 2px 2px 12px; scroll-snap-type: inline mandatory; scrollbar-width: thin; }
+  .post-quiz-gallery__item { padding: 9px; scroll-snap-align: start; }
+  .post-quiz-gallery__item:last-child:nth-child(3n + 2) { grid-column: auto; }
+  .post-quiz-gallery__item figcaption { padding-top: 10px; font-size: 14px; }
+  .post-quiz-gallery__hint { display: block; margin: 10px 0 0; color: #77717a; font-size: 12px; text-align: center; }
+  .app-shell[data-theme="dark"] .post-quiz-gallery__hint { color: var(--theme-muted); }
+}

@@ -689,6 +689,49 @@ function SalesPage({ onBuy, notice, matchMessage }: { onBuy: () => void; notice:
         </div>
       </section>
 
+      <section className="post-quiz-gallery" aria-labelledby="post-quiz-gallery-title">
+        <div className="section-wrap">
+          <div className="section-heading">
+            <span className="eyebrow"><span className="eyebrow-line" /> UM CONVITE PARA CRIAR</span>
+            <h2 id="post-quiz-gallery-title">Um momento criativo, do seu jeito</h2>
+            <p>Veja um pouco do universo Alma em Mandala e escolha por onde começar, sem pressa.</p>
+          </div>
+          <ul className="post-quiz-gallery__track" aria-label="Galeria de imagens do guia">
+            <li className="post-quiz-gallery__item">
+              <figure>
+                <img src="/images/post-quiz/alma-em-mandala-colorindo.webp" width={625} height={451} alt="Mulher colorindo uma mandala; a arte traz a mensagem Alma em Mandala — mais cor, mais calma, mais você." loading="lazy" decoding="async" />
+                <figcaption>Um tempo só seu para colorir</figcaption>
+              </figure>
+            </li>
+            <li className="post-quiz-gallery__item">
+              <figure>
+                <img src="/images/post-quiz/mais-de-500-mandalas.webp" width={615} height={395} alt="Arte promocional do guia Alma em Mandala com mais de 500 desenhos de mandalas, pronto para imprimir e com acesso imediato." loading="lazy" decoding="async" />
+                <figcaption>Mais de 500 mandalas para explorar</figcaption>
+              </figure>
+            </li>
+            <li className="post-quiz-gallery__item">
+              <figure>
+                <img src="/images/post-quiz/colorir-sem-saber-desenhar.webp" width={622} height={395} alt="Mãos colorindo uma mandala; a arte explica que não é preciso saber desenhar para escolher cores e começar." loading="lazy" decoding="async" />
+                <figcaption>Não é preciso saber desenhar</figcaption>
+              </figure>
+            </li>
+            <li className="post-quiz-gallery__item">
+              <figure>
+                <img src="/images/post-quiz/cinco-niveis-de-dificuldade.webp" width={615} height={386} alt="Cinco exemplos de mandalas organizados do nível fácil ao desafiante." loading="lazy" decoding="async" />
+                <figcaption>Cinco níveis para escolher</figcaption>
+              </figure>
+            </li>
+            <li className="post-quiz-gallery__item">
+              <figure>
+                <img src="/images/post-quiz/alma-em-mandala-descubra-colorir.webp" width={622} height={386} alt="Arte Alma em Mandala com uma mandala roxa e a mensagem ‘Descubra o prazer de colorir e transforme seus dias’." loading="lazy" decoding="async" />
+                <figcaption>Descubra o prazer de colorir</figcaption>
+              </figure>
+            </li>
+          </ul>
+          <p className="post-quiz-gallery__hint">Deslize para ver todas as imagens.</p>
+        </div>
+      </section>
+
       <section className="offer-panel section-wrap" id="oferta">
         <div className="offer-panel__ornament" aria-hidden="true"><BrandMark /></div>
         <div className="offer-panel__copy">
