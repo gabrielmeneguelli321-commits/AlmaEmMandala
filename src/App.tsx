@@ -292,8 +292,8 @@ function App() {
     else setView('intro');
   }
 
-  function goToOffer() {
-    window.history.pushState({ page: 'offer' }, '', '/oferta?origem=quiz');
+  function goToOffer(source: 'quiz' | 'pular-quiz' = 'quiz') {
+    window.history.pushState({ page: 'offer', source }, '', `/oferta?origem=${source}`);
     setCheckoutNotice('');
     setView('offer');
   }
@@ -342,7 +342,7 @@ function App() {
         <>
           <Header theme={theme} onToggleTheme={toggleTheme} />
           <main className={`quiz-shell ${view === 'intro' ? 'quiz-shell--intro' : ''} ${view === 'result' ? 'quiz-shell--result' : ''}`}>
-            {view === 'intro' && <Intro onStart={startQuiz} />}
+            {view === 'intro' && <Intro onStart={startQuiz} onSkip={() => goToOffer('pular-quiz')} />}
             {view === 'quiz' && (
               <Quiz
                 index={questionIndex}
@@ -374,7 +374,7 @@ function App() {
   );
 }
 
-function Intro({ onStart }: { onStart: () => void }) {
+function Intro({ onStart, onSkip }: { onStart: () => void; onSkip: () => void }) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [isMobileViewport, setIsMobileViewport] = useState(() =>
     window.matchMedia('(max-width: 700px)').matches,
@@ -448,10 +448,11 @@ function Intro({ onStart }: { onStart: () => void }) {
           </video>
         </div>
         <p className="intro-lede">Responda a 5 perguntas sobre o que você busca. Ao final, veja como o guia de mandalas pode combinar com seu momento.</p>
-        <button className="button button--primary button--wide" onClick={onStart} type="button">
-          QUERO COMEÇAR <span aria-hidden="true">→</span>
-        </button>
-        <p className="button-note">Leva apenas alguns instantes · Sem cadastro</p>
+        <div className="intro-actions" role="group" aria-label="Escolha como continuar">
+          <button className="button button--primary button--wide" onClick={onStart} type="button">Responder Quiz</button>
+          <button className="button button--quiet button--wide" onClick={onSkip} type="button">Pular Quiz</button>
+        </div>
+        <p className="button-note">O quiz é opcional · Sem cadastro</p>
         <figure className="intro-product-mockup">
           <img
             src={QUIZ_INTRO_IMAGE}

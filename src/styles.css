@@ -63,6 +63,8 @@ h1, h2, h3, p { margin-top: 0; }
 .button--quiet { background: transparent; border: 1px solid #c9bdce; color: var(--purple-deep); box-shadow: none; }
 .button--quiet:hover { background: #f3edf6; color: var(--purple-deep); box-shadow: none; }
 .button-note { margin: 12px 0 0; color: #807a82; font-size: 13px; }
+.intro-actions { width: min(100%, 460px); display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+.intro-actions .button { width: 100%; min-width: 0; padding-inline: 12px; font-size: 12px; letter-spacing: .35px; }
 .intro-art { min-height: 340px; display: grid; place-items: center; position: relative; }
 .intro-art__frame { width: 246px; aspect-ratio: 1; position: relative; padding: 10px; border-radius: 50%; background: rgba(255, 253, 249, .84); box-shadow: 0 14px 45px rgba(75, 61, 78, .13); transform: rotate(-5deg); }
 .intro-art__frame img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; mix-blend-mode: multiply; }
@@ -341,6 +343,8 @@ h1, h2, h3, p { margin-top: 0; }
   .intro-art__note { right: 3%; bottom: 5px; font-size: 12px; padding: 10px 13px; }
   .intro-copy .eyebrow { margin-top: 5px; }
   .intro-copy .button { width: 100%; }
+  .intro-actions { gap: 9px; }
+  .intro-actions .button { min-height: 54px; padding-inline: 7px; font-size: clamp(10px, 3vw, 12px); letter-spacing: .15px; }
   .question-card { padding: 23px 21px 21px; }
   .progress-track { margin: 10px 0 28px; }
   .question-card h1 { font-size: clamp(29px, 8vw, 36px); }
