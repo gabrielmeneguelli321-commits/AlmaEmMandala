@@ -352,7 +352,7 @@ function App() {
                 onBack={goBackQuestion}
               />
             )}
-            {view === 'result' && <Result message={preferenceMessage} mobileMessage={compactPreferenceMessage} onContinue={goToOffer} />}
+            {view === 'result' && <Result message={preferenceMessage} mobileMessage={compactPreferenceMessage} onContinue={() => goToOffer('quiz')} />}
           </main>
           <p className="quiz-privacy">Suas respostas são usadas apenas para esta experiência e não pedimos dados pessoais.</p>
         </>
