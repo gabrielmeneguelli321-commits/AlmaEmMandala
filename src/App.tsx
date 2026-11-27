@@ -416,8 +416,8 @@ function Intro({ onStart, onSkip }: { onStart: () => void; onSkip: () => void })
   return (
     <section className="quiz-card intro-card intro-card--product" aria-labelledby="intro-title">
       <div className="intro-copy">
-        <span className="eyebrow"><span className="eyebrow-line" /> UM CONVITE PARA VOCÊ</span>
-        <h1 id="intro-title">Encontre um momento criativo só seu</h1>
+        <span className="eyebrow"><span className="eyebrow-line" /> SUPER PACK ALMA EM MANDALA + BÔNUS EXCLUSIVO</span>
+        <h1 id="intro-title">+500 páginas guiadas +80 desenhos florais de bônus</h1>
         <div className="intro-video">
           <video
             ref={videoRef}
@@ -447,9 +447,9 @@ function Intro({ onStart, onSkip }: { onStart: () => void; onSkip: () => void })
             <source src={QUIZ_VSL_VIDEO} type="video/mp4" />
           </video>
         </div>
-        <p className="intro-lede">Responda a 5 perguntas sobre o que você busca. Ao final, veja como o guia de mandalas pode combinar com seu momento.</p>
+        <p className="intro-lede">Receba um material digital completo em PDF, com exercícios guiados, modelos de mandalas e, como bônus, uma coleção especial com +80 desenhos florais grandes para imprimir e criar no seu ritmo — mesmo que você nunca tenha desenhado antes.</p>
         <div className="intro-actions" role="group" aria-label="Escolha como continuar">
-          <button className="button button--primary button--wide" onClick={onStart} type="button">Responder Quiz</button>
+          <button className="button button--primary button--wide" onClick={onStart} type="button">QUERO VER O QUE VEM NO GUIA →</button>
           <button className="button button--quiet button--wide" onClick={onSkip} type="button">Pular Quiz</button>
         </div>
         <p className="button-note">O quiz é opcional · Sem cadastro</p>
@@ -464,7 +464,7 @@ function Intro({ onStart, onSkip }: { onStart: () => void; onSkip: () => void })
             loading="lazy"
             decoding="async"
           />
-          <figcaption>Material digital em PDF</figcaption>
+          <figcaption>Material digital em PDF · Acesso vitalício · Enviado por e-mail após a confirmação do pagamento</figcaption>
         </figure>
       </div>
     </section>
