@@ -352,7 +352,7 @@ function App() {
                 onBack={goBackQuestion}
               />
             )}
-            {view === 'result' && <Result message={preferenceMessage} mobileMessage={compactPreferenceMessage} onContinue={() => goToOffer('quiz')} />}
+            {view === 'result' && <Result message={preferenceMessage} mobileMessage={compactPreferenceMessage} onContinue={startCheckout} />}
           </main>
           <p className="quiz-privacy">Suas respostas são usadas apenas para esta experiência e não pedimos dados pessoais.</p>
         </>
@@ -449,7 +449,10 @@ function Intro({ onStart, onSkip }: { onStart: () => void; onSkip: () => void })
         </div>
         <p className="intro-lede">Receba um material digital completo em PDF, com exercícios guiados, modelos de mandalas e, como bônus, uma coleção especial com +80 desenhos florais grandes para imprimir e criar no seu ritmo — mesmo que você nunca tenha desenhado antes.</p>
         <div className="intro-actions" role="group" aria-label="Escolha como continuar">
-          <button className="button button--primary button--wide" onClick={onStart} type="button">QUERO VER O QUE VEM NO GUIA →</button>
+          <button className="button button--primary button--wide" onClick={onStart} type="button">
+            <span className="intro-cta-label intro-cta-label--desktop">QUERO VER O QUE VEM NO GUIA →</span>
+            <span className="intro-cta-label intro-cta-label--mobile">Responder Quiz</span>
+          </button>
           <button className="button button--quiet button--wide" onClick={onSkip} type="button">Pular Quiz</button>
         </div>
         <p className="button-note">O quiz é opcional · Sem cadastro</p>
