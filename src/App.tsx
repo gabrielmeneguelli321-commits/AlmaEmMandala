@@ -431,7 +431,7 @@ function Intro({ onStart, onSkip }: { onStart: () => void; onSkip: () => void })
             <source src={QUIZ_VSL_VIDEO} type="video/mp4" />
           </video>
         </div>
-        <p className="intro-lede">Receba um material digital completo em PDF, com exercícios guiados, modelos de mandalas e, como bônus, uma coleção especial com +80 desenhos florais grandes para imprimir e criar no seu ritmo — mesmo que você nunca tenha desenhado antes.</p>
+        <p className="intro-lede">Receba um material digital completo em PDF, com exercícios guiados, modelos de mandalas e, como bônus, uma coleção especial com +80 desenhos florais grandes para imprimir e criar no seu ritmo — mesmo que você nunca tenha desenhado antes. Tudo isso por apenas R$ 19,90.</p>
         <div className="intro-actions" role="group" aria-label="Escolha como continuar">
           <button className="button button--primary button--wide" onClick={onStart} type="button">
             <span className="intro-cta-label intro-cta-label--desktop">QUERO VER O QUE VEM NO GUIA →</span>
