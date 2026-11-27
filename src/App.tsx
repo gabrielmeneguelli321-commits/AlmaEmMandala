@@ -353,7 +353,7 @@ function App() {
           </div>
         </aside>
       )}
-      <PurchaseToast mode={view === 'intro' ? 'quiz' : 'purchase'} />
+      {view !== 'quiz' && view !== 'result' && <PurchaseToast mode={view === 'intro' ? 'quiz' : 'purchase'} />}
     </div>
   );
 }

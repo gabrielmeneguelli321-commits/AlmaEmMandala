@@ -700,7 +700,15 @@ h1, h2, h3, p { margin-top: 0; }
 .app-shell[data-theme="dark"] .purchase-toast__copy span { color: var(--theme-muted); }
 
 @media (max-width: 700px) {
-  .purchase-toast { display: none; }
+  .purchase-toast {
+    top: 72px;
+    bottom: auto;
+    left: 14px;
+    width: min(290px, calc(100vw - 28px));
+    padding: 9px 11px;
+  }
+  .purchase-toast__icon { width: 27px; height: 27px; font-size: 14px; }
+  .purchase-toast__copy { font-size: 10px; }
 }
 
 .mobile-sticky-cta { display: none; }
