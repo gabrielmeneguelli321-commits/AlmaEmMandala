@@ -12,24 +12,16 @@ type Theme = 'light' | 'dark';
 
 const questions = [
   {
-    title: 'O que você gostaria de encontrar em um momento só seu?',
-    options: ['Uma pausa tranquila no meu dia.', 'Uma atividade criativa para fazer com as mãos.', 'A chance de aprender algo novo sem pressa.', 'Um tempo longe das telas.'],
+    title: 'Depois de um dia cansativo, quando você chega em casa e pega o celular para se distrair, o que você gostaria de fazer no seu tempo livre?',
+    options: ['Desacelerar e ter alguns minutos de calma.', 'Fazer algo criativo com as minhas mãos.', 'Me afastar um pouco das telas.', 'Aproveitar meu tempo livre aprendendo algo novo.'],
   },
   {
-    title: 'O que mais pode deixar você em dúvida na hora de começar a desenhar?',
-    options: ['Não saber por onde começar.', 'Pensar que preciso ter experiência.', 'Sentir falta de um passo a passo.', 'Ainda não saber de que estilo gosto.'],
+    title: 'Se você pudesse substituir alguns minutos rolando o celular por uma atividade prazerosa, o que mais combinaria com você?',
+    options: ['Uma pausa tranquila para aliviar a cabeça.', 'Um passo a passo para criar sem complicação.', 'Uma atividade manual para fazer no meu ritmo.', 'Algo prazeroso que eu pudesse começar hoje.'],
   },
   {
     title: 'Que tipo de apoio ajudaria você a dar o primeiro traço?',
     options: ['Modelos visuais para acompanhar.', 'Sequências que mostrem como construir o desenho.', 'Exercícios com diferentes níveis de dificuldade.', 'Liberdade para escolher por onde começar.'],
-  },
-  {
-    title: 'Qual ritmo combina melhor com a sua rotina?',
-    options: ['Fazer quando surgir um tempinho.', 'Reservar um intervalo em alguns dias.', 'Desenhar sem pressa quando puder.', 'Decidir a cada ocasião.'],
-  },
-  {
-    title: 'O que faria você querer desenhar sua primeira mandala?',
-    options: ['A satisfação de criar algo com as próprias mãos.', 'Acompanhar um desenho do começo ao fim.', 'Experimentar formas e padrões.', 'Imaginar a mandala que eu gostaria de criar.'],
   },
 ];
 
@@ -59,29 +51,23 @@ function getSavedTheme(): Theme {
 
 function buildPreferenceMessage(answers: Answer[]): string {
   const indexes = answers.map((answer, index) => Math.max(0, questions[index].options.indexOf(answer ?? '')));
-  const goals = ['uma pausa tranquila no seu dia', 'uma atividade criativa para fazer com as mãos', 'a chance de aprender algo novo sem pressa', 'um tempo longe das telas'];
-  const firstSteps = ['ter um ponto de partida claro', 'começar sem precisar ter experiência', 'contar com orientação durante o desenho', 'experimentar estilos diferentes para descobrir do que gosta'];
+  const goals = ['desacelerar e ter alguns minutos de calma', 'fazer algo criativo com as mãos', 'se afastar um pouco das telas', 'aproveitar o tempo livre aprendendo algo novo'];
+  const firstSteps = ['uma pausa tranquila para aliviar a cabeça', 'um passo a passo para criar sem complicação', 'uma atividade manual para fazer no seu ritmo', 'algo prazeroso que você possa começar hoje'];
   const supports = ['modelos visuais para acompanhar os desenhos', 'sequências de construção para seguir etapa a etapa', 'cinco níveis de dificuldade para explorar', 'mais de 500 exercícios em cinco níveis'];
-  const rhythms = ['fazer quando surgir um tempinho', 'reservar um intervalo em alguns dias', 'desenhar sem pressa quando puder', 'decidir a cada ocasião'];
-  const outcomes = ['a satisfação de criar algo com as próprias mãos', 'a experiência de acompanhar um desenho do começo ao fim', 'a oportunidade de experimentar formas e padrões', 'a inspiração para criar uma mandala do seu jeito'];
   const goal = goals[indexes[0]];
   const firstStep = firstSteps[indexes[1]];
   const support = supports[indexes[2]];
-  const rhythm = rhythms[indexes[3]];
-  const outcome = outcomes[indexes[4]];
 
-  return `Você busca ${goal} e gostaria de ${firstStep}. O guia pode combinar com essa busca ao oferecer ${support}. Como você prefere ${rhythm}, pode escolher um exercício e seguir no seu ritmo. E espera levar desse momento ${outcome}.`;
+  return `Depois de um dia corrido, você busca ${goal} e gostaria de encontrar ${firstStep}. O guia pode combinar com essa busca ao oferecer ${support}, para você criar sem pressa e aproveitar melhor o seu tempo livre.`;
 }
 
 function buildCompactPreferenceMessage(answers: Answer[]): string {
   const indexes = answers.map((answer, index) => Math.max(0, questions[index].options.indexOf(answer ?? '')));
-  const goals = ['uma pausa tranquila', 'criar com as mãos', 'aprender algo novo', 'tempo longe das telas'];
-  const firstSteps = ['um ponto de partida claro', 'começar sem experiência', 'orientação ao desenhar', 'experimentar estilos'];
+  const goals = ['desacelerar', 'criar com as mãos', 'se afastar das telas', 'aprender algo novo'];
+  const firstSteps = ['uma pausa tranquila', 'um passo a passo simples', 'uma atividade manual', 'algo para começar hoje'];
   const supports = ['modelos visuais', 'passo a passo', 'cinco níveis', 'mais de 500 exercícios'];
-  const rhythms = ['quando tiver tempo', 'em alguns dias', 'sem pressa', 'quando quiser'];
-  const outcomes = ['uma criação feita por você', 'acompanhar um desenho até o fim', 'explorar formas e padrões', 'imaginar uma mandala do seu jeito'];
 
-  return `Você busca ${goals[indexes[0]]}, quer ${firstSteps[indexes[1]]} e valoriza ${outcomes[indexes[4]]}. O guia traz ${supports[indexes[2]]} para você desenhar ${rhythms[indexes[3]]}.`;
+  return `Você quer ${goals[indexes[0]]}, busca ${firstSteps[indexes[1]]} e pode começar com ${supports[indexes[2]]}.`;
 }
 
 function buildOfferMatch(answers: Answer[]): string | null {
@@ -90,13 +76,11 @@ function buildOfferMatch(answers: Answer[]): string | null {
   const goalIndex = Math.max(0, questions[0].options.indexOf(answers[0] ?? ''));
   const firstStepIndex = Math.max(0, questions[1].options.indexOf(answers[1] ?? ''));
   const supportIndex = Math.max(0, questions[2].options.indexOf(answers[2] ?? ''));
-  const rhythmIndex = Math.max(0, questions[3].options.indexOf(answers[3] ?? ''));
-  const goals = ['uma pausa tranquila no seu dia', 'uma atividade criativa para fazer com as mãos', 'a chance de aprender algo novo sem pressa', 'um tempo longe das telas'];
-  const firstSteps = ['ter um ponto de partida claro', 'começar sem precisar ter experiência', 'contar com orientação durante o desenho', 'experimentar estilos diferentes para descobrir do que gosta'];
+  const goals = ['uma pausa tranquila no seu dia', 'uma atividade criativa para fazer com as próprias mãos', 'a chance de aprender algo novo sem pressa', 'um tempo longe das telas'];
+  const firstSteps = ['uma pausa tranquila para aliviar a cabeça', 'um passo a passo para criar sem complicação', 'uma atividade manual para fazer no seu ritmo', 'algo prazeroso para começar hoje'];
   const supports = ['modelos visuais para acompanhar os desenhos', 'sequências de construção para seguir etapa a etapa', 'cinco níveis de dificuldade para explorar', 'mais de 500 exercícios em cinco níveis'];
-  const rhythms = ['fazer quando surgir um tempinho', 'reservar um intervalo em alguns dias', 'desenhar sem pressa quando puder', 'decidir a cada ocasião'];
 
-  return `Você busca ${goals[goalIndex]} e quer ${firstSteps[firstStepIndex]}. O guia oferece ${supports[supportIndex]}; você pode ${rhythms[rhythmIndex]} e escolher por onde começar.`;
+  return `Depois de um dia corrido, você busca ${goals[goalIndex]} e quer ${firstSteps[firstStepIndex]}. O guia oferece ${supports[supportIndex]} para você começar sem complicação.`;
 }
 
 function Header({ onRestart, theme, onToggleTheme }: {
@@ -491,9 +475,9 @@ function Quiz({ index, answers, transitioning, onChoose, onBack }: QuizProps) {
         <button className="back-button" type="button" onClick={onBack} aria-label="Voltar">
           <span aria-hidden="true">←</span> Voltar
         </button>
-        <span className="question-count">Pergunta {index + 1} de 5</span>
+        <span className="question-count">Pergunta {index + 1} de {questions.length}</span>
       </div>
-      <div className="progress-track" role="progressbar" aria-label="Progresso do quiz" aria-valuemin={0} aria-valuemax={5} aria-valuenow={index + 1}>
+      <div className="progress-track" role="progressbar" aria-label="Progresso do quiz" aria-valuemin={0} aria-valuemax={questions.length} aria-valuenow={index + 1}>
         <span style={{ width: `${progress}%` }} />
       </div>
       <span className="eyebrow question-eyebrow"><span className="eyebrow-line" /> UMA DESCOBERTA POR VEZ</span>
