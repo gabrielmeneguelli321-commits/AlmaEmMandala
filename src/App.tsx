@@ -231,7 +231,8 @@ function App() {
   }, [theme]);
 
   useEffect(() => {
-    if ((view === 'offer' || view === 'offer-b') && consent === 'accepted') trackMetaEvent('ViewContent');
+    const skippedQuiz = view === 'offer' && new URLSearchParams(window.location.search).get('origem') === 'pular-quiz';
+    if ((view === 'offer' || view === 'offer-b') && consent === 'accepted' && !skippedQuiz) trackMetaEvent('ViewContent');
     if (view === 'result' && consent === 'accepted') trackMetaEvent('QuizComplete', true);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, [view, consent]);
@@ -243,6 +244,7 @@ function App() {
   }, [view]);
 
   function startQuiz() {
+    if (consent === 'accepted') trackMetaEvent('QuizStart', true);
     if (window.location.pathname === '/oferta' || window.location.pathname === '/oferta-b') {
       window.history.pushState({ page: 'quiz' }, '', '/');
     }
@@ -278,6 +280,7 @@ function App() {
 
   function goToOffer(source: 'quiz' | 'pular-quiz' = 'quiz') {
     window.history.pushState({ page: 'offer', source }, '', `/oferta?origem=${source}`);
+    if (source === 'pular-quiz' && consent === 'accepted') trackMetaEvent('PageView');
     setCheckoutNotice('');
     setView('offer');
   }
